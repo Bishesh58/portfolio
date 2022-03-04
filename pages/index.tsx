@@ -1,23 +1,23 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import Navbar from '../components/Navbar'
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        
-      <h2>hello world</h2>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-       This is footer
-      </footer>
+      <div className="fixed top-0 left-0 right-0">
+        <Navbar />
+      </div>
+      {/* <div className=" min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"> */}
+      <div className=" min-h-screen">
+      <div>
+       
+      </div>
+      </div>
     </div>
   )
 }
