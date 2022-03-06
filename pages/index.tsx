@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Banner from '../components/Banner'
+import About from "../components/About"
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
       <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-400 text-white">
         <Navbar />
         <Banner />
+        <About />
       </div>
     </div>
   )

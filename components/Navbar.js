@@ -14,7 +14,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="sticky top-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-400">
+    <div className="sticky top-0 z-50 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-400">
       <div className="mx-auto max-w-7xl px-4 sm:px-4 shadow-sm ">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
