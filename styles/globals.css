@@ -7,9 +7,10 @@
 
 @layer components {
     .btn {
-        @apply rounded-md p-2 text-lg border hover:bg-gradient-to-br from-green-500 to-blue-600  transition-all ease-out hover:border-t-2 
+        @apply rounded-md p-2 text-lg border  bg-[#874fd1] hover:bg-gradient-to-br from-green-500 to-blue-600  transition-all ease-out
     }
     .btnHover {
         @apply hover:bg-gradient-to-br from-green-500 to-blue-600  transition-all ease-out
     }
+    
 }
