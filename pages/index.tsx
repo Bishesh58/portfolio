@@ -18,11 +18,9 @@ const Home: NextPage = () => {
           <Navbar />
           <Banner />
           <About />
-          <Projects />
-          <Testimonial />
-          <About />
-          <About />
-          <About />
+          {/* <Projects />
+          <Testimonial /> */}
+          
         </div>
       </div>
     </div>
