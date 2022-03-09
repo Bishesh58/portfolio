@@ -5,7 +5,7 @@ import Wave from 'react-wavify'
 function Banner() {
   return (
     <>
-      <div className="mt-40 rounded-2xl border border-r-0 border-b-0 border-opacity-30 bg-white bg-opacity-10 shadow-2xl backdrop-blur-lg backdrop-filter">
+      <div className="mt-24 mx-4 rounded-2xl border border-r-0 border-b-0 border-opacity-30 bg-white bg-opacity-10 shadow-2xl backdrop-blur-lg backdrop-filter">
         <div className=" m-4 pb-20 flex  flex-col justify-between pt-10 md:flex-row">
           <div className="flex-[0.6] p-10 font-Roboto text-white ">
             <h1 className=" py-8 text-5xl font-bold">Hey, I'm Bishesh</h1>

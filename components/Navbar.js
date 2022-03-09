@@ -14,8 +14,8 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="sticky top-0 z-50 ">
-      <div className="mx-auto max-w-7xl px-4 sm:px-4 shadow-sm ">
+    <div className="sticky top-0 z-50">
+      <div className="mx-auto max-w-7xl px-4 shadow-sm sm:px-4 backdrop-blur-lg backdrop-filter text-white">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
@@ -23,13 +23,13 @@ function Navbar() {
             </div>
           </div>
           <div>
-            <div className="hidden md:block">
+            <div className="hidden md:block ">
               <div className="ml-10 flex items-baseline space-x-4 lg:space-x-6 xl:space-x-10">
                 {navigation.map((nav) => (
                   <a
                     key={nav.name}
                     href={nav.href}
-                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 btnHover hover:text-white"
+                    className="btnHover block rounded-md px-3 py-2 text-base font-medium  hover:text-white"
                   >
                     {nav.name}
                   </a>
@@ -37,11 +37,12 @@ function Navbar() {
               </div>
             </div>
           </div>
+          {/* btn menu */}
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 btnHover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="btnHover inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -93,13 +94,13 @@ function Navbar() {
         leaveTo="opacity-0 scale-95"
       >
         {(ref) => (
-          <div className="md:hidden" id="mobile-menu">
+          <div className="md:hidden backdrop-blur-lg backdrop-filter" id="mobile-menu">
             <div ref={ref} className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               {navigation.map((nav) => (
                 <a
                   key={nav.name}
                   href={nav.href}
-                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  className="block rounded-md px-3 py-2 text-base font-medium btnHover"
                 >
                   {nav.name}
                 </a>
