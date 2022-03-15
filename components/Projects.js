@@ -2,8 +2,10 @@
 
 function Projects() {
   return (
-    <div>
-        This is project section...
+    <div className="min-h-screen text-white p-4">
+      <div className="">
+        <h1 className="py-4 text-3xl font-bold">Projects</h1>
+      </div>
     </div>
   )
 }
