@@ -12,5 +12,8 @@
     .btnHover {
         @apply hover:bg-gradient-to-br from-green-500 to-blue-600  transition-all ease-out
     }
+    .link-btn {
+        @apply items-center flex justify-center p-2 rounded-lg border cursor-pointer transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-2xl 
+    }
     
 }

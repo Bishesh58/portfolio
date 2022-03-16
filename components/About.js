@@ -27,19 +27,19 @@ function About() {
         <div className="flex flex-col ">
           <h2 className="py-4 capitalize">Get in touch</h2>
           <div className="flex space-x-4 text-sm ">
-            <div className="align-center flex justify-center p-2 rounded-lg border cursor-pointer">
+            <div className=" link-btn">
               <GitHubIcon sx={{ backgroundColor: "#252a2e", borderRadius: "50%"  }}/>
               <p className="pl-2"> GitHub</p>
             </div>
-            <div className="align-center flex justify-center p-2 rounded-lg border cursor-pointer">
+            <div className=" link-btn">
               <LinkedInIcon sx={{ backgroundColor: "#0a66c2", borderRadius: "20%" }}/>
              <p className="pl-2">LinkedIn</p> 
             </div>
-            <div className="align-center flex justify-center p-2 rounded-lg border cursor-pointer">
+            <div className=" link-btn">
               <InstagramIcon sx={{ backgroundColor: "#fb3958", borderRadius: "20%" }}/>
              <p className="pl-2">Instagram</p> 
             </div>
-            <div className="align-center flex justify-center  p-2 rounded-lg border cursor-pointer">
+            <div className=" link-btn">
               <FacebookIcon sx={{ backgroundColor: "#4267B2", borderRadius: "20%" }}/>
              <p className="pl-2">Facebook</p> 
             </div>
