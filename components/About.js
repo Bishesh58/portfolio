@@ -7,7 +7,7 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 
 function About() {
   return (
-    <div className="flex flex-col-reverse items-center justify-center md:flex-row md:p-4">
+    <div id="about" className="flex flex-col-reverse items-center justify-center md:flex-row md:p-4 bg-gray-900/10 md:m-4 md:rounded-bl-[150px] md:rounded-tr-[150px]">
       <div className="flex-shrink md:w-full md:flex-[0.6]">
         <Image src={illustrate} layout="responsive" />
       </div>
