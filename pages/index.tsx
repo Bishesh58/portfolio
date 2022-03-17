@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Banner from '../components/Banner'
-import About from '../components/About'
+import About from '../components/AboutMe'
 import Projects from '../components/Projects'
 import Testimonial from '../components/Testimonial'
 
