@@ -22,32 +22,27 @@ export default () => {
       navigation
       effect="coverflow"
       pagination={{ clickable: true }}
-      
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
     >
       <SwiperSlide>
-        <div className="h-52 w-52 bg-red-800"></div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="h-52 w-52 bg-green-800"></div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="h-52 w-52 bg-blue-800"></div>
+        <ReviewCard />
       </SwiperSlide>
       <SwiperSlide>
         <ReviewCard />
       </SwiperSlide>
       <SwiperSlide>
-        <div className="h-52 w-52 bg-red-800"></div>
+        <ReviewCard />
       </SwiperSlide>
       <SwiperSlide>
-        <div className="h-52 w-52 bg-green-800"></div>
+        <ReviewCard />
       </SwiperSlide>
       <SwiperSlide>
-        <div className="h-52 w-52 bg-blue-800"></div>
+        <ReviewCard />
       </SwiperSlide>
-      ...
+      <SwiperSlide>
+        <ReviewCard />
+      </SwiperSlide>
     </Swiper>
   )
 }
