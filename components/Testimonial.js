@@ -1,9 +1,9 @@
-
+import Slider from './slider/Slider'
 
 function Testimonial() {
   return (
-    <div>
-        Testimonial goes ?
+    <div className="">
+        <Slider/>
     </div>
   )
 }
