@@ -80,6 +80,7 @@ export default () => {
       pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
+      className="mt-10"
     >
       {reviews.map((review) => (
         <SwiperSlide>
