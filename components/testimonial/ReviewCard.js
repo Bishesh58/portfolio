@@ -1,25 +1,18 @@
 import Avatar from '@mui/material/Avatar'
 
-function ReviewCard() {
+function ReviewCard({ title, profileImg, fullName }) {
   return (
     <div className="flex flex-col">
-      <div className="bg-gray-900/10 rounded-3xl p-4">
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reiciendis
-        odio repudiandae nostrum commodi libero, similique quasi distinctio
-        officia optio natus aut harum deserunt rem minima exercitationem!
-        Soluta, fuga fugiat!""
-      </div>
-      <div className=" ml-5 h-0 w-0 border-t-gray-900/10 border-t-[50px] border-r-transparent border-r-[-50px] border-l-transparent border-l-[50px]"></div>
-      <div className="flex items-center justify-center space-x-4 -mt-4 -ml-10">
+      <div className="rounded-3xl bg-gray-900/10 p-4">{title}</div>
+      <div className=" ml-5 h-0 w-0 border-t-[50px] border-r-[-50px] border-l-[50px] border-t-gray-900/10 border-r-transparent border-l-transparent"></div>
+      <div className="-mt-4 -ml-10 flex items-center justify-center space-x-4">
         <Avatar
           sx={{ width: 56, height: 56 }}
-          alt="John Doe"
-          src="https://i.pinimg.com/736x/38/93/07/389307d6af5c4be0051b7d3c4f93bf3d.jpg"
+          alt={fullName}
+          src={profileImg}
         />
-
-        <p>John Doe</p>
+        <p>{fullName}</p>
       </div>
-      
     </div>
   )
 }
