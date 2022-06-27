@@ -6,7 +6,7 @@ function Projects() {
     {
       title: 'project 1',
       description: 'small description',
-      img: 'https://firebasestorage.googleapis.com/v0/b/portfolio-e2265.appspot.com/o/amazon-video.mp4?alt=media&token=5e5b1bad-4fa8-4485-aac5-1aa0a181e109',
+      img: `https://firebasestorage.googleapis.com/v0/b/portfolio-e2265.appspot.com/o/amazon-video.mp4?alt=media&token=${process.env.AMAZON_TOKEN}`,
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
