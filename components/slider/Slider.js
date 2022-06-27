@@ -1,5 +1,5 @@
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import {Autoplay, Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow } from 'swiper'
@@ -72,15 +72,19 @@ export default () => {
   return (
     <Swiper
       // install Swiper modules
-      modules={[Navigation, Pagination, Scrollbar, A11y, EffectCoverflow]}
-      spaceBetween={50}
+      modules={[ Autoplay, Navigation, Pagination, Scrollbar, A11y, EffectCoverflow]}
+      spaceBetween={10}
       slidesPerView={3}
       navigation
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: true,
+      }}
       effect="coverflow"
       pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
-      className="mt-10"
+      className="my-20 !p-4"
     >
       {reviews.map((review) => (
         <SwiperSlide>

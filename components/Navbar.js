@@ -15,7 +15,7 @@ function Navbar() {
 
   return (
     <div className="sticky top-0 z-50">
-      <div className="mx-auto max-w-7xl px-4 shadow-sm sm:px-4 backdrop-blur-lg backdrop-filter text-white">
+      <div className="max-w-7xl mx-4 shadow-sm sm:px-4 backdrop-blur-lg backdrop-filter text-white">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
