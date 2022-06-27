@@ -1,8 +1,9 @@
 function Card({ title, img, code, demo, description }) {
   return (
     <div className="!z-10 m-2 flex h-[400px] w-full  max-w-[360px] flex-col rounded-2xl bg-[#0a3d62] border border-gray-500 p-4 hover:shadow-lg hover:shadow-red-200">
-      <div className="flex-[0.9] rounded-2xl  bg-slate-600 ">
-        <img src="" alt="" />
+      <div className="flex-[0.9] rounded-2xl  bg-slate-600 overflow-hidden">
+        {/* <img src="" alt="" /> */}
+        <iframe className="w-full h-full" src={img} frameborder="0"></iframe>
       </div>
       <div className="py-2">{title}</div>
       <div className="py-2">{description}</div>
