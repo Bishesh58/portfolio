@@ -67,7 +67,7 @@ function Projects() {
       <h1 className="mx-16 py-4 text-3xl font-bold">Projects</h1>
       <div
         id="projects"
-        className="mx-16 min-h-screen rounded-2xl border border-gray-300 p-1"
+        className="mx-16 min-h-screen rounded-2xl border-gray-300"
       >
         <div className="relative">
           <Particle />

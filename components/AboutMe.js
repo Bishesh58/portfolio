@@ -9,7 +9,7 @@ function About() {
   return (
     <section
       id="about"
-      className="flex flex-col-reverse items-center justify-center bg-gray-900/10 md:m-16 md:flex-row md:rounded-bl-[110px] md:rounded-tr-[110px] md:p-4"
+      className="border flex flex-col-reverse items-center justify-center bg-gray-900/10 md:m-16 md:flex-row md:rounded-bl-[110px] md:rounded-tr-[110px] md:p-4"
     >
       <div className="flex-shrink md:w-full md:flex-[0.6]">
         <Image src={illustrate} layout="responsive" />
