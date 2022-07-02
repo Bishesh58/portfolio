@@ -2,26 +2,33 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Transition } from '@headlessui/react'
 import logo from '../public/logo2.png'
-import Link from 'next/link'
-
+import { Link, animateScroll as scroll } from 'react-scroll'
+import * as Scroll from 'react-scroll'
 const navigation = [
-  { name: 'About', href: '/about' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Testimonial', href: '/testimonial' },
-  { name: 'Resume', href: '/resume' },
+  { name: 'About', href: 'about' },
+  { name: 'Projects', href: 'projects' },
+  { name: 'Testimonial', href: 'testimonial' },
+  { name: 'Contact me', href: 'contact' },
 ]
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-
+  const scrollToTop = () => {
+    Scroll.animateScroll.scrollToTop()
+  }
   return (
     <div className="sticky top-0 z-50">
-      <div className="max-w-7xl mx-4 shadow-sm sm:px-4 backdrop-blur-lg backdrop-filter text-white">
+      <div className="mx-4 max-w-7xl text-white shadow-sm backdrop-blur-lg backdrop-filter sm:px-4">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Link href="/">
-              <Image width="60px" height="60px" src={logo}  className="hover:cursor-pointer"/>
+              <Link onClick={scrollToTop}>
+                <Image
+                  width="60px"
+                  height="60px"
+                  src={logo}
+                  className="hover:cursor-pointer"
+                />
               </Link>
             </div>
           </div>
@@ -30,10 +37,16 @@ function Navbar() {
               <div className="ml-10 flex items-baseline space-x-4 lg:space-x-6 xl:space-x-10">
                 {navigation.map((nav) => (
                   <Link
+                    activeClass="active"
+                    to={nav.href}
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
                     key={nav.name}
-                    href={nav.href}
+                    className="btnHover block rounded-md px-3 py-2 text-base font-medium hover:cursor-pointer"
                   >
-                   <a className="btnHover block rounded-md px-3 py-2 text-base font-medium">{nav.name}</a> 
+                    {nav.name}
                   </Link>
                 ))}
               </div>
@@ -96,13 +109,16 @@ function Navbar() {
         leaveTo="opacity-0 scale-95"
       >
         {(ref) => (
-          <div className="md:hidden backdrop-blur-lg backdrop-filter" id="mobile-menu">
+          <div
+            className="backdrop-blur-lg backdrop-filter md:hidden"
+            id="mobile-menu"
+          >
             <div ref={ref} className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               {navigation.map((nav) => (
                 <a
                   key={nav.name}
                   href={nav.href}
-                  className="block rounded-md px-3 py-2 text-base font-medium btnHover"
+                  className="btnHover block rounded-md px-3 py-2 text-base font-medium"
                 >
                   {nav.name}
                 </a>

@@ -7,7 +7,7 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import Wave from 'react-wavify'
 function About() {
   return (
-    <div
+    <section
       id="about"
       className="flex flex-col-reverse items-center justify-center bg-gray-900/10 md:m-16 md:flex-row md:rounded-bl-[110px] md:rounded-tr-[110px] md:p-4"
     >
@@ -57,7 +57,7 @@ function About() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

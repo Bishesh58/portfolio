@@ -6,7 +6,7 @@ import Link from 'next/link'
 function Banner() {
   return (
     <>
-      <div className="relative">
+      <div className="relative" id="banner">
         {/* Background circles */}
         <div className="absolute top-0 right-0 left-0 bottom-0">
           <div className="absolute right-4 -bottom-10 h-40 w-40 rounded-full bg-gradient-to-r from-green-400 to-[#82ccdd]"></div>

@@ -1,10 +1,11 @@
 import React from 'react'
 import Wave from 'react-wavify'
+import Button from '@mui/material/Button'
 
 export default function ContactMe() {
   return (
     <div className="mx-16 flex py-6" id="contact">
-      <div className="relative p-8 flex justify-center items-center flex-1 bg-[#2a5372] font-Arima text-3xl text-white">
+      <div className="relative p-8 flex justify-center items-center flex-1 bg-[#afc0ce] font-Arima text-3xl text-white">
         <Wave
           className="wave"
           fill="#0b395c"
@@ -39,9 +40,9 @@ export default function ContactMe() {
           </label>
           <textarea rows={5} className="input" id="msg" type="text" />
 
-          <button className="btnHover my-4 w-60 rounded-lg border bg-slate-200 p-3">
+          <Button className="btnHover my-4 w-52 rounded-lg border bg-slate-500 p-3 text-white">
             Send message
-          </button>
+          </Button>
         </form>
       </div>
     </div>
