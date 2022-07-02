@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Transition } from '@headlessui/react'
-import logo from '../public/logo.png'
+import logo from '../public/logo2.png'
+import Link from 'next/link'
 
 const navigation = [
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Testimonial', href: '#testimonial' },
-  { name: 'resume', href: '#resume' },
+  { name: 'About', href: '/about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Testimonial', href: '/testimonial' },
+  { name: 'Resume', href: '/resume' },
 ]
 
 function Navbar() {
@@ -19,20 +20,22 @@ function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Image width="50px" height="50px" src={logo} />
+              <Link href="/">
+              <Image width="60px" height="60px" src={logo}  className="hover:cursor-pointer"/>
+              </Link>
             </div>
           </div>
           <div>
             <div className="hidden md:block ">
               <div className="ml-10 flex items-baseline space-x-4 lg:space-x-6 xl:space-x-10">
                 {navigation.map((nav) => (
-                  <a
+                  <Link
                     key={nav.name}
                     href={nav.href}
                     className="btnHover block rounded-md px-3 py-2 text-base font-medium  hover:text-white"
                   >
                     {nav.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

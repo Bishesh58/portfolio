@@ -13,14 +13,14 @@ function Projects() {
     {
       title: 'project 2',
       description: 'small description',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      img: `https://firebasestorage.googleapis.com/v0/b/portfolio-e2265.appspot.com/o/linkedIn.mp4?alt=media&token=${process.env.LINKEDIN_TOKEN}`,
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'project 3',
       description: 'small description',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      img: `https://firebasestorage.googleapis.com/v0/b/portfolio-e2265.appspot.com/o/face-detect.mp4?alt=media&token=${process.env.FACEDETECT_TOKEN}`,
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
