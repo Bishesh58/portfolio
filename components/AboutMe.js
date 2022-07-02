@@ -4,10 +4,13 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
-
+import Wave from 'react-wavify'
 function About() {
   return (
-    <div id="about" className="flex flex-col-reverse items-center justify-center md:flex-row md:p-4 bg-gray-900/10 md:m-16 md:rounded-bl-[110px] md:rounded-tr-[110px]">
+    <div
+      id="about"
+      className="flex flex-col-reverse items-center justify-center bg-gray-900/10 md:m-16 md:flex-row md:rounded-bl-[110px] md:rounded-tr-[110px] md:p-4"
+    >
       <div className="flex-shrink md:w-full md:flex-[0.6]">
         <Image src={illustrate} layout="responsive" />
       </div>
@@ -28,20 +31,28 @@ function About() {
           <h2 className="py-4 capitalize">Get in touch</h2>
           <div className="flex space-x-4 text-sm ">
             <div className=" link-btn">
-              <GitHubIcon sx={{ backgroundColor: "#252a2e", borderRadius: "50%"  }}/>
+              <GitHubIcon
+                sx={{ backgroundColor: '#252a2e', borderRadius: '50%' }}
+              />
               <p className="pl-2"> GitHub</p>
             </div>
             <div className=" link-btn">
-              <LinkedInIcon sx={{ backgroundColor: "#0a66c2", borderRadius: "20%" }}/>
-             <p className="pl-2">LinkedIn</p> 
+              <LinkedInIcon
+                sx={{ backgroundColor: '#0a66c2', borderRadius: '20%' }}
+              />
+              <p className="pl-2">LinkedIn</p>
             </div>
             <div className=" link-btn">
-              <InstagramIcon sx={{ backgroundColor: "#fb3958", borderRadius: "20%" }}/>
-             <p className="pl-2">Instagram</p> 
+              <InstagramIcon
+                sx={{ backgroundColor: '#fb3958', borderRadius: '20%' }}
+              />
+              <p className="pl-2">Instagram</p>
             </div>
             <div className=" link-btn">
-              <FacebookIcon sx={{ backgroundColor: "#4267B2", borderRadius: "20%" }}/>
-             <p className="pl-2">Facebook</p> 
+              <FacebookIcon
+                sx={{ backgroundColor: '#4267B2', borderRadius: '20%' }}
+              />
+              <p className="pl-2">Facebook</p>
             </div>
           </div>
         </div>

@@ -8,8 +8,8 @@ function Card({ title, img, code, demo, description }) {
       <div className="py-2">{title}</div>
       <div className="py-2">{description}</div>
       <div className="my-2 flex flex-[0.1] justify-between space-x-8">
-        <button className="link-btn w-1/2 px-6">Live demo</button>
-        <button className="link-btn w-1/2 px-6">GitHub</button>
+        <button className="btnHover link-btn w-1/2 px-6 hover:animate-pulse">Live demo</button>
+        <button className="btnHover link-btn w-1/2 px-6 hover:animate-pulse">GitHub</button>
       </div>
     </div>
   )

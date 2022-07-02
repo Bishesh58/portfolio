@@ -63,7 +63,7 @@ function Projects() {
   ]
 
   return (
-    <div className="text-white">
+    <div className="text-white" id="projects">
       <h1 className="mx-16 py-4 text-3xl font-bold">Projects</h1>
       <div
         id="projects"

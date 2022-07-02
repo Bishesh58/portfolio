@@ -1,6 +1,7 @@
 import bishesh from '../public/p2.png'
 import Image from 'next/image'
 import Typewriter from 'typewriter-effect'
+import Link from 'next/link'
 
 function Banner() {
   return (
@@ -38,8 +39,17 @@ function Banner() {
                   I'm looking for new opportunities to sky-rocket my career!
                 </p>
                 <div className="py-8 md:flex md:space-x-8">
-                  <button className="btn btnHover ">Expore my work</button>
-                  <button className="btn btnHover ">Get in touch</button>
+                  <Link
+                    href="#projects"
+                  >
+                   <a className="btnHover btn">Expore my work</a> 
+                  </Link>
+                  <Link
+                    href="#contact"
+                  >
+                   <a className="btnHover btn"> Get in touch</a> 
+                  </Link>
+
                 </div>
               </div>
             </div>

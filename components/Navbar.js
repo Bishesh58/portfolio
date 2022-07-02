@@ -32,9 +32,8 @@ function Navbar() {
                   <Link
                     key={nav.name}
                     href={nav.href}
-                    className="btnHover block rounded-md px-3 py-2 text-base font-medium  hover:text-white"
                   >
-                    {nav.name}
+                   <a className="btnHover block rounded-md px-3 py-2 text-base font-medium">{nav.name}</a> 
                   </Link>
                 ))}
               </div>

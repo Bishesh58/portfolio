@@ -1,29 +1,34 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Arima&display=swap');
 
 body {
-    background-color: #0a3d62;
+  background-color: #0a3d62;
+  font-family: Roboto;
 }
+.wave {
+  transform: rotate(180deg);
+  height: 100%;
+  left: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-    .btn {
-        @apply rounded-md p-2 text-lg border  bg-transparent m-2
-    }
-    .btnHover {
-        @apply hover:bg-gradient-to-br from-green-500 to-blue-600  transition-all ease-out
-    }
-    .link-btn {
-        @apply items-center flex justify-center p-2 rounded-lg border cursor-pointer transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-2xl 
-    }
-    .input {
-        @apply p-2 rounded-md text-lg border
-    }
-    .label {
-        @apply my-2 text-lg
-    }
+  .btn {
+    @apply m-2 rounded-md border bg-transparent  p-2 text-lg;
+  }
+  .btnHover {
+    @apply from-green-500 to-blue-600 transition-all  ease-out hover:bg-gradient-to-br;
+  }
+  .link-btn {
+    @apply flex cursor-pointer items-center justify-center rounded-lg border p-2 transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-2xl;
+  }
+  .input {
+    @apply rounded-md border p-2 text-lg;
+  }
+  .label {
+    @apply my-2 text-lg;
+  }
 }
