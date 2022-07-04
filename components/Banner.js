@@ -39,17 +39,12 @@ function Banner() {
                   I'm looking for new opportunities to sky-rocket my career!
                 </p>
                 <div className="py-8 md:flex md:space-x-8">
-                  <Link
-                    href="#projects"
-                  >
-                   <a className="btnHover btn">Expore my work</a> 
+                  <Link href="#projects">
+                    <a className="btnHover btn">Expore my work</a>
                   </Link>
-                  <Link
-                    href="#contact"
-                  >
-                   <a className="btnHover btn"> Get in touch</a> 
+                  <Link href="#contact">
+                    <a className="btnHover btn"> Get in touch</a>
                   </Link>
-
                 </div>
               </div>
             </div>
