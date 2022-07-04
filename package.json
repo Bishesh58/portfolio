@@ -10,6 +10,7 @@
     "@emotion/styled": "^11.8.1",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.1",
     "axios": "^0.27.2",
