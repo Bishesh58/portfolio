@@ -1,4 +1,5 @@
 import bishesh from '../public/p2.png'
+import bgImage from '../public/test.png'
 import Image from 'next/image'
 import Typewriter from 'typewriter-effect'
 import Link from 'next/link'
@@ -9,13 +10,13 @@ function Banner() {
       <div className="relative" id="banner">
         {/* Background circles */}
         <div className="absolute top-0 right-0 left-0 bottom-0">
-          <div className="absolute right-4 -bottom-10 h-40 w-40 rounded-full bg-gradient-to-r from-green-400 to-[#82ccdd]"></div>
-          <div className="absolute -top-10 left-4 h-40 w-40 rounded-full  bg-gradient-to-r from-[#60a3bc] via-[#60a3bc] to-[#60a3bc] "></div>
-          <div className="absolute  top-10 right-16  h-20 w-20 rounded-full bg-gradient-to-r from-[#65dfc9] to-[#50559c] "></div>
-          <div className="absolute  bottom-10 left-16  h-32 w-32 rounded-full bg-gradient-to-r from-[#65dfc9] to-[#50559c] "></div>
+          {/* <div className="absolute right-4 -bottom-10 h-40 w-40 rounded-full bg-gradient-to-r from-green-400 to-[#82ccdd]"></div> */}
+          {/* <div className="absolute -top-10 left-4 h-40 w-40 rounded-full  bg-gradient-to-r from-[#60a3bc] via-[#60a3bc] to-[#60a3bc] "></div> */}
+          {/* <div className="absolute  top-10 right-16  h-20 w-20 rounded-full bg-gradient-to-r from-[#65dfc9] to-[#50559c] "></div> */}
+          {/* <div className="absolute  bottom-10 left-16  h-32 w-32 rounded-full bg-gradient-to-r from-[#65dfc9] to-[#50559c] "></div> */}
         </div>
         {/* banner card */}
-        <div className="mx-14 mt-24 rounded-2xl border border-r-0 border-b-0 border-opacity-30 bg-white bg-opacity-10 shadow-2xl backdrop-blur-lg backdrop-filter">
+        <div className="">
           <div className="m-4 flex flex-col justify-between pt-10 md:flex-row md:pb-10 2xl:pb-20">
             <div className="flex-[0.6] p-10 font-Roboto text-white ">
               <div className="py-8">
