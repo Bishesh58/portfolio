@@ -23,7 +23,7 @@ body {
     @apply from-green-500 to-blue-600 transition-all  ease-out hover:bg-gradient-to-br;
   }
   .link-btn {
-    @apply flex cursor-pointer items-center justify-center rounded-lg border p-2 transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-2xl;
+    @apply cursor-pointer rounded-xl p-2 m-2 animate-pulse transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-2xl;
   }
   .input {
     @apply rounded-md border p-2 text-lg;

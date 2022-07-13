@@ -16,7 +16,6 @@ function Navbar() {
   const scrollToTop = () => {
     Scroll.animateScroll.scrollToTop()
 
-    //bg-[#0a3d62]
   }
   return (
     <div className="sticky top-0 z-50 bg-[#0a3d62]">
