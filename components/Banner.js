@@ -5,7 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowCircleDown'
 import { motion } from 'framer-motion'
 
 function Banner() {
@@ -13,45 +13,76 @@ function Banner() {
     <>
       <div className="bg-[#0a3d62]" id="banner">
         {/* hero section */}
-        <div className="relative mx-auto flex h-[100vh] max-h-[700px] max-w-7xl flex-col py-10 md:flex-row md:pb-10 2xl:pb-20">
+        <div className="relative mx-auto flex h-[100vh] max-h-[750px] max-w-7xl flex-col py-10 md:flex-row md:pb-10 2xl:pb-20">
           {/* left headings */}
-          <div className="mr-10 flex-1 p-10 font-Roboto text-white sm:mr-5">
-            <h1 className="flex pt-10 pb-5 text-3xl font-bold">
+          <motion.div
+            initial={{ opacity: 0, x: 0, y: -200 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            className="mr-10 flex-1 p-10 font-Roboto text-white sm:mr-5"
+          >
+            <h1 className="flex pt-10 pb-5 text-xl font-bold md:text-3xl">
               Hello <span class="animate-waving-hand px-2"> 👋</span> ,
             </h1>
-            <h1 className="flex pb-10 text-5xl font-bold">I'm Bishesh Sunam</h1>
-            <div className="font-sans text-xl text-gray-200">
+            <h1 className="flex pb-10 py-2 text-3xl font-bold md:text-6xl font-Arima">
+              I'm Bishesh Sunam
+            </h1>
+            <div className="font-sans text-gray-200 md:text-xl">
               <p>
                 A React Web Develoer who's highly motivated and aspired to
                 learn, buids & solve problems using latest technologies.
               </p>
               <p>I'm looking for new opportunities to sky-rocket my career!</p>
-              <div className="py-8 md:flex md:space-x-8">
+              <div className="my-4 flex flex-col md:flex-row md:space-x-4 md:my-10">
                 <Link href="#projects">
-                  <a className="btnHover btn">Expore my work</a>
+                  <motion.a
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: 1,
+                      duration: 0.5,
+                    }}
+                    className=" btnHover btn"
+                  >
+                    Expore my work
+                  </motion.a>
                 </Link>
                 <Link href="#contact">
-                  <a className="btnHover btn"> Get in touch</a>
+                  <motion.a
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: 1,
+                      duration: 0.5,
+                    }}
+                    className=" btnHover btn"
+                  >
+                    {' '}
+                    Get in touch
+                  </motion.a>
                 </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
           {/* right container */}
           <div className="relative flex-1 overflow-hidden">
-            {/* green bg circle */}
-            <div className="absolute -bottom-[50%] -right-[50%] h-full w-full rounded-full bg-green-700"></div>
+            {/* bg circle */}
+            <div className="absolute w-full h-full rounded-tl-full  bg-[#1c4766]"></div>
             {/* image */}
             <div className="absolute bottom-0 left-0 flex h-full w-full flex-col rounded-full">
-              <img src="/man1.png" alt="" className="object-contain" />
+              <img
+                src="/man2.png"
+                alt=""
+                className="hidden h-[600px] object-contain md:block"
+              />
             </div>
             {/* type writer */}
-            <div className="absolute bottom-0 right-0 flex h-1/2 w-1/2  items-center justify-center rounded-full">
+            <div className="absolute bottom-14 right-0 flex  w-full  items-center justify-center rounded-full">
               <Typewriter
                 options={{
-                  strings: ['"Knowledge is power" ', '"Knowledge is power" '],
+                  strings: [`Want to hire me ?`, `Let's talk!`],
                   autoStart: true,
-                  wrapperClassName: 'text-xl justify-self-center',
-                  cursorClassName: 'text-xl  text-yellow-400',
+                  wrapperClassName: 'text-3xl justify-self-center',
+                  cursorClassName: 'text-3xl  text-yellow-400',
                   loop: true,
                 }}
               />
@@ -63,16 +94,19 @@ function Banner() {
           </div>
 
           {/* social links */}
-          <div className="absolute top-28 right-0 m-auto h-auto ">
+          <div className="absolute top-56 right-0 m-auto h-auto ">
             <div className="m-4 flex flex-col items-center justify-center text-sm">
               <motion.div
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 1, duration: 0.5 }}
+                transition={{
+                  delay: 1,
+                  duration: 0.5,
+                }}
               >
                 <GitHubIcon
                   sx={{ backgroundColor: '#252a2e', borderRadius: '50%' }}
-                  className="link-btn h-10 w-10"
+                  className="link-btn h-10 w-10 "
                 />
               </motion.div>
               <motion.div

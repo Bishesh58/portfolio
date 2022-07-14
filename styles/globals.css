@@ -17,13 +17,13 @@ body {
 
 @layer components {
   .btn {
-    @apply m-2 rounded-md border bg-transparent  p-2 text-lg;
+    @apply m-2 ml-0 w-40 rounded-xl border cursor-pointer  bg-transparent  p-2 text-center text-lg;
   }
   .btnHover {
-    @apply from-green-500 to-blue-600 transition-all  ease-out hover:bg-gradient-to-br;
+    @apply rounded-2xl from-green-500 to-blue-600  transition-all ease-out hover:scale-110 hover:bg-gradient-to-br;
   }
   .link-btn {
-    @apply cursor-pointer rounded-xl p-2 m-2 animate-pulse transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-2xl;
+    @apply m-2 cursor-pointer rounded-xl p-2 transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-md hover:shadow-slate-200;
   }
   .input {
     @apply rounded-md border p-2 text-lg;
