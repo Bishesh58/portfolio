@@ -18,21 +18,21 @@ function Banner() {
           <motion.div
             initial={{ opacity: 0, x: 0, y: -200 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
-            className="mr-10 flex-1 p-10 font-Roboto text-white sm:mr-5"
+            className="mr-10 flex-1 p-10 text-white sm:mr-5"
           >
             <h1 className="flex pt-10 pb-5 text-xl font-bold md:text-3xl">
               Hello <span class="animate-waving-hand px-2"> 👋</span> ,
             </h1>
-            <h1 className="flex pb-10 py-2 text-3xl font-bold md:text-6xl font-Arima">
+            <h1 className="flex py-2 pb-10 font-Arima text-3xl font-bold md:text-6xl">
               I'm Bishesh Sunam
             </h1>
-            <div className="font-sans text-gray-200 md:text-xl">
+            <div className="font-thin tracking-wider text-gray-200 md:text-xl">
               <p>
                 A React Web Develoer who's highly motivated and aspired to
                 learn, buids & solve problems using latest technologies.
               </p>
               <p>I'm looking for new opportunities to sky-rocket my career!</p>
-              <div className="my-4 flex flex-col md:flex-row md:space-x-4 md:my-10">
+              <div className="my-4 flex flex-col md:my-10 md:flex-row md:space-x-4">
                 <Link href="#projects">
                   <motion.a
                     initial={{ opacity: 0, y: -20 }}
@@ -66,7 +66,7 @@ function Banner() {
           {/* right container */}
           <div className="relative flex-1 overflow-hidden">
             {/* bg circle */}
-            <div className="absolute w-full h-full rounded-tl-full  bg-[#1c4766]"></div>
+            <div className="absolute h-full w-full rounded-tl-full  bg-[#1c4766]"></div>
             {/* image */}
             <div className="absolute bottom-0 left-0 flex h-full w-full flex-col rounded-full">
               <img

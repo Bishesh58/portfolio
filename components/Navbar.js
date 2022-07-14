@@ -44,7 +44,7 @@ function Navbar() {
                   offset={-70}
                   duration={500}
                   key={nav.name}
-                  className="btnHover block rounded-md px-3 py-1 text-base font-medium last:rounded-full last:border last:border-green-400 hover:cursor-pointer"
+                  className="btnHover block rounded-md px-3 py-1 last:rounded-full last:border last:border-green-400 hover:cursor-pointer"
                 >
                   {nav.name}
                 </Link>

@@ -9,6 +9,7 @@ module.exports = {
       fontFamily: {
         Roboto: ['Roboto', 'sans-serif'],
         Arima: ['Arima', 'cursive'],
+        Lato: ['Lato','sans-serif'],
       },
       keyframes: {
         wave: {

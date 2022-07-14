@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arima&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 body {
   color: #eff6ff;
-  font-family: Roboto;
+  font-family: Lato;
 }
 .wave {
   transform: rotate(180deg);
@@ -17,16 +18,16 @@ body {
 
 @layer components {
   .btn {
-    @apply m-2 ml-0 w-40 rounded-xl border cursor-pointer  bg-transparent  p-2 text-center text-lg;
+    @apply font-Roboto m-2 ml-0 w-40 rounded-xl border cursor-pointer  bg-transparent  p-2 text-center text-lg;
   }
   .btnHover {
-    @apply rounded-2xl from-green-500 to-blue-600  transition-all ease-out hover:scale-110 hover:bg-gradient-to-br;
+    @apply font-Roboto rounded-2xl from-green-500 to-blue-600  transition-all ease-out hover:scale-110 hover:bg-gradient-to-br;
   }
   .link-btn {
-    @apply m-2 cursor-pointer rounded-xl p-2 transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-md hover:shadow-slate-200;
+    @apply font-Roboto m-2 cursor-pointer rounded-xl p-2 transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-md hover:shadow-slate-200;
   }
   .input {
-    @apply rounded-md border p-2 text-lg;
+    @apply font-Roboto rounded-md border p-2 text-lg;
   }
   .label {
     @apply my-2 text-lg;

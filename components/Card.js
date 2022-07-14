@@ -1,35 +1,31 @@
-import { useEffect } from "react"
+import { useEffect } from 'react'
 
-function Card({ title, img, code, demo, description }) {
-  
-  useEffect(() => {
-    
-  
-  }, [])
-  
-
-  
+function Card({ title, technologies, icons, img, code, demo, description }) {
+  useEffect(() => {}, [])
 
   return (
-    <div className="!z-10 m-2 flex h-[400px] w-full  max-w-[360px] flex-col rounded-2xl border border-gray-500 bg-[#0a3d62] p-4 hover:shadow-lg hover:shadow-red-200">
-      <div className="flex-[0.9] overflow-hidden  rounded-2xl bg-black">
-        {/* <img src="" alt="" /> */}
-        <iframe
-          className="h-full w-full"
-          allowFullScreen={true}
-          src={img}
-          frameBorder="0"
-        ></iframe>
+    <div
+      className="flex flex-col p-5 md:odd:flex-row md:even:flex-row-reverse 
+      "
+    >
+      <div className="flex-1">
+        <h1 className="py-2 text-2xl font-bold capitalize">{title}</h1>
+        <p>technologies</p>
+        <p className="py-2">{technologies}</p>
+        <p className="py-2">{icons}</p>
+        <p className="py-2 font-light leading-8">{description}</p>
+        <div className="my-2">
+          <button className="btnHover link-btn hover:animate-pulse">
+            Live demo
+          </button>
+          <button className="btnHover link-btn  hover:animate-pulse">
+            GitHub
+          </button>
+        </div>
       </div>
-      <div className="py-2">{title}</div>
-      <div className="py-2">{description}</div>
-      <div className="my-2 flex flex-[0.1] justify-between space-x-8">
-        <button className="btnHover link-btn w-1/2 px-6 hover:animate-pulse">
-          Live demo
-        </button>
-        <button className="btnHover link-btn w-1/2 px-6 hover:animate-pulse">
-          GitHub
-        </button>
+
+      <div className="max-h-[400px] flex-1 overflow-hidden rounded-2xl px-4 md:p-10">
+        <img src={img} alt="" className="object-contain" />
       </div>
     </div>
   )

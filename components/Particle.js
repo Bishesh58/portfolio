@@ -44,17 +44,17 @@ function Particle() {
               quantity: 4,
             },
             repulse: {
-              distance: 200,
+              distance: 100,
               duration: 0.4,
             },
           },
         },
         particles: {
           color: {
-            value: '#ffffff',
+            value: '#0a5f62',
           },
           collisions: {
-            enable: false,
+            enable: true,
           },
           move: {
             direction: 'none',
@@ -71,7 +71,7 @@ function Particle() {
               enable: true,
               area: 800,
             },
-            value: 80,
+            value: 4,
           },
           opacity: {
             value: 0.5,
@@ -80,7 +80,7 @@ function Particle() {
             type: 'circle',
           },
           size: {
-            value: { min: 1, max: 5 },
+            value: { min: 1, max: 9 },
           },
         },
         fullScreen: {
