@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import illustrate from '../public/code1.png'
 import { motion } from 'framer-motion'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 function About() {
   return (
@@ -33,6 +34,8 @@ function About() {
             Passionate and motivated, who is always willing to go the extra mile
             to overcome new challenges.
           </p>
+          <p>tech stack:</p>
+          <CheckCircleOutlineIcon className="text-blue-400"/>
         </div>
       </div>
     </section>

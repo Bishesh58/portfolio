@@ -21,7 +21,7 @@ function Banner() {
             className="mr-10 flex-1 p-10 text-white sm:mr-5"
           >
             <h1 className="flex pt-10 pb-5 text-xl font-bold md:text-3xl">
-              Hello <span class="animate-waving-hand px-2"> 👋</span> ,
+              Hello <span className="animate-waving-hand px-2"> 👋</span> ,
             </h1>
             <h1 className="flex py-2 pb-10 font-Arima text-3xl font-bold md:text-6xl">
               I'm Bishesh Sunam

@@ -27,7 +27,7 @@ body {
     @apply font-Roboto m-2 cursor-pointer rounded-xl p-2 transition-all ease-in-out  hover:-translate-y-1 hover:scale-110 hover:shadow-md hover:shadow-slate-200;
   }
   .input {
-    @apply font-Roboto rounded-md border p-2 text-lg;
+    @apply font-Roboto rounded-md border p-2 text-lg border-gray-900;
   }
   .label {
     @apply my-2 text-lg;

@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         <Banner />
         <About />
         <Projects />
-        <Testimonial />
+        {/* <Testimonial /> */}
         <ContactMe />
         <Footer />
       </div>
