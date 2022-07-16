@@ -15,7 +15,6 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const scrollToTop = () => {
     Scroll.animateScroll.scrollToTop()
-
   }
   return (
     <div className="sticky top-0 z-50 bg-[#0a3d62]">
@@ -102,22 +101,27 @@ function Navbar() {
         show={isOpen}
         enter="transition ease-out duration-100 transform"
         enterFrom="opacity-0 scale-95"
-        enterTo="opacity-100 scale-100"
+        enterTo="opacity-100 scale-96"
         leave="transition ease-in duration-75 transform"
-        leaveFrom="opacity-100 scale-100"
+        leaveFrom="opacity-100 scale-96"
         leaveTo="opacity-0 scale-95"
       >
         {(ref) => (
           <div className="md:hidden" id="mobile-menu">
             <div ref={ref} className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               {navigation.map((nav) => (
-                <a
+                <Link
+                  activeClass="active"
+                  to={nav.href}
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
                   key={nav.name}
-                  href={nav.href}
-                  className="btnHover block rounded-md px-3 py-2 text-base font-medium"
+                  className="btnHover mx-10  my-1 block rounded-md px-3 py-1 hover:scale-105  hover:cursor-pointer"
                 >
                   {nav.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

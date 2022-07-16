@@ -1,17 +1,23 @@
 import Avatar from '@mui/material/Avatar'
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote'
 
-function ReviewCard({ title, profileImg, fullName }) {
+function ReviewCard({ title, profileImg, fullName, testimony }) {
   return (
-    <div className="flex flex-col">
-      <div className="rounded-3xl bg-gray-900/10 p-4">{title}</div>
-      <div className=" ml-5 h-0 w-0 border-t-[50px] border-r-[-50px] border-l-[50px] border-t-gray-900/10 border-r-transparent border-l-transparent"></div>
-      <div className="-mt-4 -ml-10 flex items-center justify-center space-x-4">
+    <div className="flex flex-col p-4">
+      <div className="min-h-[200px] rounded-3xl bg-white text-black p-4 py-14 text-center text-lg font-light leading-8 tracking-wider">
+        <FormatQuoteIcon className="-mt-4 rotate-180 transform" />
+        {testimony}
+        <FormatQuoteIcon className="-mt-4" />
+      </div>
+
+      <div className="-mt-[50px] py-4 flex flex-col items-center justify-center space-x-4">
         <Avatar
-          sx={{ width: 56, height: 56 }}
+          sx={{ width: 100, height: 100 }}
           alt={fullName}
           src={profileImg}
         />
-        <p>{fullName}</p>
+        <h1 className="mt-2 text-lg font-bold">{fullName}</h1>
+        <p className="">{title}</p>
       </div>
     </div>
   )
