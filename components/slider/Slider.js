@@ -49,7 +49,7 @@ export default () => {
       title: 'Software Developer',
     },
     {
-      testimony: `Beshesh has enough in-hand skills as a front-end developer, along with his eagerness for technological advancement, and a good ability to learn. It was my pleasure to have the opportunity to work with him for the period. With my best wishes, good luck mate!`,
+      testimony: `Bishesh has enough in-hand skills as a front-end developer, along with his eagerness for technological advancement, and a good ability to learn. It was my pleasure to have the opportunity to work with him for the period. With my best wishes, good luck mate!`,
       profileImg:
         'https://media-exp2.licdn.com/dms/image/C5603AQHhMdWOGf6hAw/profile-displayphoto-shrink_800_800/0/1621326959330?e=1663200000&v=beta&t=26kpqHFYjJC-3j6gpsk66GzXhu0_5DzB1WQYbqQGGKw',
       fullName: 'Tony Lin',
@@ -73,7 +73,7 @@ export default () => {
     Soluta, fuga fugiat`,
       profileImg:
         'https://media-exp2.licdn.com/dms/image/C5603AQFjG8_dJv_6TQ/profile-displayphoto-shrink_800_800/0/1615276437040?e=1663200000&v=beta&t=EJsXqLCW9lqyTXGTnTWkJYhWmhB5tfTsEImG50NAVUA',
-      fullName: 'Alfred LLadoc',
+      fullName: 'Alfred Lladoc',
       title: 'Software Developer',
     },
   ]
@@ -90,7 +90,6 @@ export default () => {
         disableOnInteraction: true,
       }}
       grabCursor={true}
-      effect="slide"
       pagination={{ clickable: true }}
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={() => console.log('slide change')}

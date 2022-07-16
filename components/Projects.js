@@ -6,11 +6,10 @@ function Projects() {
   const cards = [
     {
       title: 'Amazon Clone',
-      technologies: 'A | B | C',
+      technologies: 'React | Firebase | C',
       icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: '/amazon.png',
+      description: 'This app was develop on 5 day react challenge.',
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -20,7 +19,7 @@ function Projects() {
       icons: ['iA', 'iB'],
       description:
         'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: '/netflix.png',
+      img: '/netflix1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -30,7 +29,7 @@ function Projects() {
       icons: ['iA', 'iB'],
       description:
         'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: '/man1.png',
+      img: '/todos.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -41,12 +40,12 @@ function Projects() {
       icons: ['iA', 'iB'],
       description:
         'Contrary 4 to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'p1.png',
+      img: 'todos1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
-      title: 'project 5',
+      title: 'Dog meetup app',
       technologies: 'A | B | C',
       icons: ['iA', 'iB'],
       description:
@@ -56,7 +55,7 @@ function Projects() {
       demo: 'https://www.google.com/',
     },
     {
-      title: 'project 6',
+      title: 'Face recognition app',
       technologies: 'A | B | C',
       icons: ['iA', 'iB'],
       description:
@@ -66,7 +65,7 @@ function Projects() {
       demo: 'https://www.google.com/',
     },
     {
-      title: 'project 7',
+      title: 'LinkedIn clone',
       icons: ['iA', 'iB'],
       description:
         'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
@@ -76,7 +75,57 @@ function Projects() {
       demo: 'https://www.google.com/',
     },
     {
-      title: 'project 8',
+      title: 'React todos app',
+      technologies: 'A | B | C',
+      icons: ['iA', 'iB'],
+      description:
+        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
+      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      code: 'https://github.com/',
+      demo: 'https://www.google.com/',
+    },
+    {
+      title: 'React todos app',
+      technologies: 'A | B | C',
+      icons: ['iA', 'iB'],
+      description:
+        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
+      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      code: 'https://github.com/',
+      demo: 'https://www.google.com/',
+    },
+    {
+      title: 'Air bnb clone',
+      technologies: 'A | B | C',
+      icons: ['iA', 'iB'],
+      description:
+        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
+      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      code: 'https://github.com/',
+      demo: 'https://www.google.com/',
+    },
+    {
+      title: 'Gmail clone',
+      technologies: 'A | B | C',
+      icons: ['iA', 'iB'],
+      description:
+        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
+      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      code: 'https://github.com/',
+      demo: 'https://www.google.com/',
+    },
+    {
+      title: 'Hulu like movie app',
+      technologies: 'A | B | C',
+      icons: ['iA', 'iB'],
+      description:
+        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
+      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      code: 'https://github.com/',
+      demo: 'https://www.google.com/',
+    },
+    {
+      title: 'Chatroom',
       technologies: 'A | B | C',
       icons: ['iA', 'iB'],
       description:

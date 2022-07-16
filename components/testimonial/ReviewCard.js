@@ -10,7 +10,7 @@ function ReviewCard({ title, profileImg, fullName, testimony }) {
         <FormatQuoteIcon className="-mt-4" />
       </div>
 
-      <div className="-mt-[50px] py-4 flex flex-col items-center justify-center space-x-4">
+      <div className="-mt-[64px] py-4 flex flex-col items-center justify-center space-x-4">
         <Avatar
           sx={{ width: 100, height: 100 }}
           alt={fullName}
