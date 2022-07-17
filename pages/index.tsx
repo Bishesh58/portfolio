@@ -11,19 +11,11 @@ import Footer from '../components/Footer'
 const Home: NextPage = () => {
   return (
     <div>
-      <Head>
-        <title>Bishesh's Portfolio</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div>
-        <Navbar />
-        <Banner />
-        <About />
-        <Projects />
-        <Testimonial />
-        <ContactMe />
-        <Footer />
-      </div>
+      <Banner />
+      <About />
+      <Projects />
+      <Testimonial />
+      <ContactMe />
     </div>
   )
 }
