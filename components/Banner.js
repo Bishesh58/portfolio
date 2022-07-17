@@ -1,6 +1,5 @@
 import Typewriter from 'typewriter-effect'
 import Link from 'next/link'
-import illustrate from '../public/code1.png'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import InstagramIcon from '@mui/icons-material/Instagram'

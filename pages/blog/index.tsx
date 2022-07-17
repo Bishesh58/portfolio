@@ -1,10 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Navbar from '../../components/Navbar'
-import Projects from '../../components/Projects'
-import Footer from '../../components/Footer'
+import Blog from '../../components/Blog/Blog'
 
-const Blog: NextPage = () => {
+const BlogPage: NextPage = () => {
   return (
     <div>
       <Head>
@@ -12,10 +10,10 @@ const Blog: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Projects />
+        <Blog />
       </div>
     </div>
   )
 }
 
-export default Blog
+export default BlogPage
