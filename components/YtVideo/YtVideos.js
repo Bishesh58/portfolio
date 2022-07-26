@@ -17,6 +17,7 @@ function YtVidoes() {
       >
         Youtube Video
       </motion.h1>
+      
       <div className="flex min-h-screen flex-col md:flex-row">
         <Thumbnail className=""/>
       </div>

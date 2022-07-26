@@ -56,21 +56,15 @@ export default () => {
       title: 'Senior Mobile App Developer',
     },
     {
-      testimony: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reiciendis
-    odio repudiandae nostrum commodi libero, similique quasi distinctio
-    officia optio natus aut harum deserunt rem minima exercitationem!
-    Soluta, fuga fugiat`,
+      testimony: `Bishesh performed well and exceeded expectations during his time with Attainate. He understands tasks well, shows good time management, and raises hand if any clarification is needed. He does his own research and always shares his findings. He contributed his skill with diligence and we were happy to accept his contributions. He solves technical problems well and is capable to handle task solely. Bishesh is as good team player and would be a great addition to a software engineering business`,
       profileImg:
-        'https://media-exp2.licdn.com/dms/image/C5603AQFIGFzfFKhLLA/profile-displayphoto-shrink_800_800/0/1650324273857?e=1663200000&v=beta&t=TDDp2NpVaiEigOL84-_Qvsx5bH5j7b7fPkf2EeTwj7M',
-      fullName: 'Masoud Shakiba',
-      title: 'Founder of TechTALK',
+        'https://media-exp2.licdn.com/dms/image/C5603AQGeqqqNRlBx2Q/profile-displayphoto-shrink_800_800/0/1614553539254?e=1663804800&v=beta&t=I29ANAhlCM1gG96AhooVbPW0i-AMcpDAitAncg38qWc',
+      fullName: 'Illia Ovsiiko',
+      title: 'Senior architect at RTA Studio',
     },
 
     {
-      testimony: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reiciendis
-    odio repudiandae nostrum commodi libero, similique quasi distinctio
-    officia optio natus aut harum deserunt rem minima exercitationem!
-    Soluta, fuga fugiat`,
+      testimony: `Bishesh and I work on a project together, he is a great team player, a problem solver, can do attitude and a dependable teamate. A team would be lucky to have you.`,
       profileImg:
         'https://media-exp2.licdn.com/dms/image/C5603AQFjG8_dJv_6TQ/profile-displayphoto-shrink_800_800/0/1615276437040?e=1663200000&v=beta&t=EJsXqLCW9lqyTXGTnTWkJYhWmhB5tfTsEImG50NAVUA',
       fullName: 'Alfred Lladoc',

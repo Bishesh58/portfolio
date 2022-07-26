@@ -51,16 +51,16 @@ function Particle() {
         },
         particles: {
           color: {
-            value: '#0a5f62',
+            value: '#FFFFFF',
           },
           collisions: {
             enable: true,
           },
           move: {
-            direction: 'none',
+            direction: 'bottom',
             enable: true,
             outModes: {
-              default: 'bounce',
+              default: 'destroy',
             },
             random: false,
             speed: 1,
@@ -71,13 +71,13 @@ function Particle() {
               enable: true,
               area: 800,
             },
-            value: 4,
+            value: 6000,
           },
           opacity: {
             value: 0.5,
           },
           shape: {
-            type: 'circle',
+            type: 'square',
           },
           size: {
             value: { min: 1, max: 9 },

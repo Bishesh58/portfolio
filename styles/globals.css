@@ -32,4 +32,7 @@ body {
   .label {
     @apply my-2 text-lg;
   }
+  .skills {
+    @apply flex items-center justify-center space-x-1 rounded-md bg-slate-100 px-2 py-1 text-base
+  }
 }

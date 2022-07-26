@@ -13,7 +13,7 @@ function Card({ title, technologies, icons, img, code, demo, description }) {
     >
       <div className="flex-1">
         <h1 className="py-2 text-2xl font-bold capitalize">{title}</h1>
-        <p>technologies</p>
+        <p>Technologies:</p>
         <p className="py-2">{technologies}</p>
         <p className="py-2">{icons}</p>
         <p className="py-2 font-light leading-8">{description}</p>

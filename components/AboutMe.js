@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import illustrate from '../public/code1.png'
 import { motion } from 'framer-motion'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import Skill from './Skill'
 function About() {
+
+
   return (
     <section id="about" className="mx-auto  max-w-7xl  p-5 text-black">
       <motion.h1
@@ -13,7 +15,7 @@ function About() {
           delay: 1,
           duration: 0.5,
         }}
-        className="py-4 text-5xl font-bold text-center"
+        className="py-4 text-center text-5xl font-bold"
       >
         About me
       </motion.h1>
@@ -26,16 +28,82 @@ function About() {
             I'm a software developer expertise in building professional
             websites, desktop applications, software and more with deep
             knowledge and understanding of multiple technologies and programming
-            languages such as MERN stack, Nextjs, Vuejs, python Django, C# .NET,
-            and so on.
+            languages.
           </p>
-          <p className="">Adapted and worked in an Agile environment.</p>
           <p className="">
-            Passionate and motivated, who is always willing to go the extra mile
-            to overcome new challenges.
+            Passionate and motivated, who is always willing to go the extra
+            miles to overcome new challenges.
           </p>
-          <p>tech stack:</p>
-          <CheckCircleOutlineIcon className="text-blue-400"/>
+
+          <p>Programming Langues & technologies I've worked with:</p>
+          {/* language */}
+          <div className="flex items-center space-x-2">
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>Javascript & TypeScript</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>Python</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>C#</p>
+            </div>
+          </div>
+          {/* frontend */}
+          <div className="flex items-center space-x-2">
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>ReactJs</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>VueJs</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>NextJs</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>Tailwind</p>
+            </div>
+          </div>
+          {/* backend */}
+          <div className="flex items-center space-x-2">
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>NodeJs</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>Firebase</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>Django</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>.Net</p>
+            </div>
+          </div>
+          {/* database */}
+          <div className="flex items-center space-x-2">
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>MongoDb</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>MS SQL</p>
+            </div>
+            <div className="skills">
+              <CheckCircleOutlineIcon className="text-blue-400" />
+              <p>Firestore</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

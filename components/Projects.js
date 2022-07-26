@@ -1,14 +1,15 @@
 import Card from './Card'
-import Particle from './Particle'
 import { motion } from 'framer-motion'
 
 function Projects() {
   const cards = [
     {
-      title: 'Amazon Clone',
-      technologies: 'React | Firebase | C',
-      icons: ['iA', 'iB'],
-      description: 'This app was develop on 5 day react challenge.',
+      title: 'Amazon Like Ecommerce app',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: ['', ''],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
       img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
@@ -153,23 +154,19 @@ function Projects() {
         id="projects"
         className="flex min-h-screen items-center justify-center rounded-2xl border-gray-900"
       >
-        <div className="relative">
-          {/* <Particle /> */}
-
-          <div className="">
-            {cards.map((item, i) => (
-              <Card
-                title={item.title}
-                icons={item.icons}
-                technologies={item.technologies}
-                img={item.img}
-                code={item.code}
-                demo={item.demo}
-                description={item.description}
-                key={i}
-              />
-            ))}
-          </div>
+        <div className="">
+          {cards.map((item, i) => (
+            <Card
+              title={item.title}
+              icons={item.icons}
+              technologies={item.technologies}
+              img={item.img}
+              code={item.code}
+              demo={item.demo}
+              description={item.description}
+              key={i}
+            />
+          ))}
         </div>
       </div>
     </section>

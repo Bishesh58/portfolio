@@ -6,6 +6,7 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowCircleDown'
 import { motion } from 'framer-motion'
+import Particle from './Particle'
 
 function Banner() {
   return (
@@ -65,20 +66,22 @@ function Banner() {
           {/* right container */}
           <div className="relative flex-1 overflow-hidden">
             {/* bg circle */}
-            <div className="absolute h-full w-full rounded-tl-full  bg-[#1c4766]"></div>
+            <div className=" absolute h-full w-full rounded-full  bg-[#1c4766]"></div>
+
             {/* image */}
             <div className="absolute bottom-0 left-0 flex h-full w-full flex-col rounded-full">
+              <Particle className="top-50 right-50 " />
               <img
-                src="/man2.png"
+                src="/testImage.png"
                 alt=""
-                className="hidden h-[600px] object-contain md:block"
+                className="hidden h-full rounded-t-full bg-[#1c4766] object-contain md:block"
               />
             </div>
             {/* type writer */}
             <div className="absolute bottom-14 right-0 flex  w-full  items-center justify-center rounded-full">
               <Typewriter
                 options={{
-                  strings: [`Want to hire me ?`, `Let's talk!`],
+                  strings: [`Want to hire me ?`, `I would love to talk!`],
                   autoStart: true,
                   wrapperClassName: 'text-3xl justify-self-center',
                   cursorClassName: 'text-3xl  text-yellow-400',
@@ -99,7 +102,7 @@ function Banner() {
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{
-                  delay: 1,
+                  delay: 4,
                   duration: 0.5,
                 }}
               >
@@ -111,7 +114,7 @@ function Banner() {
               <motion.div
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 1.1, duration: 0.5 }}
+                transition={{ delay: 4.1, duration: 0.5 }}
               >
                 <LinkedInIcon
                   sx={{ backgroundColor: '#0a66c2', borderRadius: '20%' }}
@@ -121,7 +124,7 @@ function Banner() {
               <motion.div
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 1.2, duration: 0.5 }}
+                transition={{ delay: 4.2, duration: 0.5 }}
               >
                 <InstagramIcon
                   sx={{ backgroundColor: '#fb3958', borderRadius: '20%' }}
@@ -131,7 +134,7 @@ function Banner() {
               <motion.div
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 1.3, duration: 0.5 }}
+                transition={{ delay: 4.3, duration: 0.5 }}
               >
                 <FacebookIcon
                   sx={{ backgroundColor: '#4267B2', borderRadius: '20%' }}
