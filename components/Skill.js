@@ -1,10 +1,10 @@
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import { Icon, InlineIcon } from '@iconify/react'
 
-function Skill() {
+function Skill({ title, icon }) {
   return (
     <div className="skills">
-      <CheckCircleOutlineIcon className="text-blue-400" />
-      <p>C#</p>
+      <InlineIcon icon={icon} width={30} height={30} />
+      <p>{title}</p>
     </div>
   )
 }

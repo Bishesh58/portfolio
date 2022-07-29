@@ -1,12 +1,19 @@
 import Card from './Card'
 import { motion } from 'framer-motion'
+import { Icon } from '@iconify/react'
 
 function Projects() {
   const cards = [
     {
       title: 'Amazon Like Ecommerce app',
       technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
-      icons: ['', ''],
+      icons: [
+        'teenyicons:nextjs-outline',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
@@ -16,122 +23,206 @@ function Projects() {
     },
     {
       title: 'Netflix Clone',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: '/netflix1.png',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'Weather App',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: '/todos.png',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     ,
     {
       title: 'Medium like Application',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary 4 to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'todos1.png',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'Dog meetup app',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'Face recognition app',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'LinkedIn clone',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      technologies: 'A | B | C',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'React todos app',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'React todos app',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'Air bnb clone',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'Gmail clone',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'Hulu like movie app',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
       title: 'Chatroom',
-      technologies: 'A | B | C',
-      icons: ['iA', 'iB'],
-      description:
-        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.',
-      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'vscode-icons:file-type-next',
+        'logos:redux',
+        'logos:tailwindcss-icon',
+        'logos:firebase',
+        'logos:stripe',
+      ],
+      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      `,
+      img: '/amazon1.png',
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },

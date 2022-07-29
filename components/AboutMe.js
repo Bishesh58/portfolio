@@ -3,8 +3,79 @@ import illustrate from '../public/code1.png'
 import { motion } from 'framer-motion'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import Skill from './Skill'
-function About() {
+import { Icon, InlineIcon } from '@iconify/react'
 
+function About() {
+  const skills = [
+    [
+      {
+        title: 'Javascript',
+        Icon: 'vscode-icons:file-type-js-official',
+      },
+      {
+        title: 'TypeScript',
+        Icon: 'vscode-icons:file-type-typescript',
+      },
+      {
+        title: 'Python',
+        Icon: 'vscode-icons:file-type-python',
+      },
+      {
+        title: 'CSharp',
+        Icon: 'vscode-icons:file-type-csharp',
+      },
+    ],
+    [
+      {
+        title: 'ReactJs',
+        Icon: 'vscode-icons:file-type-reactjs',
+      },
+      {
+        title: 'VueJs',
+        Icon: 'vscode-icons:file-type-vue',
+      },
+      {
+        title: 'NextJs',
+        Icon: 'vscode-icons:file-type-next',
+      },
+      {
+        title: 'Tailwind',
+        Icon: 'vscode-icons:file-type-tailwind',
+      },
+    ],
+    [
+      {
+        title: 'NodeJs',
+        Icon: 'vscode-icons:file-type-node',
+      },
+      {
+        title: 'Firebase',
+        Icon: 'vscode-icons:file-type-firebase',
+      },
+      {
+        title: 'Django',
+        Icon: 'vscode-icons:file-type-django',
+      },
+      {
+        title: '.net',
+        Icon: 'mdi:dot-net',
+      },
+    ],
+    [
+      {
+        title: 'MongoDB',
+        Icon: 'logos:mongodb-icon',
+      },
+      {
+        title: 'MS SQL',
+        Icon: 'carbon:sql',
+      },
+      {
+        title: 'Firebase Firestore',
+        Icon: 'vscode-icons:file-type-firestore',
+      },
+    ],
+  ]
 
   return (
     <section id="about" className="mx-auto  max-w-7xl  p-5 text-black">
@@ -37,72 +108,33 @@ function About() {
 
           <p>Programming Langues & technologies I've worked with:</p>
           {/* language */}
-          <div className="flex items-center space-x-2">
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>Javascript & TypeScript</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>Python</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>C#</p>
-            </div>
+          <div className="justify-startitems-center flex space-x-2">
+            {skills[0].map((item) => (
+              <div className="flex items-center  space-x-2">
+                <Skill title={item.title} icon={item.Icon} />
+              </div>
+            ))}
           </div>
-          {/* frontend */}
-          <div className="flex items-center space-x-2">
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>ReactJs</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>VueJs</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>NextJs</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>Tailwind</p>
-            </div>
+          <div className="justify-startitems-center flex space-x-2">
+            {skills[1].map((item) => (
+              <div className="flex items-center  space-x-2">
+                <Skill title={item.title} icon={item.Icon} />
+              </div>
+            ))}
           </div>
-          {/* backend */}
-          <div className="flex items-center space-x-2">
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>NodeJs</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>Firebase</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>Django</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>.Net</p>
-            </div>
+          <div className="justify-startitems-center flex space-x-2">
+            {skills[2].map((item) => (
+              <div className="flex items-center  space-x-2">
+                <Skill title={item.title} icon={item.Icon} />
+              </div>
+            ))}
           </div>
-          {/* database */}
-          <div className="flex items-center space-x-2">
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>MongoDb</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>MS SQL</p>
-            </div>
-            <div className="skills">
-              <CheckCircleOutlineIcon className="text-blue-400" />
-              <p>Firestore</p>
-            </div>
+          <div className="justify-startitems-center flex space-x-2">
+            {skills[3].map((item) => (
+              <div className="flex items-center  space-x-2">
+                <Skill title={item.title} icon={item.Icon} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

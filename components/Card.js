@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LaunchIcon from '@mui/icons-material/Launch'
 import Button from '@mui/material/Button'
+import { Icon, InlineIcon } from '@iconify/react'
 
 function Card({ title, technologies, icons, img, code, demo, description }) {
   useEffect(() => {}, [])
@@ -15,7 +16,12 @@ function Card({ title, technologies, icons, img, code, demo, description }) {
         <h1 className="py-2 text-2xl font-bold capitalize">{title}</h1>
         <p>Technologies:</p>
         <p className="py-2">{technologies}</p>
-        <p className="py-2">{icons}</p>
+        <div className="flex space-x-2">
+          {icons.map((icon) => (
+            <Icon icon={icon} width={40} height={40} />
+          ))}
+        </div>
+
         <p className="py-2 font-light leading-8">{description}</p>
         <div className="my-2">
           <Button
