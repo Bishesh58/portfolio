@@ -3,6 +3,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import LaunchIcon from '@mui/icons-material/Launch'
 import Button from '@mui/material/Button'
 import { Icon, InlineIcon } from '@iconify/react'
+import ImageSlider from './slider/ImageSlider'
 
 function Card({ title, technologies, icons, img, code, demo, description }) {
   useEffect(() => {}, [])
@@ -43,8 +44,8 @@ function Card({ title, technologies, icons, img, code, demo, description }) {
         </div>
       </div>
 
-      <div className="flex max-h-[400px] flex-1 items-center justify-center overflow-hidden rounded-2xl px-4 md:p-10">
-        <img src={img} alt="" className="object-contain" />
+      <div className="flex-1 overflow-hidden">
+        <ImageSlider />
       </div>
     </div>
   )
