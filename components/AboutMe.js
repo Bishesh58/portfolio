@@ -90,7 +90,7 @@ function About() {
       >
         About me
       </motion.h1>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col lg:flex-row">
         <div className="flex-shrink md:w-full md:flex-1">
           <Image src={illustrate} layout="responsive" />
         </div>
@@ -108,28 +108,28 @@ function About() {
 
           <p>Programming Langues & technologies I've worked with:</p>
           {/* language */}
-          <div className="justify-startitems-center flex space-x-2">
+          <div className="justify-start items-center flex flex-wrap space-y-1 space-x-2">
             {skills[0].map((item) => (
               <div className="flex items-center  space-x-2">
                 <Skill title={item.title} icon={item.Icon} />
               </div>
             ))}
           </div>
-          <div className="justify-startitems-center flex space-x-2">
+          <div className="justify-start items-center flex flex-wrap space-y-1 space-x-2">
             {skills[1].map((item) => (
               <div className="flex items-center  space-x-2">
                 <Skill title={item.title} icon={item.Icon} />
               </div>
             ))}
           </div>
-          <div className="justify-startitems-center flex space-x-2">
+          <div className="justify-start items-center flex flex-wrap space-y-1 space-x-2">
             {skills[2].map((item) => (
               <div className="flex items-center  space-x-2">
                 <Skill title={item.title} icon={item.Icon} />
               </div>
             ))}
           </div>
-          <div className="justify-startitems-center flex space-x-2">
+          <div className="justify-start items-center flex flex-wrap space-y-1 space-x-2">
             {skills[3].map((item) => (
               <div className="flex items-center  space-x-2">
                 <Skill title={item.title} icon={item.Icon} />

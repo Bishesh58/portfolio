@@ -10,7 +10,7 @@ function Card({ title, technologies, icons, imgs, code, demo, description }) {
 
   return (
     <div
-      className="flex flex-col p-5 md:odd:flex-row md:even:flex-row-reverse 
+      className="flex flex-col gap-2 p-5 lg:gap-4 lg:odd:flex-row lg:even:flex-row-reverse 
       "
     >
       <div className="flex-1">
@@ -23,7 +23,7 @@ function Card({ title, technologies, icons, imgs, code, demo, description }) {
           ))}
         </div>
 
-        <p className="py-2 font-light leading-8">{description}</p>
+        <p className="break-normal py-2 font-light leading-8">{description}</p>
         <div className="my-2">
           <Button
             size="large"
@@ -43,9 +43,8 @@ function Card({ title, technologies, icons, imgs, code, demo, description }) {
           </Button>
         </div>
       </div>
-
-      <div className="flex-1 overflow-hidden">
-        <ImageSlider imgs={imgs}/>
+      <div className="lg:flex justify-center items-center">
+        <ImageSlider imgs={imgs} />
       </div>
     </div>
   )
