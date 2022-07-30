@@ -72,7 +72,7 @@ function Banner() {
             <div className="absolute bottom-0 left-0 flex h-full w-full flex-col rounded-full">
               <Particle className="top-50 right-50 " />
               <img
-                src="/testImage.png"
+                src="/profile.png"
                 alt=""
                 className="hidden h-full rounded-t-full bg-[#1c4766] object-contain md:block"
               />

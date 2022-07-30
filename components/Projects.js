@@ -17,7 +17,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -34,7 +42,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -51,7 +67,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -69,7 +93,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -86,7 +118,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -103,7 +143,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -120,7 +168,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -137,7 +193,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -154,7 +218,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -171,7 +243,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -188,7 +268,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -205,7 +293,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -222,7 +318,15 @@ function Projects() {
       description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
-      img: '/amazon1.png',
+      imgs: [
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+        '/amazon.png',
+      ],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -251,7 +355,7 @@ function Projects() {
               title={item.title}
               icons={item.icons}
               technologies={item.technologies}
-              img={item.img}
+              imgs={item.imgs}
               code={item.code}
               demo={item.demo}
               description={item.description}

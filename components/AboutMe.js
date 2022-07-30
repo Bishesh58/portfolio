@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import illustrate from '../public/code1.png'
+import illustrate from '../public/code.png'
 import { motion } from 'framer-motion'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import Skill from './Skill'

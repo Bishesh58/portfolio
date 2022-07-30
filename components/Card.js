@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import { Icon, InlineIcon } from '@iconify/react'
 import ImageSlider from './slider/ImageSlider'
 
-function Card({ title, technologies, icons, img, code, demo, description }) {
+function Card({ title, technologies, icons, imgs, code, demo, description }) {
   useEffect(() => {}, [])
 
   return (
@@ -45,7 +45,7 @@ function Card({ title, technologies, icons, img, code, demo, description }) {
       </div>
 
       <div className="flex-1 overflow-hidden">
-        <ImageSlider />
+        <ImageSlider imgs={imgs}/>
       </div>
     </div>
   )

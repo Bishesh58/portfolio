@@ -9,7 +9,8 @@ import 'swiper/css/effect-creative'
 // import required modules
 import { Autoplay } from 'swiper'
 
-export default function ImageSlider() {
+export default function ImageSlider({ imgs }) {
+  
   return (
     <>
       <Swiper
@@ -22,30 +23,11 @@ export default function ImageSlider() {
         modules={[Autoplay]}
         className="h-[300px] w-[500px]"
       >
-        <SwiperSlide>
-          Slide 3 <img src="/amazon.png" className="object-contain" alt="" />{' '}
-        </SwiperSlide>
-        <SwiperSlide>
-          Slide 2 <img src="/amazon.png" className="object-contain" alt="" />{' '}
-        </SwiperSlide>
-        <SwiperSlide>
-          Slide 4 <img src="/amazon.png" className="object-contain" alt="" />{' '}
-        </SwiperSlide>
-        <SwiperSlide>
-          Slide 5 <img src="/amazon.png" className="object-contain" alt="" />{' '}
-        </SwiperSlide>
-        <SwiperSlide>
-          Slide 6 <img src="/amazon.png" className="object-contain" alt="" />{' '}
-        </SwiperSlide>
-        <SwiperSlide>
-          Slide 7 <img src="/amazon.png" className="object-contain" alt="" />{' '}
-        </SwiperSlide>
-        <SwiperSlide>
-          Slide 8 <img src="/amazon.png" className="object-contain" alt="" />{' '}
-        </SwiperSlide>
-        <SwiperSlide>
-          Slide 9 <img src="/amazon.png" className="object-contain" alt="" />{' '}
-        </SwiperSlide>
+        {imgs.map((img) => (
+          <SwiperSlide>
+            <img src={img} className="object-contain" alt="" />{' '}
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   )
