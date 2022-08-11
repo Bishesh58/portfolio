@@ -6,7 +6,6 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowCircleDown'
 import { motion } from 'framer-motion'
-import Particle from './Particle'
 
 function Banner() {
   return (
@@ -65,12 +64,8 @@ function Banner() {
           </motion.div>
           {/* right container */}
           <div className="relative flex-1 overflow-hidden">
-            {/* bg circle */}
-            <div className=" absolute h-full w-full rounded-full  bg-[#1c4766]"></div>
-
             {/* image */}
             <div className="absolute bottom-0 left-0 flex h-full w-full flex-col rounded-full">
-              <Particle className="top-50 right-50 " />
               <img
                 src="/profile.png"
                 alt=""
@@ -102,7 +97,7 @@ function Banner() {
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{
-                  delay: 4,
+                  delay: 1,
                   duration: 0.5,
                 }}
               >
@@ -114,7 +109,7 @@ function Banner() {
               <motion.div
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 4.1, duration: 0.5 }}
+                transition={{ delay: 1.1, duration: 0.5 }}
               >
                 <LinkedInIcon
                   sx={{ backgroundColor: '#0a66c2', borderRadius: '20%' }}
@@ -124,7 +119,7 @@ function Banner() {
               <motion.div
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 4.2, duration: 0.5 }}
+                transition={{ delay: 1.2, duration: 0.5 }}
               >
                 <InstagramIcon
                   sx={{ backgroundColor: '#fb3958', borderRadius: '20%' }}
@@ -134,7 +129,7 @@ function Banner() {
               <motion.div
                 initial={{ opacity: 0, x: 50, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 4.3, duration: 0.5 }}
+                transition={{ delay: 1.3, duration: 0.5 }}
               >
                 <FacebookIcon
                   sx={{ backgroundColor: '#4267B2', borderRadius: '20%' }}

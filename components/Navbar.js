@@ -59,7 +59,7 @@ function Navbar() {
                   </ScrollLink>
                 ))}
 
-              {navLinks.map((navLink) => (
+              {/* {navLinks.map((navLink) => (
                 <Link
                   scroll={true}
                   shadow={true}
@@ -71,7 +71,7 @@ function Navbar() {
                     {navLink.name}
                   </a>
                 </Link>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
