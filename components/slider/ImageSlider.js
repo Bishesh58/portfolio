@@ -21,11 +21,11 @@ export default function ImageSlider({ imgs }) {
           disableOnInteraction: true,
         }}
         modules={[Autoplay]}
-        className="h-[200px] w-[300px] md:h-[260px] md:w-[500px]"
+        className="h-[250px] w-[300px] md:h-[260px] md:w-[500px]"
       >
         {imgs.map((img) => (
           <SwiperSlide>
-            <img src={img} className="object-fill" alt="" />
+            <img src={img} className="h-full w-full object-contain" alt="" />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -15,119 +15,19 @@ function Projects() {
         'logos:stripe',
         'logos:vercel',
       ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
+      description: `This is a fully fleged responsive ecommerce web app. It consists of
       google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
       `,
       imgs: [
-        '/amazon1.png',
-        '/a1.png',
-        '/amazon2.png',
-        '/amazon3.png',
-        '/amazon4.png',
-        '/amazon5.png',
+        'amazon/a1.png',
+        'amazon/a2.png',
+        'amazon/a3.png',
+        'amazon/a4.png',
       ],
       code: 'https://github.com/Bishesh58/amazon-clone-next',
       demo: 'https://amazon-clone-next-omega.vercel.app/',
     },
-    {
-      title: 'Dog meetup app',
-      technologies: 'MongoDB | Express | React | Node | - MERN',
-      icons: [
-        'logos:mongodb-icon',
-        'vscode-icons:file-type-reactjs',
-        'logos:express',
-        'logos:nodejs',
-      ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
-      `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
-    },
-    {
-      title: 'Face recognition app',
-      technologies: 'React | Node | Express | PostgreSQL | Heroku ',
-      icons: [
-        'vscode-icons:file-type-reactjs',
-        'logos:nodejs',
-        'logos:express',
-        'logos:postgresql',
-        'logos:heroku-icon',
-      ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
-      `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
-      code: 'https://github.com/',
-      demo: 'https://facedetect-reactapp.herokuapp.com/',
-    },
-    {
-      title: 'Medium blog Application',
-      technologies: 'NextJs | React | Typescript | Tailwind | Sanity CMS ',
-      icons: [
-        'logos:nextjs',
-        'logos:react',
-        'logos:tailwindcss-icon',
-        'logos:typescript-icon-round',
-        'logos:sanity',
-      ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
-      `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
-    },
-    {
-      title: 'Netflix Clone',
-      technologies: 'JavaScript | NodeJs | Express | MongoDB',
-      icons: [
-        'logos:javascript',
-        'logos:nodejs-icon',
-        'logos:express',
-        'logos:mongodb-icon',
-      ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
-      `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
-    },
-    
+
     {
       title: 'LinkedIn clone',
       technologies: 'React | Redux | Material UI | Firebase ',
@@ -137,62 +37,25 @@ function Projects() {
         'logos:material-ui',
         'logos:firebase',
       ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      description: `It is a react application with CRUD functionality that uses react for frontend and firebase for the backend. User can login with google authentication and post their story with others.
       `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
+      imgs: ['linkedIn/linkedIn1.png', 'linkedIn/linkedIn2.png'],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
     {
-      title: 'React todos app',
-      technologies: 'React | Recoil | Material UI ',
-      icons: ['logos:react', 'fontisto:atom', 'logos:material-ui'],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
-      `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
-    },
-    {
-      title: 'Air bnb clone',
-      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      title: 'News Archive',
+      technologies: 'React | Redux | Tailwind | Material UI | Framer',
       icons: [
-        'vscode-icons:file-type-next',
+        'logos:react',
         'logos:redux',
         'logos:tailwindcss-icon',
-        'logos:firebase',
-        'logos:stripe',
+        'logos:material-ui',
+        'logos:framer',
       ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      description: `News archieve is an online news search application. You can read and search news based on different category such as Technology, Business, Health, Science and son on. You also have ability to search any topic you would like to search. This application is build with react & typescript as a part of assignment for microsoft student accelerator for phase 2. This application uses two news api: Free News api & theNewsAPI for fetching latest news.   
       `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
+      imgs: ['/news.png'],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -206,18 +69,9 @@ function Projects() {
         'logos:firebase',
         'logos:stripe',
       ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      description: `This is a react application that looks like gmail. I build this application for learning purpose. It uses react for frontend and firebase for the backend & database.
       `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
+      imgs: ['/gmail.png'],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -231,18 +85,57 @@ function Projects() {
         'logos:firebase',
         'logos:stripe',
       ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      description: `This is a nextjs react application which uses tmdb api to fetch movies information and shows movies poster on different genres. This is app is fully responsive.
       `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
+      imgs: ['/hulu.png'],
+      code: 'https://github.com/',
+      demo: 'https://www.google.com/',
+    },
+    {
+      title: 'Medium blog Application',
+      technologies: 'NextJs | React | Typescript | Tailwind | Sanity CMS ',
+      icons: [
+        'logos:nextjs',
+        'logos:react',
+        'logos:tailwindcss-icon',
+        'logos:typescript-icon-round',
+        'logos:sanity',
       ],
+      description: `Medium blog application is clone of medium application which is build using Nextjs, React & typescript with Sanity CMS. It is fully responsive, server side rendering. Visitors can read specific blogs, leave comments and like the post.
+      `,
+      imgs: ['/medium.png'],
+      code: 'https://github.com/',
+      demo: 'https://www.google.com/',
+    },
+    {
+      title: 'Netflix Clone',
+      technologies: 'JavaScript | NodeJs | Express | MongoDB',
+      icons: [
+        'logos:javascript',
+        'logos:nodejs-icon',
+        'logos:express',
+        'logos:mongodb-icon',
+      ],
+      description: `This is a netflix looking application which uses the movie database API to pull movie informations. User can register and login into his/her account. Movies are filtered according to categories such as trending, genre, and so on. User's details are sotred on mongodb database.This application was build as a part of learning vanilla javascript project that uses node and express for backend.
+      `,
+      imgs: ['/netflix.png'],
+      code: 'https://github.com/',
+      demo: 'https://www.google.com/',
+    },
+    {
+      title: 'Dog meetup app',
+      technologies: 'MongoDB | Express | React | Node | - MERN',
+      icons: [
+        'logos:mongodb-icon',
+        'vscode-icons:file-type-reactjs',
+        'logos:express',
+        'logos:nodejs',
+      ],
+      description: `Dog meetup is an event booking app for dog owner to meet & have fun with another dog owner. The event can be booked to closest city of their location. Once event is booked, it will show details inside the map, including how many people are going to the event. The main features include
+      login & registration, mainatain user details, dogs details, event details & history. Search events based on different filter options such as city, dog breed, dog weight or keywords. Contact admin for any queries & registered user can write review about the events. 
+      Mapbox api is used for the map & Mongodb database to store the data. This app is hosted on Heroku server.
+      `,
+      imgs: ['/dogmeetup/dogmeetup1.png', '/dogmeetup/dogmeetup2.png'],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
@@ -256,21 +149,36 @@ function Projects() {
         'logos:firebase',
         'logos:stripe',
       ],
-      description: `This is a fully fleged responsive ecommerce web app. A glimpse of amazon website. It consists of
-      google login & logout feature, view and shop product, add product to cart, checkout product through stripe payment gateway & view your order. This app is build with react & tailwind for frontend & firebase as backend. I build this application as a part of 5 day react challenge.
+      description: `This is a photo snapshot react application where user can snapshot photo and share with others. This application uses react-webcam to take photo & firebase for the backend to store images. The feature include google authentication for sign in, shows new story when someone uploads snapshot, able to view for 10 sec before it disappers. You have ablility to take multiple shapshot.
       `,
-      imgs: [
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-        '/amazon.png',
-      ],
+      imgs: ['/snapshot.png'],
       code: 'https://github.com/',
       demo: 'https://www.google.com/',
     },
+    // {
+    //   title: 'Face recognition app',
+    //   technologies: 'React | Node | Express | PostgreSQL | Heroku ',
+    //   icons: [
+    //     'vscode-icons:file-type-reactjs',
+    //     'logos:nodejs',
+    //     'logos:express',
+    //     'logos:postgresql',
+    //     'logos:heroku-icon',
+    //   ],
+    //   description: `This is a react application which uses a clarifai API to detect a face on image. You can register and login into your account. You can detect face on image using image url. A rectangle border will be printed on the top of image. For storing user's details postgreSQL is used. This app is hosted on heroku.
+    //   `,
+    //   imgs: [
+    //     '/amazon.png',
+    //     '/amazon.png',
+    //     '/amazon.png',
+    //     '/amazon.png',
+    //     '/amazon.png',
+    //     '/amazon.png',
+    //     '/amazon.png',
+    //   ],
+    //   code: 'https://github.com/',
+    //   demo: 'https://facedetect-reactapp.herokuapp.com/',
+    // },
   ]
 
   return (
