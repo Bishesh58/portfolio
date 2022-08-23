@@ -104,7 +104,8 @@ function Banner() {
               >
                 <GitHubIcon
                   sx={{ backgroundColor: '#252a2e', borderRadius: '50%' }}
-                  className="link-btn h-20 w-20 "
+                  className="link-btn h-10 w-10 "
+                  fontSize="large"
                 />
               </motion.div>
               <motion.div
@@ -114,7 +115,8 @@ function Banner() {
               >
                 <LinkedInIcon
                   sx={{ backgroundColor: '#0a66c2', borderRadius: '20%' }}
-                  className="link-btn h-20 w-20"
+                  className="link-btn h-10 w-10"
+                  fontSize="large"
                 />
               </motion.div>
               <motion.div
@@ -124,7 +126,8 @@ function Banner() {
               >
                 <InstagramIcon
                   sx={{ backgroundColor: '#fb3958', borderRadius: '20%' }}
-                  className="link-btn h-20 w-20"
+                  className="link-btn h-10 w-10"
+                  fontSize="large"
                 />
               </motion.div>
               <motion.div
@@ -134,7 +137,8 @@ function Banner() {
               >
                 <FacebookIcon
                   sx={{ backgroundColor: '#4267B2', borderRadius: '20%' }}
-                  className="link-btn h-20 w-20"
+                  className="link-btn h-10 w-10"
+                  fontSize="large"
                 />
               </motion.div>
             </div>
