@@ -40,8 +40,8 @@ function Projects() {
       description: `It is a react application with CRUD functionality that uses react for frontend and firebase for the backend. User can login with google authentication and post their story with others.
       `,
       imgs: ['linkedIn/linkedIn1.png', 'linkedIn/linkedIn2.png'],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
+      code: 'https://github.com/Bishesh58/linkedIn-clone-react',
+      demo: 'https://linkedin-clone-47598.firebaseapp.com/',
     },
     {
       title: 'News Archive',
@@ -56,24 +56,23 @@ function Projects() {
       description: `News archieve is an online news search application. You can read and search news based on different category such as Technology, Business, Health, Science and son on. You also have ability to search any topic you would like to search. This application is build with react & typescript as a part of assignment for microsoft student accelerator for phase 2. This application uses two news api: Free News api & theNewsAPI for fetching latest news.   
       `,
       imgs: ['/news.png'],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
+      code: 'https://github.com/Bishesh58/msa22-frontend-NewsArchive',
+      demo: 'https://news-archive-pi.vercel.app/',
     },
     {
       title: 'Gmail clone',
       technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
       icons: [
-        'vscode-icons:file-type-next',
+        'logos:react',
         'logos:redux',
-        'logos:tailwindcss-icon',
+        'logos:material-ui',
         'logos:firebase',
-        'logos:stripe',
       ],
       description: `This is a react application that looks like gmail. I build this application for learning purpose. It uses react for frontend and firebase for the backend & database.
       `,
       imgs: ['/gmail.png'],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
+      code: 'https://github.com/Bishesh58/Gmail-Clone-React',
+      demo: 'https://clone-9a3c7.firebaseapp.com/',
     },
     {
       title: 'Hulu like movie app',
@@ -88,8 +87,8 @@ function Projects() {
       description: `This is a nextjs react application which uses tmdb api to fetch movies information and shows movies poster on different genres. This is app is fully responsive.
       `,
       imgs: ['/hulu.png'],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
+      code: 'https://github.com/Bishesh58/movie-app',
+      demo: 'https://movie-9mar7drac-bishesh58.vercel.app/',
     },
     {
       title: 'Medium blog Application',
@@ -104,8 +103,8 @@ function Projects() {
       description: `Medium blog application is clone of medium application which is build using Nextjs, React & typescript with Sanity CMS. It is fully responsive, server side rendering. Visitors can read specific blogs, leave comments and like the post.
       `,
       imgs: ['/medium.png'],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
+      code: 'https://github.com/Bishesh58/medium-next',
+      demo: 'https://medium-next-olive.vercel.app/',
     },
     {
       title: 'Netflix Clone',
@@ -119,8 +118,8 @@ function Projects() {
       description: `This is a netflix looking application which uses the movie database API to pull movie informations. User can register and login into his/her account. Movies are filtered according to categories such as trending, genre, and so on. User's details are sotred on mongodb database.This application was build as a part of learning vanilla javascript project that uses node and express for backend.
       `,
       imgs: ['/netflix.png'],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
+      code: 'https://github.com/Bishesh58/pwj-netflix-clone-api',
+      demo: 'https://netflix5858.netlify.app/login.html',
     },
     {
       title: 'Dog meetup app',
@@ -130,30 +129,45 @@ function Projects() {
         'vscode-icons:file-type-reactjs',
         'logos:express',
         'logos:nodejs',
+        'logos:heroku-icon',
       ],
       description: `Dog meetup is an event booking app for dog owner to meet & have fun with another dog owner. The event can be booked to closest city of their location. Once event is booked, it will show details inside the map, including how many people are going to the event. The main features include
       login & registration, mainatain user details, dogs details, event details & history. Search events based on different filter options such as city, dog breed, dog weight or keywords. Contact admin for any queries & registered user can write review about the events. 
       Mapbox api is used for the map & Mongodb database to store the data. This app is hosted on Heroku server.
       `,
       imgs: ['/dogmeetup/dogmeetup1.png', '/dogmeetup/dogmeetup2.png'],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
+      code: 'https://github.com/Bishesh58/Dog-meetup',
+      demo: 'https://dogmeetup-app.herokuapp.com/',
     },
     {
       title: 'SnapChat like app',
       technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
       icons: [
-        'vscode-icons:file-type-next',
+        'logos:create-react-app',
         'logos:redux',
-        'logos:tailwindcss-icon',
+        'logos:material-ui',
         'logos:firebase',
-        'logos:stripe',
       ],
       description: `This is a photo snapshot react application where user can snapshot photo and share with others. This application uses react-webcam to take photo & firebase for the backend to store images. The feature include google authentication for sign in, shows new story when someone uploads snapshot, able to view for 10 sec before it disappers. You have ablility to take multiple shapshot.
       `,
       imgs: ['/snapshot.png'],
-      code: 'https://github.com/',
-      demo: 'https://www.google.com/',
+      code: 'https://github.com/Bishesh58/snapchat-clone-react',
+      demo: 'https://snapchat-clone-57d26.firebaseapp.com/',
+    },
+    {
+      title: 'Chat application',
+      technologies: 'NextJs | Next Auth | Redux | Tailwind | Firebase | Stripe',
+      icons: [
+        'logos:create-react-app',
+        'logos:redux',
+        'logos:material-ui',
+        'logos:firebase',
+      ],
+      description: `This is a what's app like chat application. It uses firebase for the backend and google authentication for sign in. User can create room and chat with others. It uses emoji api for sending emojis. 
+      `,
+      imgs: ['/chat.png', '/chat1.png'],
+      code: 'https://github.com/Bishesh58/whatsApp-clone',
+      demo: 'https://whatsapp-clone-ef2ab.firebaseapp.com/',
     },
     // {
     //   title: 'Face recognition app',

@@ -27,8 +27,9 @@ function Banner() {
             </h1>
             <div className="font-thin tracking-wider text-gray-200 md:text-xl">
               <p>
-                A React Web Develoer who's highly motivated and aspired to
-                learn, buids & solve problems using latest technologies.
+                A <strong> Full Stack Web Develoer</strong> who's highly
+                motivated and aspired to learn, buids & solve problems using
+                latest technologies.
               </p>
               <p>I'm looking for new opportunities to sky-rocket my career!</p>
               <div className="my-4 flex flex-col md:my-10 md:flex-row md:space-x-4">
