@@ -25,12 +25,12 @@ function Card({ title, technologies, icons, imgs, code, demo, description }) {
         </div>
 
         <p className="break-normal py-2 font-light leading-8">{description}</p>
-        <div className="my-2">
+        <div className="my-2 flex space-x-2">
           <Link
             underline="none"
             href={demo}
             target="blank"
-            className="m-2  rounded-md bg-[#1abc9c] p-3 px-4 capitalize  text-white hover:bg-[#0a3d62] hover:text-white"
+            className="my-3  rounded-md bg-[#1abc9c] p-3 px-4 capitalize  !text-white hover:bg-[#0a3d62] hover:text-white"
           >
             <LaunchIcon />
             <span className="ml-2">Live Demo</span>
@@ -39,7 +39,7 @@ function Card({ title, technologies, icons, imgs, code, demo, description }) {
             underline="none"
             href={code}
             target="blank"
-            className="m-2 rounded-md p-3 px-4 capitalize text-black hover:bg-[#0a3d62] hover:text-white bg-slate-100"
+            className="my-3 rounded-md bg-slate-100 p-3  px-4 capitalize text-black hover:bg-[#0a3d62] hover:text-white"
           >
             <GitHubIcon />
             <span className="ml-2">GitHub</span>
