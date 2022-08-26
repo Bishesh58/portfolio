@@ -106,21 +106,7 @@ function Projects() {
       code: 'https://github.com/Bishesh58/medium-next',
       demo: 'https://medium-next-olive.vercel.app/',
     },
-    {
-      title: 'Netflix Clone',
-      technologies: 'JavaScript | NodeJs | Express | MongoDB',
-      icons: [
-        'logos:javascript',
-        'logos:nodejs-icon',
-        'logos:express',
-        'logos:mongodb-icon',
-      ],
-      description: `This is a netflix looking application which uses the movie database API to pull movie informations. User can register and login into his/her account. Movies are filtered according to categories such as trending, genre, and so on. User's details are sotred on mongodb database.This application was build as a part of learning vanilla javascript project that uses node and express for backend.
-      `,
-      imgs: ['/netflix.png'],
-      code: 'https://github.com/Bishesh58/pwj-netflix-clone-api',
-      demo: 'https://netflix5858.netlify.app/login.html',
-    },
+
     {
       title: 'Dog meetup app',
       technologies: 'MongoDB | Express | React | Node | - MERN',
@@ -138,6 +124,21 @@ function Projects() {
       imgs: ['/dogmeetup/dogmeetup1.png', '/dogmeetup/dogmeetup2.png'],
       code: 'https://github.com/Bishesh58/Dog-meetup',
       demo: 'https://dogmeetup-app.herokuapp.com/',
+    },
+    {
+      title: 'React todolist application',
+      technologies: 'React | NodeJs | Express | Material UI |',
+      icons: [
+        'logos:react',
+        'logos:nodejs-icon',
+        'logos:express',
+        'logos:material-ui',
+      ],
+      description: `This is a simple todo application using react and atoms. Simple CRUD application with filtering functionality. It also show the percentage of the task completed. An open quote api is used to generate automated quotes, user also has ability to change as quotes which button click.
+      `,
+      imgs: ['/todos.png'],
+      code: 'https://github.com/Bishesh58/react-todos',
+      demo: 'https://happy-murdock-374a4e.netlify.app/',
     },
     {
       title: 'SnapChat like app',
@@ -169,30 +170,6 @@ function Projects() {
       code: 'https://github.com/Bishesh58/whatsApp-clone',
       demo: 'https://whatsapp-clone-ef2ab.firebaseapp.com/',
     },
-    // {
-    //   title: 'Face recognition app',
-    //   technologies: 'React | Node | Express | PostgreSQL | Heroku ',
-    //   icons: [
-    //     'vscode-icons:file-type-reactjs',
-    //     'logos:nodejs',
-    //     'logos:express',
-    //     'logos:postgresql',
-    //     'logos:heroku-icon',
-    //   ],
-    //   description: `This is a react application which uses a clarifai API to detect a face on image. You can register and login into your account. You can detect face on image using image url. A rectangle border will be printed on the top of image. For storing user's details postgreSQL is used. This app is hosted on heroku.
-    //   `,
-    //   imgs: [
-    //     '/amazon.png',
-    //     '/amazon.png',
-    //     '/amazon.png',
-    //     '/amazon.png',
-    //     '/amazon.png',
-    //     '/amazon.png',
-    //     '/amazon.png',
-    //   ],
-    //   code: 'https://github.com/',
-    //   demo: 'https://facedetect-reactapp.herokuapp.com/',
-    // },
   ]
 
   return (
