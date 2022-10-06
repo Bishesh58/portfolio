@@ -24,7 +24,7 @@ function Projects() {
         'amazon/a3.png',
         'amazon/a4.png',
       ],
-      code: 'https://github.com/Bishesh58/amazon-clone-next',
+      code: 'https://amazon-clone-next-592oz2y8g-bishesh58.vercel.app/',
       demo: 'https://amazon-clone-next-omega.vercel.app/',
     },
 
