@@ -91,6 +91,7 @@ function About() {
         About me
       </motion.h1>
       <div className="flex flex-col lg:flex-row">
+      
         <div className="flex-shrink md:w-full md:flex-1">
           <Image src={illustrate} layout="responsive" />
         </div>

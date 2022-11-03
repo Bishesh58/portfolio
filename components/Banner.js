@@ -43,7 +43,7 @@ function Banner() {
                     }}
                     className=" btnHover btn"
                   >
-                    Expore my work
+                    Explore my work
                   </motion.a>
                 </Link>
                 <Link href="#contact">
