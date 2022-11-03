@@ -41,7 +41,7 @@ function Banner() {
                       delay: 1,
                       duration: 0.5,
                     }}
-                    className=" btnHover btn"
+                    className=" btnHover btn w-44"
                   >
                     Explore my work
                   </motion.a>
