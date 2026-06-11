@@ -21,12 +21,18 @@ export default function App() {
     lenis.on('scroll', ScrollTrigger.update)
     const raf = (time: number) => lenis.raf(time * 1000)
     gsap.ticker.add(raf)
-    gsap.ticker.lagSmoothing(0)
     return () => {
       gsap.ticker.remove(raf)
       lenis.destroy()
     }
   }, [])
+
+  // Keep default lag smoothing while the preloader runs so heavy startup work
+  // (three.js parse, shader compile) pauses the intro timeline instead of
+  // skipping it. Disable it afterwards for tight Lenis/ScrollTrigger sync.
+  useEffect(() => {
+    if (ready) gsap.ticker.lagSmoothing(0)
+  }, [ready])
 
   return (
     <div className="grain">
