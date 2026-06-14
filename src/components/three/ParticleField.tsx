@@ -1,6 +1,7 @@
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
+import type { Theme } from '../../lib/theme'
 
 const vertexShader = /* glsl */ `
   uniform float uTime;
@@ -59,6 +60,9 @@ const vertexShader = /* glsl */ `
 `
 
 const fragmentShader = /* glsl */ `
+  uniform vec3 uColorBase;
+  uniform vec3 uColorHeat;
+  uniform float uAlpha;
   varying float vAlpha;
   varying float vHeat;
 
@@ -66,14 +70,29 @@ const fragmentShader = /* glsl */ `
     vec2 uv = gl_PointCoord - 0.5;
     float d = length(uv);
     float disc = smoothstep(0.5, 0.1, d);
-    vec3 bone = vec3(0.55, 0.54, 0.52);
-    vec3 ember = vec3(1.0, 0.3, 0.0);
-    vec3 col = mix(bone, ember, clamp(vHeat, 0.0, 1.0));
-    gl_FragColor = vec4(col, disc * vAlpha);
+    vec3 col = mix(uColorBase, uColorHeat, clamp(vHeat, 0.0, 1.0));
+    gl_FragColor = vec4(col, disc * vAlpha * uAlpha);
   }
 `
 
-function Particles() {
+// Dark mode: light/ember particles glow additively against the ink backdrop.
+// Light mode: ink-toned particles painted normally so they read on a pale page.
+const THEME_PARTICLES: Record<Theme, { base: THREE.Vector3; heat: THREE.Vector3; alpha: number; blending: THREE.Blending }> = {
+  dark: {
+    base: new THREE.Vector3(0.55, 0.54, 0.52),
+    heat: new THREE.Vector3(1.0, 0.3, 0.0),
+    alpha: 1.0,
+    blending: THREE.AdditiveBlending,
+  },
+  light: {
+    base: new THREE.Vector3(0.08, 0.09, 0.12),
+    heat: new THREE.Vector3(0.78, 0.22, 0.0),
+    alpha: 0.9,
+    blending: THREE.NormalBlending,
+  },
+}
+
+function Particles({ theme }: { theme: Theme }) {
   const matRef = useRef<THREE.ShaderMaterial>(null)
   const { viewport } = useThree()
   const mouse = useRef(new THREE.Vector3(99, 99, 0))
@@ -105,9 +124,23 @@ function Particles() {
       uTime: { value: 0 },
       uMouse: { value: new THREE.Vector3(99, 99, 0) },
       uScroll: { value: 0 },
+      uColorBase: { value: THEME_PARTICLES.dark.base.clone() },
+      uColorHeat: { value: THEME_PARTICLES.dark.heat.clone() },
+      uAlpha: { value: THEME_PARTICLES.dark.alpha },
     }),
     [],
   )
+
+  useEffect(() => {
+    const t = THEME_PARTICLES[theme]
+    uniforms.uColorBase.value.copy(t.base)
+    uniforms.uColorHeat.value.copy(t.heat)
+    uniforms.uAlpha.value = t.alpha
+    if (matRef.current) {
+      matRef.current.blending = t.blending
+      matRef.current.needsUpdate = true
+    }
+  }, [theme, uniforms])
 
   useFrame((state, delta) => {
     uniforms.uTime.value += delta
@@ -137,7 +170,7 @@ function Particles() {
   )
 }
 
-export default function ParticleField() {
+export default function ParticleField({ theme }: { theme: Theme }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 9], fov: 50 }}
@@ -145,7 +178,7 @@ export default function ParticleField() {
       gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
       className="!absolute inset-0"
     >
-      <Particles />
+      <Particles theme={theme} />
     </Canvas>
   )
 }

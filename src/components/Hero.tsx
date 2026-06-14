@@ -1,11 +1,13 @@
 import { lazy, Suspense, useRef } from 'react'
 import { gsap, SplitText, useGSAP } from '../lib/gsap'
 import { profile } from '../data/resume'
+import { useTheme } from '../lib/theme'
 
 const ParticleField = lazy(() => import('./three/ParticleField'))
 
 export default function Hero({ ready }: { ready: boolean }) {
   const ref = useRef<HTMLElement>(null)
+  const { theme } = useTheme()
 
   useGSAP(
     () => {
@@ -35,7 +37,7 @@ export default function Hero({ ready }: { ready: boolean }) {
     <section ref={ref} className="relative flex h-[100svh] flex-col justify-between overflow-hidden">
       <Suspense fallback={null}>
         <div className="absolute inset-0">
-          <ParticleField />
+          <ParticleField theme={theme} />
         </div>
       </Suspense>
 

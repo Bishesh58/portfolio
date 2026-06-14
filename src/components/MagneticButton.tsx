@@ -1,14 +1,14 @@
-import { useRef, type ReactNode, type MouseEvent } from 'react'
+import { useRef, type ReactNode, type MouseEvent, type AnchorHTMLAttributes } from 'react'
 import { gsap } from '../lib/gsap'
 
-interface Props {
+interface Props extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   children: ReactNode
   href?: string
   className?: string
   strength?: number
 }
 
-export default function MagneticButton({ children, href, className = '', strength = 0.35 }: Props) {
+export default function MagneticButton({ children, href, className = '', strength = 0.35, ...rest }: Props) {
   const ref = useRef<HTMLAnchorElement>(null)
 
   const onMove = (e: MouseEvent) => {
@@ -24,7 +24,7 @@ export default function MagneticButton({ children, href, className = '', strengt
   }
 
   return (
-    <a ref={ref} href={href} onMouseMove={onMove} onMouseLeave={onLeave} className={`inline-block ${className}`}>
+    <a ref={ref} href={href} onMouseMove={onMove} onMouseLeave={onLeave} className={`inline-block ${className}`} {...rest}>
       {children}
     </a>
   )

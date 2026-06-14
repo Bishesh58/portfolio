@@ -48,6 +48,20 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Apply saved/system theme before paint to avoid a flash of the wrong theme.
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme')
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches
+          var theme = saved === 'light' || saved === 'dark' ? saved : prefersLight ? 'light' : 'dark'
+          if (theme === 'light') document.documentElement.classList.add('light')
+          document.documentElement.style.colorScheme = theme
+          var meta = document.querySelector('meta[name="theme-color"]')
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#f2efe7' : '#060608')
+        } catch (e) {}
+      })()
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

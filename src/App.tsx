@@ -10,6 +10,7 @@ import About from './components/About'
 import Projects from './components/Projects'
 import ExperienceSection from './components/ExperienceSection'
 import Skills from './components/Skills'
+import AIWorkflow from './components/AIWorkflow'
 import Education from './components/Education'
 import Contact from './components/Contact'
 
@@ -46,6 +47,7 @@ export default function App() {
         <Projects />
         <ExperienceSection />
         <Skills />
+        <AIWorkflow />
         <Education />
         <Contact />
       </main>

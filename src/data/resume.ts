@@ -172,6 +172,7 @@ export const skills = {
   Frontend: ['React', 'Vue', 'Nuxt', 'Tailwind CSS', 'GSAP', 'Three.js'],
   Backend: ['Node.js', 'Laravel', '.NET', 'Firebase', 'REST APIs'],
   'Data & Cloud': ['MySQL', 'MongoDB', 'Firestore', 'Google Cloud', 'CI/CD'],
+  'AI & Tooling': ['Cursor', 'Claude', 'Codex', 'Copilot', 'Agentic Workflows'],
   Systems: ['NetSuite / SuiteScript', 'WordPress', 'ERP Integration', 'SEO'],
 }
 
@@ -199,4 +200,65 @@ export const education = [
 export const awards = [
   { title: 'Winner — Top Capstone Project', detail: 'Web App Development' },
   { title: 'ICAgile Certified Professional', detail: 'Agile delivery certification' },
+]
+
+export const aiIntro =
+  'AI is part of how I ship — not a gimmick. I run an agentic, spec-first workflow: I set the intent and architecture, then drive AI agents to plan, build, review and test across the whole codebase. The result is the velocity of a small team with the accountability of one engineer.'
+
+export interface AITool {
+  name: string
+  role: string
+  detail: string
+}
+
+export const aiToolkit: AITool[] = [
+  {
+    name: 'Cursor',
+    role: 'Primary AI IDE',
+    detail: 'Agent mode for codebase-aware, multi-file edits, large refactors and inline review — my daily driver.',
+  },
+  {
+    name: 'Claude',
+    role: 'Architecture & reasoning',
+    detail: 'Design reviews, spec writing, and untangling gnarly bugs where deep reasoning beats autocomplete.',
+  },
+  {
+    name: 'Codex / GPT',
+    role: 'Implementation & automation',
+    detail: 'Scaffolding features, generating tests and writing scripted one-off automations at speed.',
+  },
+  {
+    name: 'Copilot',
+    role: 'In-editor autocomplete',
+    detail: 'Fast line- and block-level completions that keep me in flow during implementation.',
+  },
+]
+
+export interface AIPractice {
+  index: string
+  title: string
+  body: string
+}
+
+export const aiPractices: AIPractice[] = [
+  {
+    index: '01',
+    title: 'Spec-first, agentic delivery',
+    body: 'I break work into crisp specs, then let agents plan and implement across the repo while I steer intent and architecture.',
+  },
+  {
+    index: '02',
+    title: 'AI-assisted code review',
+    body: 'Changes run through automated review before mine — catching regressions and edge cases early, every time.',
+  },
+  {
+    index: '03',
+    title: 'Tests & docs on tap',
+    body: 'Agents draft unit tests, edge cases and documentation, which I curate to lift coverage without slowing delivery.',
+  },
+  {
+    index: '04',
+    title: 'Trust, but verify',
+    body: 'Typed contracts, linting and actually running the code. AI accelerates the work; I stay accountable for what ships.',
+  },
 ]

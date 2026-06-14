@@ -1,4 +1,4 @@
-const items = ['Full Stack', 'ERP Integration', 'Dashboards', 'SaaS', 'Vue & React', 'Node.js', 'Laravel', '.NET', 'Cloud']
+const items = ['Full Stack', 'AI-Native', 'ERP Integration', 'Dashboards', 'Agentic Workflows', 'SaaS', 'Vue & React', 'Node.js', 'Laravel', '.NET', 'Cloud']
 
 export default function Marquee() {
   const row = [...items, ...items]

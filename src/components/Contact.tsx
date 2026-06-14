@@ -40,12 +40,21 @@ export default function Contact() {
           <span className="font-serif font-normal text-ember normal-case italic">something great</span>
         </h2>
 
-        <div className="contact-cta mt-14">
+        <div className="contact-cta mt-14 flex flex-col items-center justify-center gap-5 sm:flex-row">
           <MagneticButton
             href={`mailto:${profile.email}`}
             className="group rounded-full border border-ember bg-ember/10 px-10 py-5 font-mono text-sm tracking-[0.2em] text-bone uppercase transition-colors duration-300 hover:bg-ember hover:text-ink glow-ember"
           >
             {profile.email}
+          </MagneticButton>
+          <MagneticButton
+            href="/Bishesh-Sunam-CV.pdf"
+            download
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-bone/25 px-10 py-5 font-mono text-sm tracking-[0.2em] text-bone-dim uppercase transition-colors duration-300 hover:border-bone hover:text-bone"
+          >
+            Download CV ↓
           </MagneticButton>
         </div>
 
@@ -64,9 +73,9 @@ export default function Contact() {
         <p className="font-mono text-[11px] text-bone-dim">
           © {new Date().getFullYear()} {profile.name}. Designed & built from scratch.
         </p>
-        <p className="font-mono text-[11px] text-bone-dim">
-          React · TypeScript · Tailwind · GSAP · Three.js
-        </p>
+        <a href="#" className="font-mono text-[11px] tracking-[0.2em] text-bone-dim uppercase transition-colors hover:text-ember">
+          Back to top ↑
+        </a>
       </footer>
     </section>
   )
