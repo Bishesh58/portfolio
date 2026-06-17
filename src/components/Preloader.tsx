@@ -13,6 +13,11 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
   doneRef.current = onDone
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      doneRef.current()
+      return
+    }
+
     const counter = { v: 0 }
     const tl = gsap.timeline()
 

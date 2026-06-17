@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import type { Theme } from '../../lib/theme'
@@ -99,8 +99,9 @@ function Particles({ theme }: { theme: Theme }) {
   const target = useRef(new THREE.Vector3(99, 99, 0))
 
   const { positions, scales, randoms } = useMemo(() => {
-    const count = 26000
-    const cols = 220
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    const count = isMobile ? 10000 : 26000
+    const cols = isMobile ? 140 : 220
     const rows = Math.ceil(count / cols)
     const positions = new Float32Array(count * 3)
     const scales = new Float32Array(count)
@@ -171,14 +172,33 @@ function Particles({ theme }: { theme: Theme }) {
 }
 
 export default function ParticleField({ theme }: { theme: Theme }) {
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(true)
+  const reduced = useMemo(
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    [],
+  )
+
+  // Pause GPU rendering while the hero is scrolled out of view to save battery.
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => setActive(e.isIntersecting), { threshold: 0 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
   return (
-    <Canvas
-      camera={{ position: [0, 0, 9], fov: 50 }}
-      dpr={[1, 1.75]}
-      gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
-      className="!absolute inset-0"
-    >
-      <Particles theme={theme} />
-    </Canvas>
+    <div ref={wrapRef} className="absolute inset-0">
+      <Canvas
+        camera={{ position: [0, 0, 9], fov: 50 }}
+        dpr={[1, 1.75]}
+        frameloop={reduced || !active ? 'demand' : 'always'}
+        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+        className="!absolute inset-0"
+      >
+        <Particles theme={theme} />
+      </Canvas>
+    </div>
   )
 }

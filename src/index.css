@@ -165,6 +165,27 @@ body {
   animation: marquee 28s linear infinite;
 }
 
+/* ---------- terminal caret ---------- */
+.term-caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.05em;
+  margin-left: 1px;
+  transform: translateY(0.18em);
+  background: var(--color-ember);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
 /* ---------- misc ---------- */
 .line-mask {
   overflow: hidden;
@@ -172,7 +193,23 @@ body {
 }
 
 .glow-ember {
-  box-shadow: 0 0 120px 10px rgba(255, 77, 0, 0.18);
+  box-shadow: 0 0 50px -8px rgba(255, 77, 0, 0.4);
+}
+
+/* ---------- keyboard focus ---------- */
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* the terminal input lives inside an already-framed window, so it opts out
+   of the global focus ring (higher specificity wins over :focus-visible) */
+.term-input,
+.term-input:focus,
+.term-input:focus-visible {
+  outline: none;
+  border-radius: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

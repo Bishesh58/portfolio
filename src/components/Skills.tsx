@@ -21,7 +21,7 @@ export default function Skills() {
   )
 
   return (
-    <section ref={ref} className="relative px-6 py-28 md:px-12 md:py-40">
+    <section ref={ref} id="skills" className="relative px-6 py-28 md:px-12 md:py-40">
       <div className="mx-auto max-w-6xl">
         <SectionHeading kicker="Arsenal — Tools of the Trade" title="Skills" />
 

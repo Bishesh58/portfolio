@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Lenis from 'lenis'
 import { gsap, ScrollTrigger } from './lib/gsap'
+import { setLenis } from './lib/scroll'
 import Preloader from './components/Preloader'
 import Cursor from './components/Cursor'
 import Nav from './components/Nav'
@@ -19,12 +20,14 @@ export default function App() {
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.1, anchors: true })
+    setLenis(lenis)
     lenis.on('scroll', ScrollTrigger.update)
     const raf = (time: number) => lenis.raf(time * 1000)
     gsap.ticker.add(raf)
     return () => {
       gsap.ticker.remove(raf)
       lenis.destroy()
+      setLenis(null)
     }
   }, [])
 
@@ -32,7 +35,11 @@ export default function App() {
   // (three.js parse, shader compile) pauses the intro timeline instead of
   // skipping it. Disable it afterwards for tight Lenis/ScrollTrigger sync.
   useEffect(() => {
-    if (ready) gsap.ticker.lagSmoothing(0)
+    if (!ready) return
+    gsap.ticker.lagSmoothing(0)
+    // Content was measured during the preloader; recompute trigger positions
+    // once fonts have settled so reveals fire at the right scroll points.
+    document.fonts?.ready.then(() => ScrollTrigger.refresh())
   }, [ready])
 
   return (
