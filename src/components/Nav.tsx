@@ -41,6 +41,14 @@ export default function Nav({ ready }: { ready: boolean }) {
   const ref = useRef<HTMLElement>(null)
   const [time, setTime] = useState('')
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
 
   useEffect(() => {
     const tick = () =>
@@ -70,10 +78,10 @@ export default function Nav({ ready }: { ready: boolean }) {
   }, [ready])
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-100 flex justify-center px-3 pt-3 md:px-6 md:pt-5">
+    <div className="pointer-events-none fixed inset-x-0 top-0 z-[100] flex justify-center px-3 pt-3 md:px-6 md:pt-5">
       <header
         ref={ref}
-        className={`pointer-events-auto flex w-full max-w-6xl items-center justify-between rounded-full border px-4 py-3 transition-[background-color,border-color,box-shadow,padding] duration-500 ease-out md:px-6 ${
+        className={`pointer-events-auto relative z-[100] flex w-full max-w-6xl items-center justify-between rounded-full border px-4 py-3 transition-[background-color,border-color,box-shadow,padding] duration-500 ease-out md:px-6 ${
           scrolled
             ? 'border-bone/10 bg-ink/65 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.45)] backdrop-blur-xl'
             : 'border-transparent bg-transparent'
@@ -100,8 +108,47 @@ export default function Nav({ ready }: { ready: boolean }) {
         <div className="flex items-center gap-4">
           <span className="hidden font-mono text-[11px] text-bone-dim tabular-nums sm:inline">AKL {time}</span>
           <ThemeToggle />
+          <button
+            type="button"
+            data-cursor
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            className="grid h-8 w-8 place-items-center text-bone md:hidden"
+          >
+            <span className="relative block h-3 w-5">
+              <span className={`absolute left-0 block h-px w-full bg-current transition-all duration-300 ${menuOpen ? 'top-1.5 rotate-45' : 'top-0'}`} />
+              <span className={`absolute left-0 top-1.5 block h-px w-full bg-current transition-opacity duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`} />
+              <span className={`absolute left-0 block h-px w-full bg-current transition-all duration-300 ${menuOpen ? 'top-1.5 -rotate-45' : 'top-3'}`} />
+            </span>
+          </button>
         </div>
       </header>
+
+      <div
+        className={`pointer-events-auto fixed inset-0 z-[90] flex flex-col bg-ink/95 backdrop-blur-xl transition-all duration-500 md:hidden ${
+          menuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+        }`}
+      >
+        <nav className="flex flex-1 flex-col items-center justify-center gap-8">
+          {links.map((l, i) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setMenuOpen(false)}
+              style={{ transitionDelay: menuOpen ? `${120 + i * 60}ms` : '0ms' }}
+              className={`font-display text-4xl font-bold tracking-tight text-bone uppercase transition-all duration-500 hover:text-ember ${
+                menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+              }`}
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <p className="pb-12 text-center font-mono text-[11px] tracking-[0.25em] text-bone-dim uppercase">
+          {profile.location} — AKL {time}
+        </p>
+      </div>
     </div>
   )
 }

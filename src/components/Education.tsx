@@ -21,7 +21,7 @@ export default function Education() {
   )
 
   return (
-    <section ref={ref} className="relative px-6 py-28 md:px-12 md:py-40">
+    <section ref={ref} id="education" className="relative px-6 py-28 md:px-12 md:py-40">
       <div className="mx-auto max-w-6xl">
         <SectionHeading kicker="Foundations — Study & Recognition" title="Education" />
 

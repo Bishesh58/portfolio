@@ -62,6 +62,34 @@ function ProjectCard({ p, i, theme }: { p: Project; i: number; theme: Theme }) {
               </li>
             ))}
           </ul>
+
+          {(p.link || p.repo) && (
+            <div className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] tracking-[0.2em] uppercase">
+              {p.link && (
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor
+                  className="transition-colors hover:opacity-70"
+                  style={{ color: s.accent }}
+                >
+                  View live ↗
+                </a>
+              )}
+              {p.repo && (
+                <a
+                  href={p.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor
+                  className="text-bone-dim transition-colors hover:text-bone"
+                >
+                  Source ↗
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
