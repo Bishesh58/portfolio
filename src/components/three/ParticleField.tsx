@@ -3,6 +3,10 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import type { Theme } from '../../lib/theme'
 
+// Keep in sync with .cursor-ring in index.css (40px diameter, 1px border).
+const CURSOR_RING_RADIUS_PX = 20
+const CURSOR_RING_BORDER_PX = 1
+
 // Shared cursor-light uniforms, referenced by BOTH the particle material and
 // the volumetric light-cone overlay so they stay perfectly in sync.
 type LightUniforms = {
@@ -10,6 +14,8 @@ type LightUniforms = {
   uMouseDir: { value: THREE.Vector2 } // travel direction (aspect-corrected)
   uMouseSpeed: { value: number }
   uAspect: { value: number }
+  uResolution: { value: THREE.Vector2 } // canvas CSS px, for circular bulb
+  uBulbRadiusPx: { value: number }
 }
 
 const particleVertexShader = /* glsl */ `
@@ -56,34 +62,53 @@ const particleVertexShader = /* glsl */ `
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     vec4 clip = projectionMatrix * mv;
 
-    // Dust-in-the-beam: brighten particles ONLY where they fall inside the
-    // spotlight cone. Computed in screen space so it tracks the cursor exactly.
-    // The cone apex sits slightly behind the cursor so the beam starts wide.
+    // ---- Spotlight repulsion ----
+    // Instead of lighting up the dust caught in the beam, we shove it OUT of the
+    // cone so the spotlight carves a clean, empty channel through the field.
+    // All maths is in aspect-corrected screen space so it matches the visible
+    // cone overlay exactly. The apex sits just behind the cursor.
     vec2 ndc = clip.xy / clip.w;
     vec2 P = vec2(ndc.x * uAspect, ndc.y);
     vec2 M = vec2(uMouse.x * uAspect, uMouse.y);
-    vec2 apex = M - uMouseDir * 0.1;
-    vec2 relA = P - apex;
-    vec2 dirA = relA / max(length(relA), 0.0001);
-    float aim = dot(dirA, uMouseDir);
-    float ang = acos(clamp(aim, -1.0, 1.0));
-    float distC = length(P - M);
-    // hard cut: nothing behind the cursor along the beam direction
-    float front = smoothstep(-0.04, 0.02, dot(P - M, uMouseDir));
-    float halfAngle = mix(0.30, 0.42, uMouseSpeed);
-    float across = 1.0 - smoothstep(halfAngle * 0.1, halfAngle, ang);
-    float beamLen = mix(0.9, 1.5, uMouseSpeed);
-    float reach = smoothstep(beamLen, 0.0, distC);
-    float inFront = smoothstep(-0.05, 0.25, aim);
-    float beam = across * reach * inFront * front;
-    float light = clamp(beam * (0.6 + 0.5 * uMouseSpeed), 0.0, 1.6);
+    vec2 axis = uMouseDir;
+    vec2 apex = M - axis * 0.1;
+    vec2 rel = P - apex;
 
-    gl_Position = clip;
-    gl_PointSize = aScale * (26.0 / -mv.z) * (1.0 + light * 1.8);
+    float along = dot(rel, axis);              // distance forward along the beam
+    vec2 perp = vec2(-axis.y, axis.x);
+    float side = dot(rel, perp);               // signed lateral offset from the axis
+
+    float halfAngle = mix(0.30, 0.42, uMouseSpeed);
+    float beamLen   = mix(0.9, 1.5, uMouseSpeed);
+
+    // The visible beam fades out before the geometric cone edge, so narrow the
+    // repulsion cone to hug the actual light instead of the wider geometry.
+    float pushAngle = halfAngle * 0.72;
+    float halfW = max(along, 0.0) * tan(pushAngle); // beam half-width at this depth
+
+    // Gate the push to the cone body only: in front of the cursor, within the
+    // beam length, and not spilling behind the cursor.
+    float forward   = smoothstep(0.0, 0.05, along);
+    float withinLen = 1.0 - smoothstep(beamLen * 0.8, beamLen, along);
+    float front     = smoothstep(-0.04, 0.02, dot(P - M, axis));
+    float gate = forward * withinLen * front;
+
+    // Divergent shove: scale each particle's offset from the axis OUTWARD so the
+    // beam spreads the dust apart and thins it, rather than collapsing everything
+    // onto a single edge line (which streaks when the cone moves). The fade then
+    // dissolves what's left, so the cone clears with no pile-up or trailing line.
+    float inside = 1.0 - smoothstep(halfW * 0.9, halfW, abs(side));
+    float removed = inside * gate;            // 1 = fully inside the beam
+    float spread = removed * 0.85;
+    vec2 push = perp * side * spread;         // proportional to offset -> divergent
+    vec2 ndcPush = vec2(push.x / uAspect, push.y);
+
+    gl_Position = vec4(clip.xy + ndcPush * clip.w, clip.z, clip.w);
+    gl_PointSize = aScale * (26.0 / -mv.z);
 
     float baseAlpha = smoothstep(18.0, 6.0, -mv.z) * (0.32 + 0.68 * (n * 0.5 + 0.5));
-    vAlpha = baseAlpha + light * 1.0;
-    vHeat = light + smoothstep(0.4, 1.0, n * 0.5 + 0.5) * 0.3;
+    vAlpha = baseAlpha * (1.0 - removed * 0.95);
+    vHeat = smoothstep(0.4, 1.0, n * 0.5 + 0.5) * 0.3;
   }
 `
 
@@ -123,6 +148,20 @@ const coneFragmentShader = /* glsl */ `
   uniform float uAspect;
   uniform vec3 uColor;
   uniform float uOpacity;
+  uniform float uOriginBoost;
+  uniform float uOriginGlow;
+  uniform float uOriginHot;
+  uniform vec2 uResolution;
+  uniform float uBulbRadiusPx;
+  uniform float uBulbGain;
+  uniform float uBulbHot;
+
+  vec2 ndcToPx(vec2 ndc) {
+    return vec2(
+      (ndc.x * 0.5 + 0.5) * uResolution.x,
+      (1.0 - (ndc.y * 0.5 + 0.5)) * uResolution.y
+    );
+  }
 
   void main() {
     // Work in aspect-corrected space so the cone stays symmetric.
@@ -137,8 +176,6 @@ const coneFragmentShader = /* glsl */ `
     float aim = dot(dirA, uMouseDir);             // 1 = straight ahead
     float ang = acos(clamp(aim, -1.0, 1.0));
 
-    float distC = length(P - M);                  // distance from the cursor
-
     // Hard cut so NO light spills behind the cursor along the beam direction.
     float front = smoothstep(-0.04, 0.02, dot(P - M, uMouseDir));
 
@@ -146,26 +183,33 @@ const coneFragmentShader = /* glsl */ `
     float halfAngle = mix(0.30, 0.42, uMouseSpeed);
     float across = 1.0 - smoothstep(halfAngle * 0.1, halfAngle, ang);
     float beamLen = mix(0.9, 1.5, uMouseSpeed);
-    float along = smoothstep(beamLen, 0.0, distC);
     float inFront = smoothstep(-0.05, 0.25, aim);
+    float alongBeam = max(dot(P - M, uMouseDir), 0.0);
 
-    // tiny hot origin point (masks the centre singularity, not a big circle)
-    float source = smoothstep(0.05, 0.0, distC);
-    // concentrated white core down the centre of the beam
-    float core = pow(max(across, 0.0), 1.5);
-    // keep the white bright for most of the length, fade only near the far end
-    float lenFade = 1.0 - smoothstep(beamLen * 0.6, beamLen, distC);
+    // Single cone mask — outer fade uses the same axial coordinate as the hot
+    // falloff so there is no second shape with its own visible end cap.
+    float alongFade = 1.0 - smoothstep(beamLen * 0.02, beamLen, alongBeam);
+    alongFade *= alongFade;
+    float beam = across * alongFade * inFront * front;
 
-    float fill = across * along * inFront * front;   // soft coloured cone body
-    float bright = core * lenFade * inFront * front;  // white-hot core down length
-    float intensity = fill * (0.5 + 0.4 * uMouseSpeed)
-                    + bright * (0.8 + 0.3 * uMouseSpeed)
-                    + source * 0.5;
-    intensity = clamp(intensity, 0.0, 1.8);
+    // Hot brightness — purely 1D along the beam axis, no lateral inner envelope
+    float hotFalloff = exp(-alongBeam / (beamLen * 1.45));
 
-    // white-hot down the axis (full length), themed tint toward the cone edges
-    float hot = clamp(bright + source, 0.0, 1.0);
-    vec3 col = mix(uColor, vec3(1.0), hot * 0.85);
+    float base = 0.42 + 0.38 * uMouseSpeed;
+    float intensity = beam * base * (1.0 + hotFalloff * uOriginBoost);
+    intensity += beam * hotFalloff * hotFalloff * uOriginGlow;
+
+    // Filled white circle at cursor — pixel-perfect round, matches .cursor-ring (40px)
+    float distPx = length(ndcToPx(vNdc) - ndcToPx(uMouse));
+    float fadeW = uBulbRadiusPx * 0.62;
+    float bulb = 1.0 - smoothstep(uBulbRadiusPx - fadeW, uBulbRadiusPx + 2.5, distPx);
+    bulb = bulb * bulb * bulb;
+    intensity += bulb * uBulbGain;
+
+    intensity = clamp(intensity, 0.0, 2.8);
+
+    float hot = clamp(hotFalloff * uOriginHot, 0.0, 1.0);
+    vec3 col = mix(uColor, vec3(1.0), max(hot, bulb * uBulbHot));
 
     gl_FragColor = vec4(col, intensity * uOpacity);
   }
@@ -175,23 +219,50 @@ const coneFragmentShader = /* glsl */ `
 // Light mode: ink-toned particles painted normally so they read on a pale page.
 const THEME_PARTICLES: Record<
   Theme,
-  { base: THREE.Vector3; heat: THREE.Vector3; alpha: number; blending: THREE.Blending; cone: THREE.Vector3; coneOpacity: number }
+  {
+    base: THREE.Vector3
+    heat: THREE.Vector3
+    alpha: number
+    blending: THREE.Blending
+    cone: THREE.Vector3
+    coneOpacity: number
+    coneBlending: THREE.Blending
+    originBoost: number
+    originGlow: number
+    originHot: number
+    bulbGain: number
+    bulbHot: number
+  }
 > = {
   dark: {
     base: new THREE.Vector3(0.55, 0.54, 0.52),
     heat: new THREE.Vector3(1.0, 0.3, 0.0),
     alpha: 1.0,
     blending: THREE.AdditiveBlending,
-    cone: new THREE.Vector3(1.0, 0.42, 0.12),
-    coneOpacity: 0.55,
+    // pure white beam, brightened additively against the ink backdrop
+    cone: new THREE.Vector3(1.0, 1.0, 1.0),
+    coneOpacity: 0.5,
+    coneBlending: THREE.AdditiveBlending,
+    originBoost: 1.05,
+    originGlow: 0.55,
+    originHot: 0.98,
+    bulbGain: 0.82,
+    bulbHot: 0.72,
   },
   light: {
     base: new THREE.Vector3(0.08, 0.09, 0.12),
     heat: new THREE.Vector3(0.78, 0.22, 0.0),
     alpha: 0.9,
     blending: THREE.NormalBlending,
+    // branded ember beam on the pale page
     cone: new THREE.Vector3(0.95, 0.4, 0.1),
-    coneOpacity: 0.22,
+    coneOpacity: 0.24,
+    coneBlending: THREE.AdditiveBlending,
+    originBoost: 1.25,
+    originGlow: 0.22,
+    originHot: 0.82,
+    bulbGain: 1.3,
+    bulbHot: 1.0,
   },
 }
 
@@ -267,11 +338,17 @@ function Particles({ theme, light }: { theme: Theme; light: LightUniforms }) {
 }
 
 function LightCone({ theme, light }: { theme: Theme; light: LightUniforms }) {
+  const matRef = useRef<THREE.ShaderMaterial>(null)
   const uniforms = useMemo(
     () => ({
       ...light,
       uColor: { value: THEME_PARTICLES.dark.cone.clone() },
       uOpacity: { value: THEME_PARTICLES.dark.coneOpacity },
+      uOriginBoost: { value: THEME_PARTICLES.dark.originBoost },
+      uOriginGlow: { value: THEME_PARTICLES.dark.originGlow },
+      uOriginHot: { value: THEME_PARTICLES.dark.originHot },
+      uBulbGain: { value: THEME_PARTICLES.dark.bulbGain },
+      uBulbHot: { value: THEME_PARTICLES.dark.bulbHot },
     }),
     [light],
   )
@@ -280,21 +357,32 @@ function LightCone({ theme, light }: { theme: Theme; light: LightUniforms }) {
     const t = THEME_PARTICLES[theme]
     uniforms.uColor.value.copy(t.cone)
     uniforms.uOpacity.value = t.coneOpacity
+    uniforms.uOriginBoost.value = t.originBoost
+    uniforms.uOriginGlow.value = t.originGlow
+    uniforms.uOriginHot.value = t.originHot
+    uniforms.uBulbGain.value = t.bulbGain
+    uniforms.uBulbHot.value = t.bulbHot
+    if (matRef.current) {
+      matRef.current.blending = t.coneBlending
+      matRef.current.needsUpdate = true
+    }
   }, [theme, uniforms])
 
-  // Drawn after the particles, on top, as additive glow. Frustum culling off so
-  // the screen-filling quad is never dropped.
+  // Drawn after the particles, on top. Blending is theme-dependent: additive so
+  // the white beam glows on dark, normal so the black beam darkens on light.
+  // Frustum culling off so the screen-filling quad is never dropped.
   return (
     <mesh renderOrder={10} frustumCulled={false}>
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
+        ref={matRef}
         vertexShader={coneVertexShader}
         fragmentShader={coneFragmentShader}
         uniforms={uniforms}
         transparent
         depthTest={false}
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
+        blending={THEME_PARTICLES[theme].coneBlending}
       />
     </mesh>
   )
@@ -314,6 +402,8 @@ function Scene({ theme }: { theme: Theme }) {
       uMouseDir: { value: new THREE.Vector2(1, 0) },
       uMouseSpeed: { value: 0 },
       uAspect: { value: 1 },
+      uResolution: { value: new THREE.Vector2(1, 1) },
+      uBulbRadiusPx: { value: CURSOR_RING_RADIUS_PX },
     }),
     [],
   )
@@ -323,6 +413,10 @@ function Scene({ theme }: { theme: Theme }) {
     const p = state.pointer // NDC [-1,1], screen-aligned
     const aspect = size.width / Math.max(size.height, 1)
     light.uAspect.value = aspect
+
+    const canvas = state.gl.domElement
+    light.uResolution.value.set(canvas.clientWidth, canvas.clientHeight)
+    light.uBulbRadiusPx.value = CURSOR_RING_RADIUS_PX
 
     // Light smoothing so the source sits on the cursor without jitter.
     mouseNdc.current.lerp(tmp.current.set(p.x, p.y), 0.35)
