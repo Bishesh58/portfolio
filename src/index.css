@@ -11,6 +11,8 @@
   --font-display: 'Archivo', sans-serif;
   --font-serif: 'Instrument Serif', serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --text-hero-name: clamp(2rem, 9vw, 5.5rem);
+  --text-section-title: clamp(2rem, 6.5vw, 4.75rem);
 }
 
 /* ---------- theme-dependent tokens (default = dark) ---------- */
@@ -119,6 +121,16 @@ body {
 }
 
 /* ---------- type utilities ---------- */
+@utility text-hero-name {
+  font-size: var(--text-hero-name);
+  line-height: 1.1;
+}
+
+@utility text-section-title {
+  font-size: var(--text-section-title);
+  line-height: 0.95;
+}
+
 .text-stroke {
   -webkit-text-stroke: 1px var(--stroke-color);
   color: transparent;

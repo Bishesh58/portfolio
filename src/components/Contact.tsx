@@ -35,7 +35,7 @@ export default function Contact() {
 
       <div className="relative mx-auto max-w-6xl text-center">
         <p className="kicker mb-8 justify-center">Got a project? Let's talk</p>
-        <h2 className="contact-title font-display text-[clamp(3rem,11vw,9rem)] leading-[0.9] font-black tracking-tighter uppercase">
+        <h2 className="contact-title text-section-title font-display font-black tracking-tighter uppercase">
           Let's build
           <br />
           <span className="font-serif font-normal text-ember normal-case italic">something great</span>

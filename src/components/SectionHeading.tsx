@@ -38,7 +38,7 @@ export default function SectionHeading({ kicker, title, id }: Props) {
         <span className="inline-block h-px w-10 bg-ember" />
         {kicker}
       </p>
-      <h2 className="sh-title font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] font-bold tracking-tight uppercase">
+      <h2 className="sh-title text-section-title font-display font-bold tracking-tight uppercase">
         {title}
       </h2>
     </div>

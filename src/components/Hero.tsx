@@ -85,12 +85,12 @@ export default function Hero({ ready }: { ready: boolean }) {
       <div className="hero-inner pointer-events-none relative z-10 flex h-full flex-col items-center justify-center gap-7 px-6 lg:justify-start lg:gap-8 lg:pt-[19vh]">
         <h1 className="flex items-baseline justify-center gap-x-[0.22em] font-display font-black tracking-tighter uppercase">
           <span className="inline-block overflow-hidden">
-            <span className="hero-first inline-block text-[clamp(2rem,9vw,5.5rem)] leading-[1.1]">
+            <span className="hero-first text-hero-name inline-block font-black">
               {profile.firstName}
             </span>
           </span>
           <span className="inline-block overflow-hidden">
-            <span className="hero-last text-stroke inline-block text-[clamp(2rem,9vw,5.5rem)] leading-[1.1]">
+            <span className="hero-last text-hero-name text-stroke inline-block font-black">
               {profile.lastName}
             </span>
           </span>
