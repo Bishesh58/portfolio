@@ -3,9 +3,8 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import type { Theme } from '../../lib/theme'
 
-// Keep in sync with .cursor-ring in index.css (40px diameter, 1px border).
+// Keep in sync with .cursor-ring in index.css (40px diameter).
 const CURSOR_RING_RADIUS_PX = 20
-const CURSOR_RING_BORDER_PX = 1
 
 // Shared cursor-light uniforms, referenced by BOTH the particle material and
 // the volumetric light-cone overlay so they stay perfectly in sync.
