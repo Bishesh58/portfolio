@@ -266,7 +266,8 @@ export default function Terminal() {
 
       <div
         ref={bodyRef}
-        className="flex-1 space-y-1 overflow-y-auto px-5 py-4 text-left font-mono text-[13px] leading-relaxed [scrollbar-color:rgba(255,255,255,0.18)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-bone/20 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-1.5"
+        data-lenis-prevent
+        className="min-h-0 flex-1 space-y-1 overflow-y-auto overscroll-y-contain px-5 py-4 text-left font-mono text-[13px] leading-relaxed [scrollbar-color:color-mix(in_srgb,var(--color-bone)_35%,transparent)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-bone/35 [&::-webkit-scrollbar-track]:bg-bone/5 [&::-webkit-scrollbar]:w-1.5"
       >
         {history.map((line, i) => (
           <TermLine key={i} line={line} />
