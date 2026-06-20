@@ -42,6 +42,12 @@ export default function Hero() {
               scrub: true,
               anticipatePin: 1,
               invalidateOnRefresh: true,
+              onEnter: () => {
+                if (ref.current) ref.current.style.zIndex = '1'
+              },
+              onLeaveBack: () => {
+                if (ref.current) ref.current.style.zIndex = '0'
+              },
             },
           })
           .fromTo('.hero-term-track', { x: 0 }, { x: exitX, ease: 'none', duration: 1 }, 0)
@@ -62,7 +68,7 @@ export default function Hero() {
   )
 
   return (
-    <section ref={ref} className="relative flex h-[100svh] flex-col justify-between overflow-hidden">
+    <section ref={ref} className="relative z-0 flex h-[100svh] flex-col justify-between overflow-hidden">
       <Suspense fallback={null}>
         <div className="absolute inset-0">
           <FluxField theme={theme} />
@@ -73,9 +79,9 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-ink" />
 
       <div className="hero-inner pointer-events-none relative z-10 flex h-full flex-col items-center justify-center gap-7 px-6 lg:justify-start lg:gap-8 lg:pt-[19vh]">
-        <h1 className="flex items-baseline justify-center gap-x-[0.22em] font-display font-black tracking-tighter uppercase">
+        <h1 className="flex items-baseline justify-center gap-x-[0.22em] font-display font-black tracking-[0.06em] uppercase">
           <span className="inline-block overflow-hidden">
-            <span className="hero-first text-hero-name inline-block font-black">
+            <span className="hero-first text-hero-name matrix-glow inline-block font-black text-ember">
               {profile.firstName}
             </span>
           </span>
@@ -87,8 +93,8 @@ export default function Hero() {
         </h1>
 
         <div className="flex flex-col items-center">
-          <p className="hero-meta max-w-md text-center font-serif text-xl text-bone-dim italic md:text-2xl">
-            “{profile.tagline}”
+          <p className="hero-meta max-w-md text-center font-mono text-lg text-bone-dim italic md:text-xl">
+            &gt; {profile.tagline}
           </p>
           <div className="hero-meta mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[11px] tracking-[0.25em] text-bone-dim uppercase">
             <span>{profile.location}</span>

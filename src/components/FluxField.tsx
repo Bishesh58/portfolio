@@ -53,32 +53,32 @@ const MATRIX_CHARS = '01アイウエオカキ01010<>{}|/\\'
 
 const PALETTE: Record<Theme, Palette> = {
   dark: {
-    fade: 'rgba(6, 6, 8, 0.13)',
-    body: '#14141c',
-    edge: 'rgba(255, 122, 60, 0.28)',
-    arm: '#22222e',
-    eye: '#ff4d00',
-    link: 'rgba(255, 122, 60, 0.18)',
-    pulse: '#ffb380',
-    bloom: '#ff7a3c',
-    matrixHead: '#ff9a5c',
-    matrixRgb: '255, 122, 60',
-    matrixLine: 'rgba(255, 122, 60, 0.14)',
-    matrixGrid: 'rgba(255, 122, 60, 0.045)',
+    fade: 'rgba(0, 0, 0, 0.13)',
+    body: '#071007',
+    edge: 'rgba(0, 255, 65, 0.28)',
+    arm: '#0a180c',
+    eye: '#00ff41',
+    link: 'rgba(0, 255, 65, 0.18)',
+    pulse: '#7fff9a',
+    bloom: '#00cc33',
+    matrixHead: '#00ff41',
+    matrixRgb: '0, 255, 65',
+    matrixLine: 'rgba(0, 255, 65, 0.14)',
+    matrixGrid: 'rgba(0, 255, 65, 0.045)',
   },
   light: {
-    fade: 'rgba(242, 239, 231, 0.16)',
-    body: '#c8c4b8',
-    edge: 'rgba(219, 59, 0, 0.32)',
-    arm: '#a8a498',
-    eye: '#db3b00',
-    link: 'rgba(219, 59, 0, 0.16)',
-    pulse: '#db3b00',
-    bloom: '#ff4d00',
-    matrixHead: '#db3b00',
-    matrixRgb: '219, 59, 0',
-    matrixLine: 'rgba(219, 59, 0, 0.12)',
-    matrixGrid: 'rgba(219, 59, 0, 0.04)',
+    fade: 'rgba(237, 247, 239, 0.16)',
+    body: '#b8d4bc',
+    edge: 'rgba(0, 143, 40, 0.32)',
+    arm: '#98b89c',
+    eye: '#008f28',
+    link: 'rgba(0, 143, 40, 0.16)',
+    pulse: '#008f28',
+    bloom: '#00aa33',
+    matrixHead: '#008f28',
+    matrixRgb: '0, 143, 40',
+    matrixLine: 'rgba(0, 143, 40, 0.12)',
+    matrixGrid: 'rgba(0, 143, 40, 0.04)',
   },
 }
 
@@ -617,8 +617,8 @@ export default function FluxField({ theme }: { theme: Theme }) {
   }, [theme])
 
   return (
-    <div ref={wrapRef} className="absolute inset-0 overflow-hidden opacity-[0.72]">
-      <canvas ref={canvasRef} className="absolute inset-0" aria-hidden />
+    <div ref={wrapRef} className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.72]">
+      <canvas ref={canvasRef} className="pointer-events-none absolute inset-0" aria-hidden />
     </div>
   )
 }

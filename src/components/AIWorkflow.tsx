@@ -1,7 +1,13 @@
 import { useRef } from 'react'
 import { gsap, SplitText, useGSAP } from '../lib/gsap'
 import SectionHeading from './SectionHeading'
+import MatrixFrame from './matrix/MatrixFrame'
+import MatrixSection from './matrix/MatrixSection'
 import { aiIntro, aiPractices, aiToolkit } from '../data/resume'
+
+function slugify(text: string) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')
+}
 
 export default function AIWorkflow() {
   const ref = useRef<HTMLElement>(null)
@@ -42,43 +48,54 @@ export default function AIWorkflow() {
   )
 
   return (
-    <section ref={ref} id="ai" className="relative px-6 py-28 md:px-12 md:py-40">
+    <MatrixSection ref={ref} id="ai" program="NEURAL.SYNC" index="0x05" className="overflow-hidden">
       <div className="pointer-events-none absolute top-1/3 -right-32 h-[420px] w-[420px] rounded-full bg-ember/8 blur-[150px]" />
 
-      <div className="relative mx-auto max-w-6xl">
-        <SectionHeading kicker="AI-Native Engineering" title="Building With AI" />
+      <SectionHeading kicker="AI-Native Engineering" title="Building With AI" />
 
-        <p className="ai-intro max-w-4xl font-display text-[clamp(1.35rem,3vw,2.4rem)] leading-[1.3] font-medium tracking-tight">
+      <MatrixFrame variant="panel" path="~/neural/manifesto.txt" label="SYNC" status="ACTIVE">
+        <p className="ai-intro font-display text-[clamp(1.25rem,2.8vw,2.1rem)] leading-[1.35] font-medium tracking-[0.02em]">
+          <span className="matrix-log-prefix mb-4 block">[ AGENT ] neural link established…</span>
           {aiIntro}
         </p>
+      </MatrixFrame>
 
-        <div className="ai-toolkit mt-20 grid gap-px overflow-hidden rounded-2xl bg-bone/10 sm:grid-cols-2 lg:grid-cols-4">
-          {aiToolkit.map((t) => (
-            <div key={t.name} className="ai-tool group flex flex-col bg-ink-2 p-8 transition-colors duration-300 hover:bg-ink-3">
-              <h3 className="font-display text-2xl font-bold tracking-tight uppercase transition-colors duration-300 group-hover:text-ember">
-                {t.name}
-              </h3>
-              <p className="mt-2 font-mono text-[11px] tracking-[0.18em] text-ember-soft uppercase">{t.role}</p>
-              <p className="mt-4 text-sm leading-relaxed text-bone-dim">{t.detail}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="ai-practices mt-6 grid gap-6 md:grid-cols-2">
-          {aiPractices.map((p) => (
-            <div
-              key={p.index}
-              className="ai-practice flex gap-5 rounded-2xl border border-bone/10 bg-ink-2 p-8 transition-colors duration-300 hover:border-ember/40"
-            >
-              <span className="font-mono text-sm text-ember">/{p.index}</span>
-              <div>
-                <h3 className="font-display text-lg font-bold tracking-tight">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-bone-dim">{p.body}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="ai-toolkit mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {aiToolkit.map((t) => (
+          <MatrixFrame
+            key={t.name}
+            variant="agent"
+            label={`AGENT::${t.name.toUpperCase()}`}
+            status="RUNNING"
+            className="ai-tool group"
+          >
+            <h3 className="font-display text-xl font-bold tracking-[0.04em] uppercase transition-colors duration-300 group-hover:text-ember">
+              {t.name}
+            </h3>
+            <p className="mt-2 font-mono text-[10px] tracking-[0.18em] text-ember-soft uppercase">{t.role}</p>
+            <p className="mt-4 text-sm leading-relaxed text-bone-dim">{t.detail}</p>
+          </MatrixFrame>
+        ))}
       </div>
-    </section>
+
+      <div className="ai-practices mt-6 grid gap-4 md:grid-cols-2">
+        {aiPractices.map((p) => (
+          <MatrixFrame
+            key={p.index}
+            variant="log"
+            path={`~/neural/routine_${slugify(p.title)}.sh`}
+            label="SUB"
+            status="EXEC"
+            className="ai-practice"
+          >
+            <p className="matrix-cmd">
+              <span className="matrix-cmd-prompt">$ </span>./routine_{p.index}.sh
+            </p>
+            <h3 className="mt-4 font-display text-lg font-bold tracking-[0.03em]">{p.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-bone-dim">{p.body}</p>
+          </MatrixFrame>
+        ))}
+      </div>
+    </MatrixSection>
   )
 }

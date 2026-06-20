@@ -3,6 +3,7 @@ import Lenis from 'lenis'
 import { gsap, ScrollTrigger } from './lib/gsap'
 import { setLenis } from './lib/scroll'
 import Cursor from './components/Cursor'
+import MatrixScrollProgress from './components/matrix/MatrixScrollProgress'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
@@ -35,8 +36,9 @@ export default function App() {
 
   return (
     <div className="grain">
-      <Cursor />
       <Nav />
+      <MatrixScrollProgress />
+      <Cursor />
       <main>
         <Hero />
         <Marquee />

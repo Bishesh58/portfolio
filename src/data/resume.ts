@@ -44,7 +44,7 @@ export const projects: Project[] = [
       'A single-page application living inside NetSuite, featuring proposal-pipeline Kanban boards that gave the sales team a live, drag-and-drop view of every deal in motion.',
     impact: 'Streamlined sales workflows and cut proposal-tracking overhead across the team.',
     tech: ['SuiteScript', 'JavaScript', 'NetSuite', 'Kanban UX'],
-    hue: 16,
+    hue: 120,
   },
   {
     index: '02',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
       'A role-based command centre unifying KPIs, dashboards and deep integrations with NetSuite and third-party APIs like AskNicely and BWare — one login for every internal tool.',
     impact: 'Centralised internal tool management for the entire organisation.',
     tech: ['Vue.js', 'Laravel', 'MySQL', 'REST APIs', 'RBAC'],
-    hue: 210,
+    hue: 130,
   },
   {
     index: '03',
@@ -64,7 +64,7 @@ export const projects: Project[] = [
       'Aggregates Google Analytics, Search Console and website lead data into one decision-making surface — charts, tables and KPIs that marketing actually reads.',
     impact: 'Turned scattered analytics into a single source of truth for marketing decisions.',
     tech: ['Vue.js', 'GA4 API', 'Search Console API', 'Charts'],
-    hue: 150,
+    hue: 140,
   },
   {
     index: '04',
@@ -74,7 +74,7 @@ export const projects: Project[] = [
       'A complete subscription-based SaaS platform built from wireframes to production: auth, billing, real-time data, transactional email — shipped ahead of deadline.',
     impact: 'Delivered a revenue-ready platform solo, ahead of schedule.',
     tech: ['Vue.js', 'Node.js', 'Firebase', 'Firestore', 'SendGrid', 'GCP'],
-    hue: 268,
+    hue: 125,
   },
   {
     index: '05',
@@ -84,7 +84,7 @@ export const projects: Project[] = [
       'An internal system managing end-to-end credit workflows — approvals, tracking and reporting — replacing spreadsheets with structured, auditable process.',
     impact: 'Improved financial tracking and reporting efficiency company-wide.',
     tech: ['Vue.js', 'Laravel', 'MySQL', 'Workflow Engine'],
-    hue: 45,
+    hue: 115,
   },
   {
     index: '06',
@@ -94,7 +94,7 @@ export const projects: Project[] = [
       'Multi-branch KPI dashboards tracking operational performance in real time — picking, packing, throughput — across every warehouse location.',
     impact: 'Streamlined warehouse reporting across all branches.',
     tech: ['Vue.js', 'NetSuite', 'SQL', 'Data Viz'],
-    hue: 190,
+    hue: 155,
   },
   {
     index: '07',
@@ -104,7 +104,7 @@ export const projects: Project[] = [
       'A Unity-based 2D educational game introducing Māori culture to international students — custom assets, animations, and smooth performance across devices.',
     impact: 'Made cultural education engaging and interactive for international students.',
     tech: ['Unity', 'C#', '2D Animation', 'Game Design'],
-    hue: 330,
+    hue: 135,
   },
   {
     index: '08',
@@ -114,7 +114,7 @@ export const projects: Project[] = [
       'Fully custom websites taken from wireframe to production — dynamic quote engines, email integrations, and interactive map-based location services.',
     impact: 'Improved performance and SEO rankings through deep technical optimisation.',
     tech: ['Nuxt.js', 'WordPress', 'PHP', 'SEO', 'Maps API'],
-    hue: 90,
+    hue: 145,
   },
 ]
 

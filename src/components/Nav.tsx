@@ -3,11 +3,11 @@ import { profile } from '../data/resume'
 import { useTheme } from '../lib/theme'
 
 const links = [
-  { label: 'Work', href: '#work' },
-  { label: 'About', href: '#about' },
-  { label: 'AI', href: '#ai' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: '#work', code: '01' },
+  { label: 'About', href: '#about', code: '02' },
+  { label: 'AI', href: '#ai', code: '03' },
+  { label: 'Experience', href: '#experience', code: '04' },
+  { label: 'Contact', href: '#contact', code: '05' },
 ]
 
 function ThemeToggle() {
@@ -20,7 +20,7 @@ function ThemeToggle() {
       data-cursor
       aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
       title={isLight ? 'Dark mode' : 'Light mode'}
-      className="grid h-8 w-8 place-items-center rounded-full border border-bone/30 text-bone transition-colors duration-300 hover:border-ember hover:text-ember"
+      className="matrix-nav-toggle relative z-10 grid h-10 w-10 min-h-11 min-w-11 place-items-center border border-ember/25 text-bone transition-colors duration-300 hover:border-ember hover:text-ember"
     >
       {isLight ? (
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -71,76 +71,101 @@ export default function Nav() {
   }, [])
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-[10001] flex justify-center px-3 pt-3 md:px-6 md:pt-5">
-      <header
-        className={`pointer-events-auto relative z-[10001] flex w-full max-w-6xl items-center justify-between rounded-full border px-4 py-3 transition-[background-color,border-color,box-shadow,padding] duration-500 ease-out md:px-6 ${
-          scrolled
-            ? 'border-bone/10 bg-ink/65 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.45)] backdrop-blur-xl'
-            : 'border-transparent bg-transparent'
-        }`}
-      >
-        <a href="#" className="font-display text-sm font-bold tracking-tight uppercase">
-          {profile.name.split(' ')[0]}
-          <span className="text-ember">.</span>
-        </a>
+    <>
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[100] flex justify-center px-3 pt-3 md:px-6 md:pt-5">
+        <header
+          className={`matrix-nav pointer-events-auto relative isolate z-[101] w-full max-w-6xl transition-all duration-500 ${scrolled ? 'matrix-nav--active' : ''}`}
+        >
+          <span className="matrix-nav-corner matrix-nav-corner-tl" aria-hidden />
+          <span className="matrix-nav-corner matrix-nav-corner-tr" aria-hidden />
+          <span className="matrix-nav-corner matrix-nav-corner-bl" aria-hidden />
+          <span className="matrix-nav-corner matrix-nav-corner-br" aria-hidden />
+          <span className="matrix-nav-rail matrix-nav-rail--left" aria-hidden />
+          <span className="matrix-nav-rail matrix-nav-rail--right" aria-hidden />
+          <div className="matrix-nav-grid" aria-hidden />
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="group relative font-mono text-[11px] tracking-[0.2em] text-bone uppercase"
-            >
-              {l.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-ember transition-all duration-300 group-hover:w-full" />
+          <div className="matrix-nav-bar flex items-center justify-between gap-4 px-4 py-3 md:px-5">
+            <a href="#" data-cursor className="group flex items-center gap-2 font-display text-sm font-bold tracking-[0.15em] uppercase">
+              <span className="hidden font-mono text-[9px] tracking-[0.2em] text-ember-soft sm:inline">SYS</span>
+              <span>
+                {profile.name.split(' ')[0]}
+                <span className="text-ember">.</span>
+              </span>
             </a>
-          ))}
-        </nav>
 
-        <div className="flex items-center gap-4">
-          <span className="hidden font-mono text-[11px] text-bone-dim tabular-nums sm:inline">AKL {time}</span>
-          <ThemeToggle />
-          <button
-            type="button"
-            data-cursor
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            className="grid h-8 w-8 place-items-center text-bone md:hidden"
+            <nav className="hidden items-center gap-1 md:flex">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  data-cursor
+                  className="matrix-nav-link group relative px-3 py-2 font-mono text-[10px] tracking-[0.18em] text-bone-dim uppercase transition-colors duration-300 hover:text-ember"
+                >
+                  <span className="matrix-nav-link-code transition-colors group-hover:text-ember">{l.code}</span>
+                  <span className="matrix-nav-link-sep mx-1.5">|</span>
+                  {l.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="relative z-10 flex shrink-0 items-center gap-3 sm:gap-4">
+              <span className="hidden font-mono text-[10px] tabular-nums text-bone-dim sm:inline">
+                <span className="text-ember/50">AKL</span> {time}
+              </span>
+              <ThemeToggle />
+              <button
+                type="button"
+                data-cursor
+                onClick={() => setMenuOpen((v) => !v)}
+                aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={menuOpen}
+                className="matrix-nav-toggle grid h-10 w-10 min-h-11 min-w-11 place-items-center text-bone md:hidden"
+              >
+                <span className="relative block h-3 w-5">
+                  <span className={`absolute left-0 block h-px w-full bg-current transition-all duration-300 ${menuOpen ? 'top-1.5 rotate-45' : 'top-0'}`} />
+                  <span className={`absolute left-0 top-1.5 block h-px w-full bg-current transition-opacity duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`} />
+                  <span className={`absolute left-0 block h-px w-full bg-current transition-all duration-300 ${menuOpen ? 'top-1.5 -rotate-45' : 'top-3'}`} />
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div
+            className={`matrix-nav-status items-center justify-between border-t border-ember/10 px-5 py-1 font-mono text-[9px] tracking-[0.22em] text-bone-dim uppercase ${scrolled ? 'hidden md:flex' : 'hidden'}`}
           >
-            <span className="relative block h-3 w-5">
-              <span className={`absolute left-0 block h-px w-full bg-current transition-all duration-300 ${menuOpen ? 'top-1.5 rotate-45' : 'top-0'}`} />
-              <span className={`absolute left-0 top-1.5 block h-px w-full bg-current transition-opacity duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`} />
-              <span className={`absolute left-0 block h-px w-full bg-current transition-all duration-300 ${menuOpen ? 'top-1.5 -rotate-45' : 'top-3'}`} />
-            </span>
-          </button>
-        </div>
-      </header>
+            <span>// SYS.NAV — ROUTING</span>
+            <span className="text-ember/60">[ LINK ACTIVE ]</span>
+          </div>
+        </header>
+      </div>
 
       <div
-        className={`pointer-events-auto fixed inset-0 z-[90] flex flex-col bg-ink/95 backdrop-blur-xl transition-all duration-500 md:hidden ${
-          menuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+        className={`matrix-nav-mobile fixed inset-0 z-[90] flex flex-col bg-ink/95 backdrop-blur-xl transition-all duration-500 md:hidden ${
+          menuOpen ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
         }`}
+        aria-hidden={!menuOpen}
       >
-        <nav className="flex flex-1 flex-col items-center justify-center gap-8">
+        <div className="matrix-nav-mobile-grid pointer-events-none absolute inset-0" aria-hidden />
+        <nav className="relative flex flex-1 flex-col items-center justify-center gap-6">
           {links.map((l, i) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
               style={{ transitionDelay: menuOpen ? `${120 + i * 60}ms` : '0ms' }}
-              className={`font-display text-4xl font-bold tracking-tight text-bone uppercase transition-all duration-500 hover:text-ember ${
+              className={`font-display text-3xl font-bold tracking-[0.08em] text-bone uppercase transition-all duration-500 hover:text-ember sm:text-4xl ${
                 menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
               }`}
             >
+              <span className="mr-3 font-mono text-base text-ember/50">{l.code}</span>
               {l.label}
             </a>
           ))}
         </nav>
-        <p className="pb-12 text-center font-mono text-[11px] tracking-[0.25em] text-bone-dim uppercase">
+        <p className="relative pb-12 text-center font-mono text-[11px] tracking-[0.25em] text-bone-dim uppercase">
           {profile.location} — AKL {time}
         </p>
       </div>
-    </div>
+    </>
   )
 }

@@ -3,14 +3,14 @@ const items = ['Full Stack', 'AI-Native', 'ERP Integration', 'Dashboards', 'Agen
 export default function Marquee() {
   const row = [...items, ...items]
   return (
-    <div className="relative overflow-hidden border-y border-bone/10 py-5" aria-hidden>
+    <div className="matrix-marquee relative overflow-hidden py-5" aria-hidden>
       <div className="marquee-track flex w-max items-center gap-10">
         {row.map((item, i) => (
           <span key={i} className="flex items-center gap-10 whitespace-nowrap">
-            <span className="font-display text-2xl font-bold tracking-tight text-bone/70 uppercase md:text-4xl">
+            <span className="font-display text-2xl font-bold tracking-[0.08em] text-bone/70 uppercase md:text-4xl">
               {item}
             </span>
-            <span className="font-serif text-2xl text-ember italic md:text-4xl">✺</span>
+            <span className="font-mono text-2xl text-ember md:text-4xl">⟨⟩</span>
           </span>
         ))}
       </div>

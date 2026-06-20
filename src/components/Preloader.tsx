@@ -61,7 +61,7 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
   return (
     <div ref={rootRef} className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-ink">
       <div className="line-mask">
-        <span ref={wordRef} className="font-serif text-5xl italic text-bone md:text-7xl" />
+        <span ref={wordRef} className="font-mono text-5xl italic text-bone md:text-7xl" />
       </div>
       <span ref={countRef} className="absolute right-6 bottom-6 font-mono text-sm text-bone-dim md:right-12 md:bottom-10">
         000

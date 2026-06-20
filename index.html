@@ -8,7 +8,7 @@
     <meta name="author" content="Bishesh Sunam" />
     <meta name="keywords" content="Bishesh Sunam, Full Stack Developer, Web Developer Auckland, Vue, React, Node.js, Laravel, NetSuite, TypeScript" />
     <link rel="canonical" href="https://bisheshsunam.dev/" />
-    <meta name="theme-color" content="#060608" />
+    <meta name="theme-color" content="#000000" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -27,7 +27,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
 
     <script type="application/ld+json">
     {
@@ -49,16 +49,15 @@
   <body>
     <div id="root"></div>
     <script>
-      // Apply saved/system theme before paint to avoid a flash of the wrong theme.
+      // Apply saved theme before paint to avoid a flash of the wrong theme.
       (function () {
         try {
           var saved = localStorage.getItem('theme')
-          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches
-          var theme = saved === 'light' || saved === 'dark' ? saved : prefersLight ? 'light' : 'dark'
+          var theme = saved === 'light' ? 'light' : 'dark'
           if (theme === 'light') document.documentElement.classList.add('light')
           document.documentElement.style.colorScheme = theme
           var meta = document.querySelector('meta[name="theme-color"]')
-          if (meta) meta.setAttribute('content', theme === 'light' ? '#f2efe7' : '#060608')
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#edf7ef' : '#000000')
         } catch (e) {}
       })()
     </script>

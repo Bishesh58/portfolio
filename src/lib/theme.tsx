@@ -11,7 +11,7 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 const STORAGE_KEY = 'theme'
-const META_COLORS: Record<Theme, string> = { dark: '#060608', light: '#f2efe7' }
+const META_COLORS: Record<Theme, string> = { dark: '#000000', light: '#edf7ef' }
 
 function getInitialTheme(): Theme {
   if (typeof document !== 'undefined' && document.documentElement.classList.contains('light')) {
@@ -20,7 +20,6 @@ function getInitialTheme(): Theme {
   if (typeof window !== 'undefined') {
     const saved = localStorage.getItem(STORAGE_KEY)
     if (saved === 'light' || saved === 'dark') return saved
-    if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light'
   }
   return 'dark'
 }

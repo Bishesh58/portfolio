@@ -162,7 +162,7 @@ function TermLine({ line }: { line: Line }) {
       : line.tone === 'dim'
         ? 'text-bone-dim'
         : line.tone === 'accent'
-          ? 'text-[#4ade80]'
+          ? 'text-ember'
           : 'text-bone/90'
   return <p className={`break-words whitespace-pre-wrap ${cls}`}>{line.text || '\u00a0'}</p>
 }
@@ -253,14 +253,14 @@ export default function Terminal() {
   return (
     <div
       onClick={() => inputRef.current?.focus({ preventScroll: true })}
-      className="flex h-[300px] flex-col overflow-hidden rounded-xl border border-bone/15 bg-ink-2/80 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] backdrop-blur-md"
+      className="flex h-[300px] flex-col overflow-hidden rounded-xl border border-ember/20 bg-ink-2/90 shadow-[0_30px_80px_-30px_rgba(0,255,65,0.15)] backdrop-blur-md"
     >
-      <div className="flex items-center gap-2 border-b border-bone/10 px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-        <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-        <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+      <div className="flex items-center gap-2 border-b border-ember/15 px-4 py-3">
+        <span className="h-3 w-3 rounded-full bg-ember/30" />
+        <span className="h-3 w-3 rounded-full bg-ember/55" />
+        <span className="h-3 w-3 rounded-full bg-ember" />
         <span className="ml-3 truncate font-mono text-[11px] tracking-wide text-bone-dim">
-          bishesh@auckland: ~/portfolio
+          bishesh@matrix: ~/portfolio
         </span>
       </div>
 
