@@ -13,7 +13,7 @@ const MatrixSection = forwardRef<HTMLElement, MatrixSectionProps>(function Matri
   ref,
 ) {
   return (
-    <section ref={ref} id={id} className={`matrix-section relative px-6 py-28 md:px-12 md:py-40 ${className}`}>
+    <section ref={ref} id={id} className={`matrix-section relative px-4 py-24 sm:px-6 sm:py-28 md:px-12 md:py-40 ${className}`}>
       <div className="matrix-section-rail" aria-hidden>
         <span className="matrix-section-index">{index ?? 'SYS'}</span>
         <span className="matrix-section-line" />

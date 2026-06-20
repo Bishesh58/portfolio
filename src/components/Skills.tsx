@@ -40,7 +40,7 @@ export default function Skills() {
             status="INDEXED"
             className="skill-row group"
           >
-            <p className="matrix-cmd">
+            <p className="matrix-cmd break-words">
               <span className="matrix-cmd-prompt">$ </span>
               ls -la ./{group.toLowerCase()}/
               <span className="ml-2 text-bone-dim">— {items.length} entries</span>

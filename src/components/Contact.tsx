@@ -122,7 +122,7 @@ export default function Contact() {
 
         <p className="kicker mb-8 justify-center">Got a project? Let's talk</p>
 
-        <h2 className="inline-flex items-center justify-center text-section-title font-display font-black tracking-[0.06em] uppercase">
+        <h2 className="flex flex-wrap items-center justify-center gap-x-1 text-section-title font-display font-black tracking-[0.06em] uppercase">
 
           <span className="contact-title">
 
@@ -162,13 +162,15 @@ export default function Contact() {
 
 
 
-          <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
+          <div className="flex flex-col items-stretch justify-center gap-4 md:flex-row md:items-center md:gap-5">
 
             <MagneticButton
 
               href={`mailto:${profile.email}`}
 
-              className="glow-ember rounded-full border border-ember bg-ember/10 px-9 py-5 font-mono text-sm tracking-[0.2em] text-bone uppercase transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:bg-ember before:transition-transform before:duration-[450ms] before:ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-ink hover:before:scale-y-100"
+              aria-label={`Email ${profile.email}`}
+
+              className="glow-ember tap-target w-full rounded-full border border-ember bg-ember/10 px-6 py-4 font-mono text-xs tracking-[0.14em] text-bone uppercase transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:bg-ember before:transition-transform before:duration-[450ms] before:ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-ink hover:before:scale-y-100 sm:px-9 sm:py-5 sm:text-sm sm:tracking-[0.2em] md:w-auto"
 
             >
 
@@ -180,7 +182,9 @@ export default function Contact() {
 
               </svg>
 
-              {profile.email}
+              <span className="sm:hidden">Email me</span>
+
+              <span className="hidden sm:inline">{profile.email}</span>
 
             </MagneticButton>
 
@@ -190,7 +194,7 @@ export default function Contact() {
 
               download
 
-              className="rounded-full border border-bone/25 px-9 py-5 font-mono text-sm tracking-[0.2em] text-bone-dim uppercase transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:bg-bone before:transition-transform before:duration-[450ms] before:ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-bone hover:text-ink hover:before:scale-y-100"
+              className="tap-target w-full rounded-full border border-bone/25 px-6 py-4 font-mono text-xs tracking-[0.14em] text-bone-dim uppercase transition-colors duration-300 before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:bg-bone before:transition-transform before:duration-[450ms] before:ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-bone hover:text-ink hover:before:scale-y-100 sm:px-9 sm:py-5 sm:text-sm sm:tracking-[0.2em] md:w-auto"
 
             >
 
@@ -212,9 +216,9 @@ export default function Contact() {
 
 
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-ember/10 pt-8 font-mono text-[11px] tracking-[0.2em] text-bone-dim uppercase">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-ember/10 pt-8 font-mono text-xs tracking-[0.16em] text-bone-dim uppercase sm:gap-x-8 sm:text-[11px] sm:tracking-[0.2em]">
 
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="transition-colors hover:text-ember">
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="tap-target inline-flex items-center px-2 py-2 transition-colors hover:text-ember">
 
               LinkedIn ↗
 
@@ -226,7 +230,7 @@ export default function Contact() {
 
                 <span className="h-1 w-1 rounded-full bg-bone/30" />
 
-                <a href={profile.github} target="_blank" rel="noreferrer" className="transition-colors hover:text-ember">
+                <a href={profile.github} target="_blank" rel="noreferrer" className="tap-target inline-flex items-center px-2 py-2 transition-colors hover:text-ember">
 
                   GitHub ↗
 
@@ -238,7 +242,7 @@ export default function Contact() {
 
             <span className="h-1 w-1 rounded-full bg-bone/30" />
 
-            <a href={`tel:${profile.phone.replace(/-/g, '')}`} className="transition-colors hover:text-ember">
+            <a href={`tel:${profile.phone.replace(/-/g, '')}`} className="tap-target inline-flex items-center px-2 py-2 transition-colors hover:text-ember">
 
               {profile.phone}
 

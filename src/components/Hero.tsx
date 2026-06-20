@@ -26,8 +26,6 @@ export default function Hero() {
 
       gsap.set('.hero-scroll', { autoAlpha: 1 })
 
-      // Desktop: pin the hero while scroll drives the terminal straight right off-screen.
-      // Page scroll is consumed during this phase, then releases into the rest of the site.
       const mm = gsap.matchMedia()
       mm.add('(min-width: 1024px)', () => {
         const exitX = () => window.innerWidth / 2 + TERM_WIDTH / 2 + 48
@@ -57,8 +55,8 @@ export default function Hero() {
 
       mm.add('(max-width: 1023px)', () => {
         gsap.to('.hero-inner', {
-          yPercent: -18,
-          opacity: 0.25,
+          yPercent: -12,
+          opacity: 0.35,
           ease: 'none',
           scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true },
         })
@@ -68,18 +66,17 @@ export default function Hero() {
   )
 
   return (
-    <section ref={ref} className="relative z-0 flex h-[100svh] flex-col justify-between overflow-hidden">
+    <section ref={ref} className="relative z-0 flex min-h-[100svh] flex-col overflow-hidden lg:h-[100svh]">
       <Suspense fallback={null}>
         <div className="absolute inset-0">
           <FluxField theme={theme} />
         </div>
       </Suspense>
 
-      {/* gradient veil for legibility */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-ink" />
 
-      <div className="hero-inner pointer-events-none relative z-10 flex h-full flex-col items-center justify-center gap-7 px-6 lg:justify-start lg:gap-8 lg:pt-[19vh]">
-        <h1 className="flex items-baseline justify-center gap-x-[0.22em] font-display font-black tracking-[0.06em] uppercase">
+      <div className="hero-inner pointer-events-none relative z-10 flex flex-1 flex-col items-center justify-center gap-5 px-4 pt-24 pb-4 sm:px-6 lg:justify-start lg:gap-8 lg:pt-[19vh] lg:pb-0">
+        <h1 className="flex flex-wrap items-baseline justify-center gap-x-[0.22em] font-display font-black tracking-[0.06em] uppercase">
           <span className="inline-block overflow-hidden">
             <span className="hero-first text-hero-name matrix-glow inline-block font-black text-ember">
               {profile.firstName}
@@ -93,10 +90,10 @@ export default function Hero() {
         </h1>
 
         <div className="flex flex-col items-center">
-          <p className="hero-meta max-w-md text-center font-mono text-lg text-bone-dim italic md:text-xl">
+          <p className="hero-meta max-w-md text-center font-mono text-base text-bone-dim italic sm:text-lg md:text-xl">
             &gt; {profile.tagline}
           </p>
-          <div className="hero-meta mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[11px] tracking-[0.25em] text-bone-dim uppercase">
+          <div className="hero-meta mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs tracking-[0.18em] text-bone-dim uppercase sm:mt-5 sm:gap-x-6 sm:text-[11px] sm:tracking-[0.25em]">
             <span>{profile.location}</span>
             <span className="h-1 w-1 rounded-full bg-ember" />
             <span>{profile.yearsExperience} yrs exp</span>
@@ -106,14 +103,13 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* interactive terminal — pinned with hero; slides straight right on scroll (desktop only) */}
-      <div className="hero-term pointer-events-auto absolute top-[67%] left-1/2 z-20 -mt-[150px] -ml-[210px] hidden w-[420px] lg:block">
-        <div className="hero-term-track">
+      <div className="hero-term pointer-events-auto relative z-20 mx-auto mt-auto w-full max-w-[420px] shrink-0 px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] lg:absolute lg:bottom-[clamp(1.5rem,7vh,3.5rem)] lg:left-1/2 lg:w-[420px] lg:max-w-[420px] lg:-translate-x-1/2 lg:px-0 lg:pb-0">
+        <div className="hero-term-track w-full">
           <Terminal />
         </div>
       </div>
 
-      <div className="hero-scroll pointer-events-none absolute bottom-8 left-1/2 z-30 -translate-x-1/2">
+      <div className="hero-scroll pointer-events-none absolute bottom-[max(2rem,env(safe-area-inset-bottom))] left-1/2 z-30 hidden -translate-x-1/2 lg:block">
         <div className="flex flex-col items-center gap-2">
           <span className="font-mono text-[10px] tracking-[0.3em] text-bone-dim uppercase">Scroll</span>
           <div className="h-10 w-px overflow-hidden bg-bone/15">

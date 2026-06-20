@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { profile, projects, experience, skills } from '../data/resume'
+import { prefersReducedMotion } from '../lib/matrixTypewriter'
 import { scrollToSection } from '../lib/scroll'
 
 type Tone = 'cmd' | 'text' | 'dim' | 'ember' | 'accent' | 'link'
@@ -169,31 +170,33 @@ function TermLine({ line }: { line: Line }) {
 
 const INTRO = ['whoami', 'ls']
 
+const SYS_BOOT = [
+  '> initializing portfolio…',
+  '> loading modules [████████░░] 82%',
+  '> syncing identity.core…',
+  '> connection established',
+]
+
+const BOOT_STORAGE_KEY = 'matrix-boot-done'
+
+type Phase = 'sys-boot' | 'intro' | 'ready'
+
 export default function Terminal() {
   const [history, setHistory] = useState<Line[]>([])
   const [input, setInput] = useState('')
   const [bootTyping, setBootTyping] = useState('')
-  const [booting, setBooting] = useState(true)
+  const [phase, setPhase] = useState<Phase>('sys-boot')
   const inputRef = useRef<HTMLInputElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = bodyRef.current
     if (el) el.scrollTop = el.scrollHeight
-  }, [history, bootTyping, input, booting])
+  }, [history, bootTyping, input, phase])
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) {
-      const lines: Line[] = []
-      INTRO.forEach((c) => {
-        lines.push({ text: c, tone: 'cmd' }, ...runCommand(c).lines)
-      })
-      lines.push({ text: "↳ type 'help' to see what I can do", tone: 'dim' })
-      setHistory(lines)
-      setBooting(false)
-      return
-    }
+    const reduced = prefersReducedMotion()
+    const skipSysBoot = sessionStorage.getItem(BOOT_STORAGE_KEY)
 
     let cancelled = false
     const timers: number[] = []
@@ -203,8 +206,41 @@ export default function Terminal() {
         timers.push(id)
       })
 
-    const run = async () => {
-      await wait(650)
+    const runSysBoot = async () => {
+      if (skipSysBoot) return
+
+      if (reduced) {
+        setHistory(SYS_BOOT.map((text) => ({ text, tone: 'accent' as const })))
+        sessionStorage.setItem(BOOT_STORAGE_KEY, '1')
+        return
+      }
+
+      for (let i = 0; i < SYS_BOOT.length; i++) {
+        if (cancelled) return
+        const text = SYS_BOOT[i]
+        if (i === 0) await wait(280)
+        else await wait(360)
+        setHistory((prev) => [...prev, { text, tone: 'accent' }])
+      }
+
+      if (cancelled) return
+      await wait(480)
+      sessionStorage.setItem(BOOT_STORAGE_KEY, '1')
+    }
+
+    const runIntro = async () => {
+      if (reduced) {
+        const lines: Line[] = []
+        INTRO.forEach((c) => {
+          lines.push({ text: c, tone: 'cmd' }, ...runCommand(c).lines)
+        })
+        lines.push({ text: "↳ type 'help' to see what I can do", tone: 'dim' })
+        setHistory((prev) => [...prev, ...lines])
+        return
+      }
+
+      await wait(420)
+
       for (const cmd of INTRO) {
         if (cancelled) return
         for (let i = 1; i <= cmd.length; i++) {
@@ -218,9 +254,18 @@ export default function Terminal() {
         setHistory((prev) => [...prev, { text: cmd, tone: 'cmd' }, ...runCommand(cmd).lines])
         await wait(380)
       }
+
       if (cancelled) return
       setHistory((prev) => [...prev, { text: "↳ type 'help' to see what I can do", tone: 'dim' }])
-      setBooting(false)
+    }
+
+    const run = async () => {
+      await runSysBoot()
+      if (cancelled) return
+      setPhase('intro')
+      await runIntro()
+      if (cancelled) return
+      setPhase('ready')
       requestAnimationFrame(() => inputRef.current?.focus({ preventScroll: true }))
     }
 
@@ -253,7 +298,7 @@ export default function Terminal() {
   return (
     <div
       onClick={() => inputRef.current?.focus({ preventScroll: true })}
-      className="flex h-[300px] flex-col overflow-hidden rounded-xl border border-ember/20 bg-ink-2/90 shadow-[0_30px_80px_-30px_rgba(0,255,65,0.15)] backdrop-blur-md"
+      className="flex h-[min(42svh,280px)] flex-col overflow-hidden rounded-xl border border-ember/20 bg-ink-2/90 shadow-[0_30px_80px_-30px_rgba(0,255,65,0.15)] backdrop-blur-md lg:h-[300px]"
     >
       <div className="flex items-center gap-2 border-b border-ember/15 px-4 py-3">
         <span className="h-3 w-3 rounded-full bg-ember/30" />
@@ -267,19 +312,19 @@ export default function Terminal() {
       <div
         ref={bodyRef}
         data-lenis-prevent
-        className="min-h-0 flex-1 space-y-1 overflow-y-auto overscroll-y-contain px-5 py-4 text-left font-mono text-[13px] leading-relaxed [scrollbar-color:color-mix(in_srgb,var(--color-bone)_35%,transparent)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-bone/35 [&::-webkit-scrollbar-track]:bg-bone/5 [&::-webkit-scrollbar]:w-1.5"
+        className="min-h-0 flex-1 space-y-1 overflow-y-auto overscroll-y-contain px-4 py-3 text-left font-mono text-xs leading-relaxed sm:px-5 sm:py-4 sm:text-[13px] [scrollbar-color:color-mix(in_srgb,var(--color-bone)_35%,transparent)_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-bone/35 [&::-webkit-scrollbar-track]:bg-bone/5 [&::-webkit-scrollbar]:w-1.5"
       >
         {history.map((line, i) => (
           <TermLine key={i} line={line} />
         ))}
 
-        {booting ? (
+        {phase === 'intro' ? (
           <p className="text-bone">
             <Prompt />
             {bootTyping}
             <span className="term-caret" />
           </p>
-        ) : (
+        ) : phase === 'ready' ? (
           <div className="flex items-center text-bone">
             <Prompt />
             <input
@@ -290,10 +335,10 @@ export default function Terminal() {
               spellCheck={false}
               autoComplete="off"
               aria-label="Interactive terminal — type a command"
-              className="term-input ml-1 flex-1 border-none bg-transparent text-bone caret-ember"
+              className="term-input ml-1 min-h-[44px] flex-1 border-none bg-transparent text-base text-bone caret-ember lg:min-h-0 lg:text-[13px]"
             />
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   )

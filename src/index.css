@@ -234,6 +234,12 @@ html.light .matrix-nav {
   border-right: 2px solid;
 }
 
+@media (max-width: 767px) {
+  .matrix-nav-rail {
+    display: none;
+  }
+}
+
 .matrix-nav-corner-bl {
   bottom: -1px;
   left: -1px;
@@ -340,6 +346,53 @@ html.light .matrix-nav-link-sep {
 
 html.light .matrix-nav-status {
   border-top-color: var(--matrix-nav-status-border);
+}
+
+.matrix-nav-link--active {
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--color-ember) 70%, transparent);
+}
+
+.matrix-nav-link--active::before,
+.matrix-nav-link--active::after {
+  color: var(--matrix-nav-link-bracket);
+}
+
+/* command palette */
+.command-palette-panel {
+  animation: palette-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes palette-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.command-kbd {
+  display: inline-grid;
+  min-width: 1.5rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-ember) 30%, transparent);
+  padding: 0.1rem 0.35rem;
+  font-size: 10px;
+  color: var(--color-ember);
+  background: color-mix(in srgb, var(--color-ember) 6%, transparent);
+}
+
+.project-case-modal-panel {
+  animation: palette-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .command-palette-panel,
+  .project-case-modal-panel {
+    animation: none;
+  }
 }
 
 .matrix-nav-mobile-grid {
@@ -499,6 +552,16 @@ html.light .grain::before {
 }
 
 /* ---------- matrix frames & sections ---------- */
+.matrix-section {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (min-width: 768px) {
+  .matrix-section {
+    scroll-margin-top: 6rem;
+  }
+}
+
 .matrix-section-rail {
   pointer-events: none;
   position: absolute;
@@ -543,12 +606,24 @@ html.light .grain::before {
 
 .matrix-section-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem 1rem;
   margin-bottom: 2.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px dashed rgba(0, 255, 65, 0.15);
+}
+
+@media (max-width: 639px) {
+  .matrix-section-program {
+    font-size: 0.625rem;
+    letter-spacing: 0.16em;
+  }
+
+  .matrix-section-tag {
+    margin-left: auto;
+  }
 }
 
 @media (min-width: 768px) {
@@ -781,6 +856,7 @@ html.light .grain::before {
   font-size: 0.6875rem;
   letter-spacing: 0.06em;
   color: var(--color-ember);
+  overflow-wrap: anywhere;
 }
 
 .matrix-cmd-prompt {
@@ -845,6 +921,32 @@ html.light .grain::before {
 .matrix-titlebar {
   position: relative;
   z-index: 4;
+}
+
+/* ---------- responsive utilities ---------- */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (min-width: 640px) {
+  .tap-target {
+    min-height: 0;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-card {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
 }
 
 /* ---------- keyboard focus ---------- */

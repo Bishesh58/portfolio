@@ -112,7 +112,7 @@ export default function SectionHeading({ kicker, title, id }: Props) {
 
       </p>
 
-      <h2 className="inline-flex items-center text-section-title font-display font-bold tracking-[0.06em] uppercase">
+      <h2 className="flex flex-wrap items-center gap-x-1 text-section-title font-display font-bold tracking-[0.06em] uppercase">
 
         <span className="sh-title">
 
