@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Lenis from 'lenis'
 import { gsap, ScrollTrigger } from './lib/gsap'
 import { setLenis } from './lib/scroll'
-import Preloader from './components/Preloader'
 import Cursor from './components/Cursor'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -16,8 +15,6 @@ import Education from './components/Education'
 import Contact from './components/Contact'
 
 export default function App() {
-  const [ready, setReady] = useState(false)
-
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.1, anchors: true })
     setLenis(lenis)
@@ -31,24 +28,17 @@ export default function App() {
     }
   }, [])
 
-  // Keep default lag smoothing while the preloader runs so heavy startup work
-  // (three.js parse, shader compile) pauses the intro timeline instead of
-  // skipping it. Disable it afterwards for tight Lenis/ScrollTrigger sync.
   useEffect(() => {
-    if (!ready) return
     gsap.ticker.lagSmoothing(0)
-    // Content was measured during the preloader; recompute trigger positions
-    // once fonts have settled so reveals fire at the right scroll points.
     document.fonts?.ready.then(() => ScrollTrigger.refresh())
-  }, [ready])
+  }, [])
 
   return (
     <div className="grain">
       <Cursor />
-      {!ready && <Preloader onDone={() => setReady(true)} />}
-      <Nav ready={ready} />
+      <Nav />
       <main>
-        <Hero ready={ready} />
+        <Hero />
         <Marquee />
         <About />
         <Projects />

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
-import { gsap } from '../lib/gsap'
+import { useEffect, useState } from 'react'
 import { profile } from '../data/resume'
 import { useTheme } from '../lib/theme'
 
@@ -37,8 +36,7 @@ function ThemeToggle() {
   )
 }
 
-export default function Nav({ ready }: { ready: boolean }) {
-  const ref = useRef<HTMLElement>(null)
+export default function Nav() {
   const [time, setTime] = useState('')
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -72,16 +70,10 @@ export default function Nav({ ready }: { ready: boolean }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    if (!ready) return
-    gsap.from(ref.current, { yPercent: -160, opacity: 0, duration: 1, ease: 'power4.out', delay: 0.4 })
-  }, [ready])
-
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-[100] flex justify-center px-3 pt-3 md:px-6 md:pt-5">
+    <div className="pointer-events-none fixed inset-x-0 top-0 z-[10001] flex justify-center px-3 pt-3 md:px-6 md:pt-5">
       <header
-        ref={ref}
-        className={`pointer-events-auto relative z-[100] flex w-full max-w-6xl items-center justify-between rounded-full border px-4 py-3 transition-[background-color,border-color,box-shadow,padding] duration-500 ease-out md:px-6 ${
+        className={`pointer-events-auto relative z-[10001] flex w-full max-w-6xl items-center justify-between rounded-full border px-4 py-3 transition-[background-color,border-color,box-shadow,padding] duration-500 ease-out md:px-6 ${
           scrolled
             ? 'border-bone/10 bg-ink/65 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.45)] backdrop-blur-xl'
             : 'border-transparent bg-transparent'

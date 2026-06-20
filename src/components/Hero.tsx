@@ -4,20 +4,17 @@ import { profile } from '../data/resume'
 import { useTheme } from '../lib/theme'
 import Terminal from './Terminal'
 
-const ParticleField = lazy(() => import('./three/ParticleField'))
+const FluxField = lazy(() => import('./FluxField'))
 
-// Keep in sync with the terminal wrapper size + start position in the markup below.
+// Keep in sync with the terminal wrapper size in the markup below.
 const TERM_WIDTH = 420
-const TERM_HEIGHT = 300
-const TERM_START_TOP = 0.67 // vertical centre of the terminal at rest, as a fraction of viewport height
 
-export default function Hero({ ready }: { ready: boolean }) {
+export default function Hero() {
   const ref = useRef<HTMLElement>(null)
   const { theme } = useTheme()
 
   useGSAP(
     () => {
-      if (!ready) return
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
 
       const first = SplitText.create('.hero-first', { type: 'chars' })
@@ -26,56 +23,49 @@ export default function Hero({ ready }: { ready: boolean }) {
       tl.from(first.chars, { yPercent: 120, duration: 1.1, stagger: 0.04 }, 0.1)
         .from(last.chars, { yPercent: -120, duration: 1.1, stagger: 0.04 }, 0.25)
         .from('.hero-meta', { opacity: 0, y: 18, stagger: 0.12, duration: 0.8 }, 0.6)
-        .from('.hero-scroll', { opacity: 0, duration: 1 }, 1.1)
 
-      gsap.to('.hero-inner', {
-        yPercent: -18,
-        opacity: 0.25,
-        ease: 'none',
-        scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true },
-      })
+      gsap.set('.hero-scroll', { autoAlpha: 1 })
 
-      // Scroll-linked drift (desktop only): the viewport-fixed terminal starts
-      // centered and glides into the bottom-right corner in lock-step with how
-      // far the hero is scrolled, dissolving as it docks so it never overlaps
-      // the next section. Scrubbing makes the whole thing reversible.
+      // Desktop: pin the hero while scroll drives the terminal straight right off-screen.
+      // Page scroll is consumed during this phase, then releases into the rest of the site.
       const mm = gsap.matchMedia()
       mm.add('(min-width: 1024px)', () => {
-        // The terminal is centred at rest via CSS (left-1/2 + negative margins),
-        // so it lines up exactly with the centred SCROLL hint. From there it
-        // glides to the bottom-right corner, computed as deltas from that centre.
-        const toX = () => {
-          const vw = window.innerWidth
-          const margin = vw >= 1280 ? 48 : 24
-          return vw / 2 - margin - TERM_WIDTH / 2
-        }
-        const toY = () => {
-          const vh = window.innerHeight
-          return vh - TERM_HEIGHT / 2 - vh * TERM_START_TOP
-        }
+        const exitX = () => window.innerWidth / 2 + TERM_WIDTH / 2 + 48
 
         gsap
           .timeline({
             scrollTrigger: {
               trigger: ref.current,
               start: 'top top',
-              end: '+=60%',
+              end: '+=85%',
+              pin: true,
               scrub: true,
+              anticipatePin: 1,
               invalidateOnRefresh: true,
             },
           })
-          .fromTo('.hero-term', { x: 0, y: 0 }, { x: toX, y: toY, ease: 'none', duration: 1 }, 0)
-          .to('.hero-term', { autoAlpha: 0, ease: 'none', duration: 0.4 }, 0.6)
+          .fromTo('.hero-term-track', { x: 0 }, { x: exitX, ease: 'none', duration: 1 }, 0)
+          .to('.hero-term-track', { autoAlpha: 0, ease: 'none', duration: 0.2 }, 0.75)
+          .fromTo('.hero-scroll', { autoAlpha: 1 }, { autoAlpha: 0, ease: 'none', duration: 0.12 }, 0.45)
+      })
+
+      mm.add('(max-width: 1023px)', () => {
+        gsap.to('.hero-inner', {
+          yPercent: -18,
+          opacity: 0.25,
+          ease: 'none',
+          scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true },
+        })
       })
     },
-    { scope: ref, dependencies: [ready] },
+    { scope: ref },
   )
 
   return (
     <section ref={ref} className="relative flex h-[100svh] flex-col justify-between overflow-hidden">
       <Suspense fallback={null}>
         <div className="absolute inset-0">
-          <ParticleField theme={theme} />
+          <FluxField theme={theme} />
         </div>
       </Suspense>
 
@@ -110,13 +100,14 @@ export default function Hero({ ready }: { ready: boolean }) {
         </div>
       </div>
 
-      {/* interactive terminal — centred at rest, glides to the bottom-right
-          as the hero scrolls (desktop only) */}
-      <div className="hero-term pointer-events-auto fixed top-[67%] left-1/2 z-20 -mt-[150px] -ml-[210px] hidden w-[420px] lg:block">
-        {ready && <Terminal />}
+      {/* interactive terminal — pinned with hero; slides straight right on scroll (desktop only) */}
+      <div className="hero-term pointer-events-auto absolute top-[67%] left-1/2 z-20 -mt-[150px] -ml-[210px] hidden w-[420px] lg:block">
+        <div className="hero-term-track">
+          <Terminal />
+        </div>
       </div>
 
-      <div className="hero-scroll absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+      <div className="hero-scroll pointer-events-none absolute bottom-8 left-1/2 z-30 -translate-x-1/2">
         <div className="flex flex-col items-center gap-2">
           <span className="font-mono text-[10px] tracking-[0.3em] text-bone-dim uppercase">Scroll</span>
           <div className="h-10 w-px overflow-hidden bg-bone/15">
