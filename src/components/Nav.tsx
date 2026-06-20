@@ -82,20 +82,20 @@ export default function Nav({ onOpenCommandPalette }: { onOpenCommandPalette?: (
 
   return (
     <>
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-[120] flex justify-center pl-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] pt-[max(0.75rem,env(safe-area-inset-top))] md:px-6 md:pt-5">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[120] flex w-full max-w-full justify-center overflow-x-clip pl-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] pt-[max(0.75rem,env(safe-area-inset-top))] md:px-6 md:pt-5">
         <header
-          className={`matrix-nav pointer-events-auto relative isolate z-[121] w-full max-w-6xl transition-all duration-500 ${scrolled ? 'matrix-nav--active' : ''}`}
+          className={`matrix-nav pointer-events-auto relative isolate z-[121] mx-auto w-full min-w-0 max-w-6xl transition-all duration-500 ${scrolled ? 'matrix-nav--active' : ''}`}
         >
           <span className="matrix-nav-corner matrix-nav-corner-tl" aria-hidden />
           <span className="matrix-nav-corner matrix-nav-corner-tr" aria-hidden />
           <span className="matrix-nav-corner matrix-nav-corner-bl" aria-hidden />
           <span className="matrix-nav-corner matrix-nav-corner-br" aria-hidden />
-          <span className="matrix-nav-rail matrix-nav-rail--left" aria-hidden />
-          <span className="matrix-nav-rail matrix-nav-rail--right" aria-hidden />
+          <span className="matrix-nav-rail matrix-nav-rail--left hidden md:block" aria-hidden />
+          <span className="matrix-nav-rail matrix-nav-rail--right hidden md:block" aria-hidden />
           <div className="matrix-nav-grid" aria-hidden />
 
-          <div className="matrix-nav-bar grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-3 py-3 sm:px-4 md:flex md:justify-between md:gap-4 md:px-5">
-            <a href="#" data-cursor className="group flex min-w-0 items-center gap-2 font-display text-sm font-bold tracking-[0.15em] uppercase">
+          <div className="matrix-nav-bar grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-3 py-3 sm:px-4 md:grid-cols-[auto_minmax(0,1fr)_auto] md:gap-4 md:px-5 lg:gap-6">
+            <a href="#" data-cursor className="group flex min-w-0 items-center gap-2 truncate font-display text-sm font-bold tracking-[0.15em] uppercase">
               <span className="hidden font-mono text-[9px] tracking-[0.2em] text-ember-soft sm:inline">SYS</span>
               <span>
                 {profile.name.split(' ')[0]}
@@ -103,7 +103,7 @@ export default function Nav({ onOpenCommandPalette }: { onOpenCommandPalette?: (
               </span>
             </a>
 
-            <nav className="hidden items-center gap-1 md:flex">
+            <nav className="hidden min-w-0 items-center justify-center gap-1 overflow-x-clip md:flex">
               {NAV_SECTIONS.map((l) => (
                 <a
                   key={l.href}
@@ -118,7 +118,7 @@ export default function Nav({ onOpenCommandPalette }: { onOpenCommandPalette?: (
               ))}
             </nav>
 
-            <div className="relative z-10 col-start-2 row-start-1 flex shrink-0 items-center justify-end gap-1 sm:gap-2 md:col-auto md:row-auto md:gap-3">
+            <div className="relative z-10 col-start-2 row-start-1 flex shrink-0 items-center justify-end gap-1 sm:gap-2 md:col-start-3 md:row-start-1 md:gap-3">
               <span className="hidden font-mono text-[10px] tabular-nums text-bone-dim sm:inline">
                 <span className="text-ember/50">AKL</span> {time}
               </span>

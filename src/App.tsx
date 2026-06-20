@@ -60,12 +60,12 @@ export default function App() {
   }, [])
 
   return (
-    <div className="grain">
+    <div className="grain w-full max-w-full overflow-x-clip">
       <Nav onOpenCommandPalette={() => setPaletteOpen(true)} />
       <MatrixScrollProgress />
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
       <Cursor />
-      <main>
+      <main className="w-full max-w-full overflow-x-clip">
         <Hero />
         <Marquee />
         <About />

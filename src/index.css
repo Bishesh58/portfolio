@@ -76,6 +76,15 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
   transition: background-color 0.5s ease;
+  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
+  overscroll-behavior-x: none;
+}
+
+#root {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 html.lenis,
@@ -92,7 +101,11 @@ body {
   color: var(--color-bone);
   font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
   overflow-x: clip;
+  max-width: 100%;
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior-x: none;
   transition:
     background-color 0.5s ease,
     color 0.5s ease;
@@ -195,6 +208,19 @@ body {
     box-shadow 0.45s ease;
 }
 
+@media (max-width: 767px) {
+  .matrix-nav {
+    overflow-x: clip;
+    contain: layout paint;
+  }
+}
+
+@media (min-width: 768px) {
+  .matrix-nav {
+    overflow-x: visible;
+  }
+}
+
 html.light .matrix-nav {
   backdrop-filter: blur(8px);
 }
@@ -238,6 +264,10 @@ html.light .matrix-nav {
   .matrix-nav-rail {
     display: none;
   }
+
+  .matrix-nav--active {
+    box-shadow: inset 0 0 0 1px rgba(0, 255, 65, 0.08);
+  }
 }
 
 .matrix-nav-corner-bl {
@@ -254,12 +284,35 @@ html.light .matrix-nav {
   border-right: 2px solid;
 }
 
+@media (max-width: 767px) {
+  .matrix-nav-corner-tl {
+    top: 0;
+    left: 0;
+  }
+
+  .matrix-nav-corner-tr {
+    top: 0;
+    right: 0;
+  }
+
+  .matrix-nav-corner-bl {
+    bottom: 0;
+    left: 0;
+  }
+
+  .matrix-nav-corner-br {
+    bottom: 0;
+    right: 0;
+  }
+}
+
 .matrix-nav-rail {
   pointer-events: none;
   position: absolute;
   top: 50%;
   height: 1px;
   width: clamp(1.5rem, 6vw, 4rem);
+  max-width: 3rem;
   background: linear-gradient(90deg, transparent, var(--matrix-nav-rail), transparent);
   opacity: 0;
   transition: opacity 0.45s ease;
@@ -420,6 +473,10 @@ html.light .matrix-nav-mobile-grid {
 /* matrix marquee band */
 .matrix-marquee {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  contain: paint;
   border-block: 1px solid rgba(0, 255, 65, 0.12);
   background:
     linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
@@ -446,15 +503,22 @@ html.light .matrix-nav-mobile-grid {
 }
 
 /* ---------- grain + scanline overlay ---------- */
+.grain {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 .grain::after {
   content: '';
   position: fixed;
-  inset: -100%;
+  inset: 0;
   z-index: 9998;
   pointer-events: none;
   opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
   animation: grain 8s steps(10) infinite;
+  will-change: transform;
 }
 
 .grain::before {
@@ -486,15 +550,15 @@ html.light .grain::before {
 
 @keyframes grain {
   0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 35%); }
-  90% { transform: translate(-10%, 10%); }
+  10% { transform: translate(-2%, -3%); }
+  20% { transform: translate(-4%, 2%); }
+  30% { transform: translate(3%, -4%); }
+  40% { transform: translate(-2%, 4%); }
+  50% { transform: translate(-4%, 3%); }
+  60% { transform: translate(4%, 0%); }
+  70% { transform: translate(0%, 3%); }
+  80% { transform: translate(2%, 5%); }
+  90% { transform: translate(-3%, 2%); }
 }
 
 /* ---------- marquee ---------- */
@@ -504,6 +568,7 @@ html.light .grain::before {
 }
 .marquee-track {
   animation: marquee 28s linear infinite;
+  will-change: transform;
 }
 
 /* ---------- terminal caret ---------- */
