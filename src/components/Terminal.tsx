@@ -170,22 +170,13 @@ function TermLine({ line }: { line: Line }) {
 
 const INTRO = ['whoami', 'ls']
 
-const SYS_BOOT = [
-  '> initializing portfolio…',
-  '> loading modules [████████░░] 82%',
-  '> syncing identity.core…',
-  '> connection established',
-]
-
-const BOOT_STORAGE_KEY = 'matrix-boot-done'
-
-type Phase = 'sys-boot' | 'intro' | 'ready'
+type Phase = 'intro' | 'ready'
 
 export default function Terminal() {
   const [history, setHistory] = useState<Line[]>([])
   const [input, setInput] = useState('')
   const [bootTyping, setBootTyping] = useState('')
-  const [phase, setPhase] = useState<Phase>('sys-boot')
+  const [phase, setPhase] = useState<Phase>('intro')
   const inputRef = useRef<HTMLInputElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
 
@@ -196,8 +187,6 @@ export default function Terminal() {
 
   useEffect(() => {
     const reduced = prefersReducedMotion()
-    const skipSysBoot = sessionStorage.getItem(BOOT_STORAGE_KEY)
-
     let cancelled = false
     const timers: number[] = []
     const wait = (ms: number) =>
@@ -205,28 +194,6 @@ export default function Terminal() {
         const id = window.setTimeout(resolve, ms)
         timers.push(id)
       })
-
-    const runSysBoot = async () => {
-      if (skipSysBoot) return
-
-      if (reduced) {
-        setHistory(SYS_BOOT.map((text) => ({ text, tone: 'accent' as const })))
-        sessionStorage.setItem(BOOT_STORAGE_KEY, '1')
-        return
-      }
-
-      for (let i = 0; i < SYS_BOOT.length; i++) {
-        if (cancelled) return
-        const text = SYS_BOOT[i]
-        if (i === 0) await wait(280)
-        else await wait(360)
-        setHistory((prev) => [...prev, { text, tone: 'accent' }])
-      }
-
-      if (cancelled) return
-      await wait(480)
-      sessionStorage.setItem(BOOT_STORAGE_KEY, '1')
-    }
 
     const runIntro = async () => {
       if (reduced) {
@@ -260,9 +227,6 @@ export default function Terminal() {
     }
 
     const run = async () => {
-      await runSysBoot()
-      if (cancelled) return
-      setPhase('intro')
       await runIntro()
       if (cancelled) return
       setPhase('ready')

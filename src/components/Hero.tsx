@@ -1,7 +1,8 @@
-import { lazy, Suspense, useRef } from 'react'
+import { lazy, Suspense, useCallback, useRef, useState } from 'react'
 import { gsap, SplitText, useGSAP } from '../lib/gsap'
 import { profile } from '../data/resume'
 import { useTheme } from '../lib/theme'
+import HeroBootSequence, { BOOT_STORAGE_KEY } from './HeroBootSequence'
 import Terminal from './Terminal'
 
 const FluxField = lazy(() => import('./FluxField'))
@@ -12,6 +13,14 @@ const TERM_WIDTH = 420
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
   const { theme } = useTheme()
+  const [bootDone, setBootDone] = useState(() => {
+    try {
+      return sessionStorage.getItem(BOOT_STORAGE_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
+  const onBootComplete = useCallback(() => setBootDone(true), [])
 
   useGSAP(
     () => {
@@ -105,16 +114,22 @@ export default function Hero() {
 
       <div className="hero-term pointer-events-auto relative z-20 mx-auto mt-auto w-full max-w-[420px] shrink-0 px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] lg:absolute lg:bottom-[clamp(1.5rem,7vh,3.5rem)] lg:left-1/2 lg:w-[420px] lg:max-w-[420px] lg:-translate-x-1/2 lg:px-0 lg:pb-0">
         <div className="hero-term-track w-full">
-          <Terminal />
+          {bootDone ? (
+            <Terminal />
+          ) : (
+            <HeroBootSequence onComplete={onBootComplete} />
+          )}
         </div>
       </div>
 
       <div className="hero-scroll pointer-events-none absolute bottom-[max(2rem,env(safe-area-inset-bottom))] left-1/2 z-30 hidden -translate-x-1/2 lg:block">
-        <div className="flex flex-col items-center gap-2">
-          <span className="font-mono text-[10px] tracking-[0.3em] text-bone-dim uppercase">Scroll</span>
+        <div className="relative">
           <div className="h-10 w-px overflow-hidden bg-bone/15">
             <div className="h-1/2 w-full animate-[scrolldown_1.6s_ease-in-out_infinite] bg-ember" />
           </div>
+          <span className="absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] tracking-[0.3em] text-bone-dim uppercase">
+            Scroll
+          </span>
         </div>
       </div>
 
