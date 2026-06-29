@@ -8,7 +8,7 @@ export const profile = {
   email: 'bishesh.sunam@gmail.com',
   phone: '022-405-0486',
   linkedin: 'https://linkedin.com/in/bishesh-sunam-89a807115',
-  github: 'https://github.com/bisheshsunam',
+  github: 'https://github.com/Bishesh58',
   yearsExperience: '4+',
   summary:
     'Full Stack Developer with 4+ years of experience turning complex business problems into fast, scalable software. From ERP integrations and real-time dashboards to full SaaS platforms shipped solo — I own the entire stack, from wireframe to production.',
