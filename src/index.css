@@ -1422,3 +1422,53 @@ html.light .grain::before {
   font-size: 0.7rem;
   color: var(--color-bone-dim);
 }
+
+/* error-boundary fallback */
+.os-fallback {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: var(--color-os-bg);
+  color: var(--color-bone);
+  font-family: var(--font-mono);
+}
+
+.os-fallback-card {
+  width: min(92vw, 460px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--color-surface-1);
+  padding: 2rem;
+}
+
+.os-fallback-brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: var(--color-bone-dim);
+}
+
+.os-fallback-name {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  color: var(--color-bone);
+}
+
+.os-fallback-role {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-bone-dim);
+}
+
+.os-fallback-links {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+}
+
+.os-fallback-links a {
+  font-size: 0.85rem;
+  color: var(--color-ember);
+}
