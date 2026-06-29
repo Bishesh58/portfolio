@@ -1472,3 +1472,41 @@ html.light .grain::before {
   font-size: 0.85rem;
   color: var(--color-ember);
 }
+
+/* app content helpers */
+.os-row {
+  transition: background 0.18s ease;
+  background: transparent;
+  cursor: pointer;
+}
+
+.os-row:hover,
+.os-row:focus-visible {
+  background: var(--border-soft);
+  outline: none;
+}
+
+.os-token {
+  display: inline-block;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--color-bone-dim);
+}
+
+.os-back {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-bone-dim);
+  transition: color 0.18s ease;
+}
+
+.os-back:hover {
+  color: var(--color-ember);
+}
