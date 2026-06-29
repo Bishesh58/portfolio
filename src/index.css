@@ -1543,3 +1543,192 @@ html.light .grain::before {
   background: var(--color-ember);
   color: var(--color-os-bg);
 }
+
+/* ============================================================
+   PHONE OS (mobile)
+   ============================================================ */
+.phone-os {
+  position: relative;
+  min-height: 100svh;
+}
+
+.phone-wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--color-os-bg);
+}
+
+.phone-statusbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: max(0.5rem, env(safe-area-inset-top)) 1rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-bone-dim);
+}
+
+.phone-brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--color-bone);
+}
+
+.phone-time {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.phone-status-btn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border-soft);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--color-bone-dim);
+}
+
+.phone-home {
+  position: relative;
+  z-index: 10;
+  padding: 1.5rem 1.25rem max(2rem, env(safe-area-inset-bottom));
+}
+
+.phone-hero {
+  margin: 1.75rem 0 2.25rem;
+}
+
+.phone-hero-name {
+  font-family: var(--font-sans);
+  font-size: 1.9rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-bone);
+}
+
+.phone-hero-role {
+  margin-top: 0.3rem;
+  font-family: var(--font-mono);
+  color: var(--color-ember);
+}
+
+.phone-hero-status {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-bone-dim);
+}
+
+.phone-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  box-shadow: 0 0 8px var(--color-ember);
+}
+
+.phone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+}
+
+.phone-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 0.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.phone-tile-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border: 1px solid;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--color-surface-2) 80%, transparent);
+  backdrop-filter: blur(6px);
+  transition: transform 0.12s ease;
+}
+
+.phone-tile:active .phone-tile-icon {
+  transform: scale(0.93);
+}
+
+.phone-tile-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-bone-dim);
+}
+
+.phone-hint {
+  margin-top: 2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--color-bone-dim);
+  opacity: 0.6;
+}
+
+.phone-app {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-os-bg);
+}
+
+.phone-appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: max(0.5rem, env(safe-area-inset-top)) 0.75rem 0.6rem;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--color-surface-2);
+}
+
+.phone-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-bone-dim);
+}
+
+.phone-appbar-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.phone-app-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  color: var(--color-bone);
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
