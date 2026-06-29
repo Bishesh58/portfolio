@@ -1065,3 +1065,121 @@ html.light .grain::before {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   OS SHELL
+   ============================================================ */
+.os-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--color-surface-1);
+  box-shadow: 0 24px 70px -28px rgba(0, 0, 0, 0.8);
+  font-family: var(--font-sans);
+  animation: os-window-in 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes os-window-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.os-window:focus-visible {
+  outline: none;
+}
+
+.os-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  user-select: none;
+  background: var(--color-surface-2);
+  border-bottom: 1px solid var(--border-soft);
+  border-top: 2px solid var(--accent, var(--color-ember));
+}
+
+.os-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.os-traffic {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.os-dot {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  color: rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+  padding: 0;
+}
+
+.os-dot > svg {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.os-titlebar:hover .os-dot > svg,
+.os-dot:focus-visible > svg {
+  opacity: 1;
+}
+
+.os-dot--close {
+  background: #ff5f57;
+}
+.os-dot--min {
+  background: #febc2e;
+}
+.os-dot--max {
+  background: #28c840;
+}
+
+.os-path {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--color-bone-dim);
+}
+
+.os-status {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--color-ember);
+  opacity: 0.75;
+}
+
+.os-window-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  color: var(--color-bone);
+}
