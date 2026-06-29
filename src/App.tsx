@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
-import Lenis from 'lenis'
 import { gsap, ScrollTrigger } from './lib/gsap'
-import { setLenis } from './lib/scroll'
 import Cursor from './components/Cursor'
 import CommandPalette from './components/CommandPalette'
 import MatrixScrollProgress from './components/matrix/MatrixScrollProgress'
@@ -18,27 +16,6 @@ import Contact from './components/Contact'
 
 export default function App() {
   const [paletteOpen, setPaletteOpen] = useState(false)
-
-  useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const touchLike = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches
-
-    if (reduced || touchLike) {
-      setLenis(null)
-      return
-    }
-
-    const lenis = new Lenis({ lerp: 0.1, anchors: true })
-    setLenis(lenis)
-    lenis.on('scroll', ScrollTrigger.update)
-    const raf = (time: number) => lenis.raf(time * 1000)
-    gsap.ticker.add(raf)
-    return () => {
-      gsap.ticker.remove(raf)
-      lenis.destroy()
-      setLenis(null)
-    }
-  }, [])
 
   useEffect(() => {
     gsap.ticker.lagSmoothing(0)
