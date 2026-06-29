@@ -1183,3 +1183,132 @@ html.light .grain::before {
   overflow: auto;
   color: var(--color-bone);
 }
+
+/* menu bar */
+.os-menubar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.9rem;
+  background: color-mix(in srgb, var(--color-os-bg) 72%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-soft);
+  font-family: var(--font-mono);
+}
+
+.os-menubar-left,
+.os-menubar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.os-wordmark {
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  color: var(--color-bone);
+}
+
+.os-menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.55rem;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--color-bone-dim);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.os-menu-item:hover {
+  color: var(--color-ember);
+  background: var(--border-soft);
+}
+
+.os-kbd {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 0.25rem;
+  font-size: 0.6rem;
+}
+
+.os-clock {
+  font-size: 0.7rem;
+  color: var(--color-bone-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* dock */
+.os-dock {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--color-surface-2) 82%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.os-dock-item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 11px;
+  background: transparent;
+  cursor: pointer;
+  transform-origin: bottom center;
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.2s ease;
+}
+
+.os-dock-item:hover {
+  background: var(--border-soft);
+  transform: scale(1.45) translateY(-4px);
+}
+
+.os-dock-item:hover + .os-dock-item,
+.os-dock-item:has(+ .os-dock-item:hover) {
+  transform: scale(1.2) translateY(-2px);
+}
+
+.os-dock-item.is-focused {
+  background: var(--border-soft);
+}
+
+.os-dock-dot {
+  position: absolute;
+  bottom: -2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.os-dock-dot.is-open {
+  background: currentColor;
+}
