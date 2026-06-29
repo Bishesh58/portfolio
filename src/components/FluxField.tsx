@@ -225,9 +225,14 @@ function createMatrixCols(w: number, mobile: boolean): MatrixCol[] {
   }))
 }
 
-export default function FluxField({ theme }: { theme: Theme }) {
+export default function FluxField({ theme, dim = 0.5 }: { theme: Theme; dim?: number }) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const themeRef = useRef<Theme>(theme)
+
+  useEffect(() => {
+    themeRef.current = theme
+  }, [theme])
 
   useEffect(() => {
     const wrap = wrapRef.current
@@ -249,12 +254,14 @@ export default function FluxField({ theme }: { theme: Theme }) {
     let swarm: Sentinel[] = []
     let pulses: Pulse[] = []
     let matrixCols: MatrixCol[] = []
+    let drawOrder: number[] = []
 
     const spawn = (count: number) => {
       swarm = Array.from({ length: count }, () =>
         createSentinel(Math.random() * width, Math.random() * height),
       )
       pulses = []
+      drawOrder = swarm.map((_, i) => i).sort((a, b) => swarm[a].size - swarm[b].size)
     }
 
     const layout = () => {
@@ -268,7 +275,7 @@ export default function FluxField({ theme }: { theme: Theme }) {
       canvas.style.height = `${height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       const mobile = width < 640
-      const count = mobile ? 70 : width < 1024 ? 130 : 190
+      const count = mobile ? 45 : width < 1024 ? 80 : 110
       spawn(count)
       matrixCols = createMatrixCols(width, mobile)
     }
@@ -285,7 +292,7 @@ export default function FluxField({ theme }: { theme: Theme }) {
       ripple.active = false
     }
 
-    const drawMatrixLayer = (palette: Palette) => {
+    const drawMatrixLayer = (palette: Palette, dt: number) => {
       const rowH = 13
       ctx.font = '11px "JetBrains Mono", monospace'
       ctx.textAlign = 'center'
@@ -302,7 +309,7 @@ export default function FluxField({ theme }: { theme: Theme }) {
       }
 
       for (const col of matrixCols) {
-        col.y += col.speed
+        col.y += col.speed * dt
         if (col.y - col.len * rowH > height + 40) {
           col.y = -col.len * rowH - Math.random() * 120
           col.speed = 0.35 + Math.random() * 0.85
@@ -332,7 +339,7 @@ export default function FluxField({ theme }: { theme: Theme }) {
       }
     }
 
-    const updateSentinel = (s: Sentinel, i: number) => {
+    const updateSentinel = (s: Sentinel, i: number, dt: number) => {
       const curlA = curlField(noise, s.x, s.y, time + s.phase * 600, 0.0032)
       const curlB = curlField(noise, s.x + 80, s.y - 40, time * 1.2 + s.phase * 400, 0.0065)
       const orbit = time * 0.0007 + s.phase
@@ -362,8 +369,8 @@ export default function FluxField({ theme }: { theme: Theme }) {
 
       s.svx = lerp(s.svx, s.vx, 0.06)
       s.svy = lerp(s.svy, s.vy, 0.06)
-      s.x += s.svx
-      s.y += s.svy
+      s.x += s.svx * dt
+      s.y += s.svy * dt
 
       if (s.x < -30) s.x = width + 30
       if (s.x > width + 30) s.x = -30
@@ -488,15 +495,15 @@ export default function FluxField({ theme }: { theme: Theme }) {
       ctx.shadowBlur = 0
     }
 
-    const draw = () => {
-      const palette = PALETTE[theme]
-      time += 16
+    const draw = (dt: number) => {
+      const palette = PALETTE[themeRef.current]
+      time += 16 * dt
       if (ripple.active) ripple.r = Math.min(ripple.r + 2.2, 140)
 
       ctx.fillStyle = palette.fade
       ctx.fillRect(0, 0, width, height)
 
-      drawMatrixLayer(palette)
+      drawMatrixLayer(palette, dt)
 
       if (ripple.active && ripple.r > 0) {
         const g = ctx.createRadialGradient(ripple.x, ripple.y, 0, ripple.x, ripple.y, ripple.r)
@@ -506,7 +513,7 @@ export default function FluxField({ theme }: { theme: Theme }) {
         ctx.fillRect(0, 0, width, height)
       }
 
-      for (let i = 0; i < swarm.length; i++) updateSentinel(swarm[i], i)
+      for (let i = 0; i < swarm.length; i++) updateSentinel(swarm[i], i, dt)
 
       const linkDist = width < 768 ? 52 : 64
       const grid = new Map<string, number[]>()
@@ -573,19 +580,21 @@ export default function FluxField({ theme }: { theme: Theme }) {
         ctx.shadowBlur = 0
       }
 
-      const order = swarm.map((s, i) => ({ s, i })).sort((a, b) => a.s.size - b.s.size)
-      for (const { s, i } of order) drawSentinel(s, palette, i)
+      for (const i of drawOrder) drawSentinel(swarm[i], palette, i)
     }
 
     const drawStatic = () => {
-      const palette = PALETTE[theme]
+      const palette = PALETTE[themeRef.current]
       ctx.clearRect(0, 0, width, height)
-      drawMatrixLayer(palette)
+      drawMatrixLayer(palette, 1)
       swarm.forEach((s, i) => drawSentinel(s, palette, i))
     }
 
-    const loop = () => {
-      if (visible && !reduced) draw()
+    let last = 0
+    const loop = (t: number) => {
+      const dt = last ? Math.min((t - last) / 16.667, 2) : 1
+      last = t
+      if (visible && !reduced && !document.hidden) draw(dt)
       raf = requestAnimationFrame(loop)
     }
 
@@ -614,10 +623,10 @@ export default function FluxField({ theme }: { theme: Theme }) {
       window.removeEventListener('resize', onResize)
       io.disconnect()
     }
-  }, [theme])
+  }, [])
 
   return (
-    <div ref={wrapRef} className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.72]">
+    <div ref={wrapRef} className="pointer-events-none absolute inset-0 overflow-hidden" style={{ opacity: dim }}>
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0" aria-hidden />
     </div>
   )

@@ -1312,3 +1312,113 @@ html.light .grain::before {
 .os-dock-dot.is-open {
   background: currentColor;
 }
+
+/* desktop + wallpaper */
+.os-desktop {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.os-wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--color-os-bg);
+}
+
+/* boot */
+.os-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  background: var(--color-os-bg);
+  font-family: var(--font-mono);
+}
+
+.os-boot-inner {
+  width: min(90vw, 520px);
+}
+
+.os-boot-brand {
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.18em;
+  color: var(--color-bone);
+}
+
+.os-boot-line {
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: var(--color-ember);
+}
+
+/* launcher */
+.os-launcher-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 14vh;
+  background: color-mix(in srgb, var(--color-os-bg) 60%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.os-launcher {
+  width: min(92vw, 520px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--color-surface-1);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  animation: os-window-in 0.22s ease;
+}
+
+.os-launcher-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-bone-dim);
+}
+
+.os-launcher-list {
+  max-height: 50vh;
+  overflow: auto;
+  padding: 0.4rem;
+}
+
+.os-launcher-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-bone);
+}
+
+.os-launcher-item:hover,
+.os-launcher-item:focus-visible {
+  outline: none;
+  background: var(--border-soft);
+  color: var(--color-ember);
+}
+
+.os-launcher-hint {
+  font-size: 0.7rem;
+  color: var(--color-bone-dim);
+}
