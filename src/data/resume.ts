@@ -11,112 +11,180 @@ export const profile = {
   github: 'https://github.com/Bishesh58',
   yearsExperience: '4+',
   summary:
-    'Full Stack Developer with 4+ years of experience turning complex business problems into fast, scalable software. From ERP integrations and real-time dashboards to full SaaS platforms shipped solo — I own the entire stack, from wireframe to production.',
+    'Full Stack Developer with 4+ years turning complex business problems into fast, scalable software. From ERP integrations and real-time dashboards to full SaaS platforms shipped solo — I own the entire stack, from wireframe to production.',
   availability: 'Open to new opportunities',
 }
 
 export const stats = [
-  { value: 4, suffix: '+', label: 'Years of experience' },
+  { value: 4, suffix: '+', label: 'Years shipping production software' },
   { value: 12, suffix: '+', label: 'Production apps shipped' },
   { value: 15, suffix: '+', label: 'APIs & systems integrated' },
-  { value: 100, suffix: '%', label: 'Ownership, end to end' },
+  { value: 4, suffix: '', label: 'Brands I build for' },
 ]
 
 export interface Project {
   index: string
   title: string
   category: string
-  description: string
-  impact: string
+  role: string
+  period: string
+  featured: boolean
+  /** the situation before the work */
+  problem: string
+  /** what I built and how */
+  approach: string
+  /** the result, framed honestly */
+  outcome: string
+  /** quantified result — placeholder until a real figure is supplied */
+  metric?: string
   tech: string[]
-  hue: number
+  /** signature accent hue (hex), spread across the wheel for visual hierarchy */
+  accent: string
+  /** client/employer work that can't expose source or live URLs */
+  nda?: boolean
   link?: string
   repo?: string
+  /** screenshot path under /public; a graceful placeholder renders if absent */
   image?: string
 }
 
 export const projects: Project[] = [
   {
     index: '01',
-    title: 'NetSuite SPA Dashboard',
-    category: 'ERP / Sales Engineering',
-    description:
-      'A single-page application living inside NetSuite, featuring proposal-pipeline Kanban boards that gave the sales team a live, drag-and-drop view of every deal in motion.',
-    impact: 'Streamlined sales workflows and cut proposal-tracking overhead across the team.',
-    tech: ['SuiteScript', 'JavaScript', 'NetSuite', 'Kanban UX'],
-    hue: 120,
+    title: 'Subscription SaaS Platform',
+    category: 'Full Product Build',
+    role: 'Sole engineer — wireframe to production',
+    period: '2022',
+    featured: true,
+    accent: '#37e0c8',
+    nda: true,
+    problem:
+      'A subscription product needed to go from wireframes to a revenue-ready platform — auth, billing, real-time data and transactional email — on a tight deadline, with one engineer.',
+    approach:
+      'Designed and shipped the full stack solo: a Vue.js front end on Firebase/Firestore real-time services, Cloud Functions, SendGrid for transactional email, and production deployment + domain/cloud setup on GCP.',
+    outcome: 'Delivered a complete, revenue-ready SaaS platform solo — ahead of schedule.',
+    metric: 'TODO: e.g. “launched N weeks early · first N paying subscribers”',
+    tech: ['Vue.js', 'Node.js', 'Firebase', 'Firestore', 'Cloud Functions', 'SendGrid', 'GCP'],
   },
   {
     index: '02',
-    title: 'Admin Dashboard Portal',
-    category: 'Internal Platform',
-    description:
-      'A role-based command centre unifying KPIs, dashboards and deep integrations with NetSuite and third-party APIs like AskNicely and BWare — one login for every internal tool.',
-    impact: 'Centralised internal tool management for the entire organisation.',
-    tech: ['Vue.js', 'Laravel', 'MySQL', 'REST APIs', 'RBAC'],
-    hue: 130,
+    title: 'NetSuite SPA Dashboard',
+    category: 'ERP / Sales Engineering',
+    role: 'Sole developer',
+    period: '2023 — Present',
+    featured: true,
+    accent: '#00ff66',
+    nda: true,
+    problem:
+      'The sales team tracked proposals across spreadsheets and email, with no live view of the pipeline inside the ERP they already worked in every day.',
+    approach:
+      'Built a single-page application embedded inside NetSuite with SuiteScript — proposal-pipeline Kanban boards that read and write live deal records with drag-and-drop.',
+    outcome: 'Gave sales one live, drag-and-drop view of every deal in motion and cut proposal-tracking overhead.',
+    metric: 'TODO: e.g. “— hrs/week saved across the sales team”',
+    tech: ['SuiteScript', 'JavaScript', 'NetSuite', 'Kanban UX'],
   },
   {
     index: '03',
-    title: 'Marketing Analytics Dashboard',
-    category: 'Data Visualisation',
-    description:
-      'Aggregates Google Analytics, Search Console and website lead data into one decision-making surface — charts, tables and KPIs that marketing actually reads.',
-    impact: 'Turned scattered analytics into a single source of truth for marketing decisions.',
-    tech: ['Vue.js', 'GA4 API', 'Search Console API', 'Charts'],
-    hue: 140,
+    title: 'Admin Dashboard Portal',
+    category: 'Internal Platform',
+    role: 'Full-stack developer',
+    period: '2023 — Present',
+    featured: true,
+    accent: '#5aa9ff',
+    nda: true,
+    problem:
+      'Internal tools and KPIs were scattered across systems with separate logins — no single place for the org to manage and see everything.',
+    approach:
+      'Built a role-based command centre (Vue + Laravel + MySQL) unifying KPIs and dashboards with deep integrations into NetSuite and third-party APIs like AskNicely and BWare — one login, RBAC throughout.',
+    outcome: 'Centralised internal tool management for the entire organisation behind a single, role-aware login.',
+    metric: 'TODO: e.g. “N internal tools / N teams unified”',
+    tech: ['Vue.js', 'Laravel', 'MySQL', 'REST APIs', 'RBAC'],
   },
   {
     index: '04',
-    title: 'Subscription SaaS Platform',
-    category: 'Full Product Build',
-    description:
-      'A complete subscription-based SaaS platform built from wireframes to production: auth, billing, real-time data, transactional email — shipped ahead of deadline.',
-    impact: 'Delivered a revenue-ready platform solo, ahead of schedule.',
-    tech: ['Vue.js', 'Node.js', 'Firebase', 'Firestore', 'SendGrid', 'GCP'],
-    hue: 125,
+    title: 'Marketing Analytics Dashboard',
+    category: 'Data Visualisation',
+    role: 'Full-stack developer',
+    period: '2023 — Present',
+    featured: true,
+    accent: '#ffb347',
+    nda: true,
+    problem:
+      'Marketing decisions were made from analytics scattered across Google Analytics, Search Console and website lead data — no single decision-making surface.',
+    approach:
+      'Aggregated GA4, Search Console and lead data through their APIs into one Vue dashboard — charts, tables and KPIs designed to be read at a glance.',
+    outcome: 'Turned scattered analytics into a single source of truth marketing actually reads.',
+    metric: 'TODO: e.g. “N data sources unified · reporting time cut by —”',
+    tech: ['Vue.js', 'GA4 API', 'Search Console API', 'Charts'],
   },
   {
     index: '05',
     title: 'Credit Control Application',
     category: 'FinOps Tooling',
-    description:
-      'An internal system managing end-to-end credit workflows — approvals, tracking and reporting — replacing spreadsheets with structured, auditable process.',
-    impact: 'Improved financial tracking and reporting efficiency company-wide.',
+    role: 'Full-stack developer',
+    period: '2023 — Present',
+    featured: true,
+    accent: '#b98cff',
+    nda: true,
+    problem:
+      'Credit workflows — approvals, tracking and reporting — ran on spreadsheets, with no structured or auditable process.',
+    approach:
+      'Built an internal system (Vue + Laravel + MySQL) with a workflow engine managing the end-to-end credit lifecycle: approvals, tracking and reporting, with an audit trail.',
+    outcome: 'Replaced spreadsheets with a structured, auditable process and improved financial tracking company-wide.',
+    metric: 'TODO: e.g. “DSO reduced by — · N approvals/month automated”',
     tech: ['Vue.js', 'Laravel', 'MySQL', 'Workflow Engine'],
-    hue: 115,
   },
   {
     index: '06',
-    title: 'Warehouse Metrics Dashboard',
-    category: 'Operations Intelligence',
-    description:
-      'Multi-branch KPI dashboards tracking operational performance in real time — picking, packing, throughput — across every warehouse location.',
-    impact: 'Streamlined warehouse reporting across all branches.',
-    tech: ['Vue.js', 'NetSuite', 'SQL', 'Data Viz'],
-    hue: 155,
+    title: '2D Educational Game — Māori Culture',
+    category: 'Game Development',
+    role: 'Designer & developer',
+    period: '2020',
+    featured: true,
+    accent: '#f25c9c',
+    nda: true,
+    problem:
+      'International students needed an engaging, interactive way to learn about Māori culture — not another slide deck.',
+    approach:
+      'Designed and built a Unity 2D educational game in C# — game mechanics, interactive elements, animations, and custom visual/audio assets, optimised for smooth cross-device play.',
+    outcome: 'Made cultural education genuinely interactive and engaging for international students.',
+    metric: 'TODO: e.g. “used by N students / cohorts”',
+    tech: ['Unity', 'C#', '2D Animation', 'Game Design'],
   },
   {
     index: '07',
-    title: '2D Educational Game — Māori Culture',
-    category: 'Game Development',
-    description:
-      'A Unity-based 2D educational game introducing Māori culture to international students — custom assets, animations, and smooth performance across devices.',
-    impact: 'Made cultural education engaging and interactive for international students.',
-    tech: ['Unity', 'C#', '2D Animation', 'Game Design'],
-    hue: 135,
+    title: 'Warehouse Metrics Dashboard',
+    category: 'Operations Intelligence',
+    role: 'Full-stack developer',
+    period: '2023 — Present',
+    featured: false,
+    accent: '#7fd154',
+    nda: true,
+    problem: 'Multi-branch warehouse performance was hard to see in real time across locations.',
+    approach:
+      'Built multi-branch KPI dashboards (Vue + NetSuite + SQL) tracking picking, packing and throughput in real time across every location.',
+    outcome: 'Streamlined warehouse reporting across all branches.',
+    tech: ['Vue.js', 'NetSuite', 'SQL', 'Data Viz'],
   },
   {
     index: '08',
     title: 'Custom Websites & Quote Systems',
     category: 'Web Engineering',
-    description:
-      'Fully custom websites taken from wireframe to production — dynamic quote engines, email integrations, and interactive map-based location services.',
-    impact: 'Improved performance and SEO rankings through deep technical optimisation.',
+    role: 'Developer',
+    period: '2023 — Present',
+    featured: false,
+    accent: '#19b257',
+    nda: true,
+    problem: 'Customer-facing sites needed dynamic quoting, integrations and strong SEO/performance.',
+    approach:
+      'Built fully custom sites from wireframe to production (Nuxt / WordPress / PHP) with dynamic quote engines, email integrations and interactive map-based location services.',
+    outcome: 'Improved performance and SEO rankings through deep technical optimisation.',
     tech: ['Nuxt.js', 'WordPress', 'PHP', 'SEO', 'Maps API'],
-    hue: 145,
   },
 ]
+
+export const featuredProjects = projects.filter((p) => p.featured)
+export const archiveProjects = projects.filter((p) => !p.featured)
 
 export interface Experience {
   period: string
@@ -173,11 +241,11 @@ export const experience: Experience[] = [
 
 export const skills = {
   Languages: ['TypeScript', 'JavaScript', 'C#', 'PHP', 'SQL'],
-  Frontend: ['React', 'Vue', 'Nuxt', 'Tailwind CSS', 'GSAP', 'Three.js'],
+  Frontend: ['React', 'Vue', 'Nuxt', 'Tailwind CSS', 'GSAP', 'Canvas / rAF'],
   Backend: ['Node.js', 'Laravel', '.NET', 'Firebase', 'REST APIs'],
   'Data & Cloud': ['MySQL', 'MongoDB', 'Firestore', 'Google Cloud', 'CI/CD'],
-  'AI & Tooling': ['Cursor', 'Claude', 'Codex', 'Copilot', 'Agentic Workflows'],
-  Systems: ['NetSuite / SuiteScript', 'WordPress', 'ERP Integration', 'SEO'],
+  'AI-augmented delivery': ['Agentic workflows', 'Spec-first delivery', 'AI-assisted review', 'Cursor · Claude · Codex'],
+  Systems: ['NetSuite / SuiteScript', 'WordPress', 'ERP integration', 'SEO'],
 }
 
 export const education = [
@@ -207,7 +275,7 @@ export const awards = [
 ]
 
 export const aiIntro =
-  'AI is part of how I ship — not a gimmick. I run an agentic, spec-first workflow: I set the intent and architecture, then drive AI agents to plan, build, review and test across the whole codebase. The result is the velocity of a small team with the accountability of one engineer.'
+  'AI is part of how I ship — not a gimmick. I run a spec-first, agentic workflow: I set the intent and architecture, then drive AI agents to plan, build, review and test across the whole codebase. The result is the velocity of a small team with the accountability of one engineer.'
 
 export interface AITool {
   name: string
