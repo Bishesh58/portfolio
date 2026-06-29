@@ -1510,3 +1510,36 @@ html.light .grain::before {
 .os-back:hover {
   color: var(--color-ember);
 }
+
+.os-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--color-bone);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.os-cta:hover {
+  border-color: var(--color-ember);
+  color: var(--color-ember);
+  background: var(--border-soft);
+}
+
+.os-cta--primary {
+  border-color: var(--color-ember);
+  color: var(--color-ember);
+}
+
+.os-cta--primary:hover {
+  background: var(--color-ember);
+  color: var(--color-os-bg);
+}
