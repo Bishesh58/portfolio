@@ -5,8 +5,11 @@ import SectionSpy from "@/components/SectionSpy";
 import Marquee from "@/components/Marquee";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
+import Journey from "@/components/sections/Journey";
+import Projects from "@/components/sections/Projects";
 
 const tickerA = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
+const tickerB = ["Dashboards", "ERP Integrations", "Kanban Pipelines", "Data Viz", "APIs", "SEO"];
 
 export default function Home() {
   return (
@@ -20,6 +23,10 @@ export default function Home() {
         <Hero />
         <Marquee items={tickerA} />
         <About />
+        <Marquee items={tickerB} accent="lime" />
+        <Journey />
+        <Marquee items={tickerA} accent="teal" />
+        <Projects />
       </main>
     </>
   );
