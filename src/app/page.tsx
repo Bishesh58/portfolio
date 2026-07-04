@@ -11,6 +11,7 @@ import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import Cursor from "@/components/Cursor";
+import Mascot from "@/components/RobotMascot/Mascot";
 
 const ticker = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
 
@@ -33,6 +34,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <Mascot />
     </>
   );
 }
