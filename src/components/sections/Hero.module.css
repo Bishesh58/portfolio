@@ -1,34 +1,42 @@
-.hero { padding: 150px 0 60px; position: relative; overflow: hidden; }
+.hero { padding: 160px 0 72px; position: relative; overflow: hidden; }
 .grid {
   display: grid;
   grid-template-columns: 1fr 360px;
   align-items: center;
-  gap: clamp(48px, 6vw, 96px);
+  gap: clamp(56px, 7vw, 112px);
+  padding-inline: clamp(32px, 5vw, 56px);
 }
-.left { position: relative; z-index: 2; }
+.left {
+  position: relative;
+  z-index: 2;
+  max-width: 540px;
+  padding-right: clamp(24px, 4vw, 64px);
+}
+.left :global(.eyebrow) {
+  display: block;
+  margin-bottom: 1rem;
+}
 .name {
   font-size: clamp(2.8rem, 6.5vw, 5rem);
   line-height: 1.02;
   letter-spacing: -0.03em;
-  margin: 14px 0 18px;
-}
-.nameMark {
-  background: var(--yellow);
-  color: #111;
-  border: var(--bw) solid var(--ink);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 0 12px;
-  display: inline-block;
+  margin: 0 0 1.5rem;
+  white-space: nowrap;
 }
 .tagline {
   font-family: var(--font-mono-sp), monospace;
   font-weight: 700;
   font-size: 1.15rem;
-  margin-bottom: 14px;
+  margin-bottom: 1.25rem;
 }
-.intro { max-width: 46ch; color: var(--muted); font-size: 1.05rem; line-height: 1.65; margin-bottom: 28px; }
-.socials { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.intro {
+  max-width: 48ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
+}
+.socials { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 0.25rem; }
 .socialBtn {
   display: inline-flex;
   align-items: center;
@@ -43,16 +51,32 @@
 }
 .socialBtn:hover, .socialBtn:focus-visible { background: var(--teal); color: #111; transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
 .socialBtn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
-.right { position: relative; z-index: 1; }
-.portrait {
+.right {
   position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.portrait {
+  width: 100%;
+  position: relative;
+  z-index: 2;
   background: var(--panel);
   border: var(--bw) solid var(--ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 16px 16px 36px;
+  padding: 16px 16px 12px;
 }
-.portrait img { width: 100%; height: auto; }
+.portrait .robotImg { width: 100%; height: auto; display: block; }
+.robotImg {
+  width: 100%;
+  height: auto;
+  transform-origin: right top;
+  transform: rotate(0deg);
+  transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.robotTilted { transform: rotate(-3deg); }
 .tape {
   position: absolute;
   top: -14px;
@@ -63,20 +87,77 @@
   border: 2.5px solid var(--ink);
   z-index: 3;
 }
-.portraitLabel {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%) rotate(1deg);
-  font-family: var(--font-mono-sp), monospace;
-  font-size: 0.75rem;
+/* CV download — inside portrait frame footer */
+.cvCta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 4px 2px 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+}
+.cvArrowGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 1;
+  min-width: 0;
+}
+.cvArrowText {
+  font-family: var(--font-caveat), cursive;
+  font-size: 1.35rem;
   font-weight: 700;
-  background: var(--lime);
-  color: #111;
-  border: 2px solid var(--ink);
-  border-radius: 6px;
-  padding: 2px 10px;
+  color: var(--muted);
   white-space: nowrap;
+  transform: rotate(-2deg);
+  flex-shrink: 0;
+  line-height: 1;
+}
+.cvArrowImg {
+  width: auto;
+  height: 52px;
+  flex-shrink: 0;
+  object-fit: contain;
+  display: block;
+  margin: 0 0 0 -6px;
+  transform: rotate(-8deg);
+}
+.cvBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s ease;
+}
+.cvBtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 48% 52% 50% 50% / 52% 48% 52% 48%;
+  border: var(--bw) solid var(--ink);
+  background: var(--panel);
+  z-index: 0;
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+.cvBtn svg { position: relative; z-index: 1; }
+.cvBtn:hover {
+  transform: translate(-2px, -2px);
+}
+.cvBtn:hover::before {
+  box-shadow: var(--shadow);
+  background: var(--yellow);
 }
 .sticker {
   position: absolute;
@@ -93,11 +174,38 @@
   box-shadow: var(--shadow-sm);
   z-index: 3;
 }
-.stickerCode { top: -26px; right: -10px; background: var(--cobalt); transform: rotate(8deg); }
-.stickerBolt { bottom: 30px; left: -26px; background: var(--teal); transform: rotate(-8deg); }
-.badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 54px; }
+.stickerCode { top: -26px; right: -10px; background: var(--cobalt); transform: rotate(8deg); z-index: 4; }
+
+@media (max-width: 1050px) {
+  .grid {
+    grid-template-columns: 1fr 300px;
+    gap: clamp(40px, 5vw, 72px);
+  }
+}
+
 @media (max-width: 900px) {
-  .hero { padding-top: 120px; }
-  .grid { grid-template-columns: 1fr; gap: 48px; }
-  .right { max-width: 340px; margin: 0 auto; }
+  .hero { padding-top: 128px; padding-bottom: 56px; }
+  .grid { grid-template-columns: 1fr; gap: 48px; padding-inline: 0; }
+  .left { max-width: none; padding-right: 0; }
+  .name { white-space: normal; font-size: clamp(2.4rem, 8vw, 3.2rem); }
+  .tagline { font-size: 1.05rem; }
+  .intro { font-size: 1rem; }
+  .right { max-width: min(340px, 100%); margin: 0 auto; width: 100%; }
+  .cvArrowText { font-size: 1.2rem; }
+  .cvArrowImg { height: 44px; max-width: 110px; }
+  .cvBtn { width: 40px; height: 40px; }
+  .stickerCode { right: 0; top: -20px; width: 54px; height: 54px; font-size: 1.1rem; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding-top: 108px; padding-bottom: 40px; }
+  .grid { gap: 40px; }
+  .name { font-size: clamp(2rem, 9vw, 2.6rem); }
+  .tagline { font-size: 0.95rem; }
+  .intro { font-size: 0.95rem; margin-bottom: 1.75rem; }
+  .socialBtn { width: 44px; height: 44px; }
+  .portrait { padding: 12px 12px 10px; }
+  .cvArrowText { font-size: 1.05rem; }
+  .cvArrowImg { height: 38px; max-width: 90px; }
+  .tape { width: 100px; height: 24px; }
 }

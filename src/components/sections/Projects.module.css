@@ -3,8 +3,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-}
-.projectCard {
+}.projectCard {
   padding: 0;
   overflow: hidden;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
@@ -34,4 +33,15 @@
 .title { font-size: 1.3rem; margin-bottom: 10px; }
 .impact { color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-@media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 820px) {
+  .grid { grid-template-columns: 1fr; }
+  .note { margin: -16px 0 28px; font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .cardBody { padding: 18px 16px 22px; }
+  .title { font-size: 1.15rem; }
+  .impact { font-size: 0.95rem; }
+  .cardTop { padding: 8px 14px; }
+}

@@ -1,0 +1,24 @@
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.eyelid {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: robotBlink 3s linear infinite;
+}
+.eyelid:nth-child(4) {
+  animation-delay: 0.04s;
+}
+.screenText {
+  fill: #111;
+  font-family: var(--font-caveat), cursive;
+  font-size: 27px;
+  font-weight: 700;
+  pointer-events: none;
+}
+@keyframes robotBlink {
+  0%, 95%, 97.67%, 100% { transform: scaleY(0); }
+  96.33% { transform: scaleY(1); }
+}

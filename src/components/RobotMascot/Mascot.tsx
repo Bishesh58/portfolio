@@ -24,6 +24,7 @@ export default function Mascot() {
   const pose: Pose = reduced ? "idle" : poseBySection[section];
 
   const [mounted, setMounted] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const [bubble, setBubble] = useState<string | null>(null);
   const shownSections = useRef(new Set<SectionId>());
   const lastBubbleAt = useRef(0);
@@ -38,7 +39,26 @@ export default function Mascot() {
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
-    if (reduced) return;
+    const SCROLL_THRESHOLD = 24;
+
+    const onScroll = () => {
+      if (window.scrollY > SCROLL_THRESHOLD) {
+        setHasScrolled(true);
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+
+    if (window.scrollY > SCROLL_THRESHOLD) {
+      setHasScrolled(true);
+      return;
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (reduced || !hasScrolled) return;
     const onMove = (e: MouseEvent) => {
       const el = svgRef.current;
       if (!el) return;
@@ -54,11 +74,11 @@ export default function Mascot() {
     };
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, [reduced, px, py]);
+  }, [reduced, hasScrolled, px, py]);
 
   // Quips: once per section, 8s cooldown, 4.5s auto-dismiss
   useEffect(() => {
-    if (reduced || !mounted) return;
+    if (reduced || !mounted || !hasScrolled) return;
     if (window.innerWidth < 480) return;
     if (shownSections.current.has(section)) return;
     const now = Date.now();
@@ -70,26 +90,61 @@ export default function Mascot() {
     setBubble(text);
     const t = setTimeout(() => setBubble(null), 4500);
     return () => clearTimeout(t);
-  }, [section, reduced, mounted]);
+  }, [section, reduced, mounted, hasScrolled]);
 
-  if (!mounted) return null;
+  if (!mounted || !hasScrolled) return null;
 
-  const leftArmAnimate =
-    pose === "wave"
-      ? { rotate: [0, -35, 0, -35, 0], transition: { duration: 1.6, repeat: Infinity, repeatDelay: 2.2 } }
-      : pose === "type"
-        ? { rotate: 28, y: [0, 2, 0], transition: { y: { duration: 0.35, repeat: Infinity } } }
-        : { rotate: 0 };
-
-  const rightArmAnimate =
+  const leftShoulderAnimate =
     pose === "type"
-      ? { rotate: -28, y: [0, -2, 0], transition: { y: { duration: 0.35, repeat: Infinity, delay: 0.15 } } }
-      : pose === "wrench" || pose === "mail"
-        ? { rotate: -55 }
-        : { rotate: 0 };
+      ? {
+          rotate: 28,
+          y: [0, 2, 0],
+          transition: { y: { duration: 0.35, repeat: Infinity } },
+        }
+      : { rotate: 0 };
+
+  const leftHandAnimate = { rotate: 0 };
+
+  const rightShoulderAnimate =
+    pose === "wave"
+      ? {
+          rotate: [-92, -80, -92, -104, -92],
+          transition: {
+            duration: 1,
+            repeat: Infinity,
+            repeatDelay: 1.4,
+            ease: "easeInOut" as const,
+          },
+        }
+      : pose === "idle"
+        ? {
+            rotate: [0, 0, -92, -80, -92, -104, -92, 0],
+            transition: {
+              duration: 5,
+              repeat: Infinity,
+              times: [0, 0.6, 0.66, 0.72, 0.78, 0.84, 0.9, 1],
+              ease: "easeInOut" as const,
+            },
+          }
+      : pose === "type"
+        ? {
+            rotate: -28,
+            y: [0, -2, 0],
+            transition: { y: { duration: 0.35, repeat: Infinity, delay: 0.15 } },
+          }
+        : pose === "wrench" || pose === "mail"
+          ? { rotate: -55 }
+          : { rotate: 0 };
+
+  const rightHandAnimate = { rotate: 0 };
 
   return (
-    <div className={styles.mascot}>
+    <motion.div
+      className={styles.mascot}
+      initial={reduced ? false : { opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+    >
       <AnimatePresence>
         {bubble && (
           <motion.div
@@ -156,27 +211,43 @@ export default function Mascot() {
         <path d="M52 84 h16 l-3 14 h-10 z" fill="var(--lime)" stroke="var(--ink)" strokeWidth="3" />
 
         {/* left arm (viewer's left) — shoulder pivot at (36,78) */}
-        <motion.g animate={leftArmAnimate} style={{ originX: "36px", originY: "78px" }}>
+        <motion.g
+          animate={leftShoulderAnimate}
+          style={{ transformOrigin: "36px 78px", transformBox: "fill-box" }}
+        >
           <rect x="18" y="74" width="20" height="9" rx="4.5" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3" />
-          <circle cx="16" cy="78" r="6" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3" />
+          <motion.g
+            animate={leftHandAnimate}
+            style={{ transformOrigin: "18px 78px", transformBox: "fill-box" }}
+          >
+            <circle cx="16" cy="78" r="6" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3" />
+          </motion.g>
         </motion.g>
 
         {/* right arm — shoulder pivot at (84,78) */}
-        <motion.g animate={rightArmAnimate} style={{ originX: "84px", originY: "78px" }}>
+        <motion.g
+          animate={rightShoulderAnimate}
+          style={{ transformOrigin: "84px 78px", transformBox: "fill-box" }}
+        >
           <rect x="82" y="74" width="20" height="9" rx="4.5" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3" />
-          <circle cx="104" cy="78" r="6" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3" />
-          {pose === "wrench" && (
-            <g>
-              <rect x="100" y="62" width="6" height="18" rx="2" fill="var(--teal)" stroke="var(--ink)" strokeWidth="2.5" />
-              <circle cx="103" cy="60" r="5" fill="none" stroke="var(--ink)" strokeWidth="3" />
-            </g>
-          )}
-          {pose === "mail" && (
-            <g>
-              <rect x="96" y="58" width="20" height="14" rx="2" fill="var(--yellow)" stroke="var(--ink)" strokeWidth="2.5" />
-              <path d="M96 58 l10 8 l10 -8" fill="none" stroke="var(--ink)" strokeWidth="2" />
-            </g>
-          )}
+          <motion.g
+            animate={rightHandAnimate}
+            style={{ transformOrigin: "104px 78px", transformBox: "fill-box" }}
+          >
+            <circle cx="104" cy="78" r="6" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3" />
+            {pose === "wrench" && (
+              <g>
+                <rect x="100" y="62" width="6" height="18" rx="2" fill="var(--teal)" stroke="var(--ink)" strokeWidth="2.5" />
+                <circle cx="103" cy="60" r="5" fill="none" stroke="var(--ink)" strokeWidth="3" />
+              </g>
+            )}
+            {pose === "mail" && (
+              <g>
+                <rect x="96" y="58" width="20" height="14" rx="2" fill="var(--yellow)" stroke="var(--ink)" strokeWidth="2.5" />
+                <path d="M96 58 l10 8 l10 -8" fill="none" stroke="var(--ink)" strokeWidth="2" />
+              </g>
+            )}
+          </motion.g>
         </motion.g>
 
         {/* laptop for typing pose */}
@@ -190,6 +261,6 @@ export default function Mascot() {
         {/* base */}
         <rect x="42" y="114" width="36" height="10" rx="5" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3" />
       </svg>
-    </div>
+    </motion.div>
   );
 }

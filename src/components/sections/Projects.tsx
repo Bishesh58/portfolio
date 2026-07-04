@@ -2,16 +2,14 @@
 
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
-import SectionTitle from "@/components/SectionTitle";
-import GhostNumber from "@/components/GhostNumber";
+import SectionHeader from "@/components/SectionHeader";
 import styles from "./Projects.module.css";
 
 export default function Projects() {
   return (
     <section className="section" id="projects" data-section="projects">
       <div className="container">
-        <GhostNumber n="03" />
-        <SectionTitle text="PROJECTS" />
+        <SectionHeader n="03" title="PROJECTS" />
         <p className={`eyebrow ${styles.note}`}>
           // internal tools shipped at the Islington group — no public links, real impact
         </p>

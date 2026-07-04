@@ -50,4 +50,55 @@
   margin-bottom: 10px;
 }
 .summary { line-height: 1.7; }
-.tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 28px;
+    gap: 28px;
+  }
+
+  .dot {
+    left: -28px;
+    top: 22px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .entryCard {
+    padding: 20px 18px;
+  }
+
+  .title {
+    font-size: 1.12rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline {
+    padding-left: 24px;
+    gap: 24px;
+  }
+
+  .timeline::before {
+    left: 6px;
+  }
+
+  .dot {
+    left: -24px;
+    top: 20px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .entryCard {
+    padding: 18px 16px;
+  }
+
+  .date {
+    font-size: 0.75rem;
+  }
+
+  .summary {
+    font-size: 0.95rem;
+  }
+}

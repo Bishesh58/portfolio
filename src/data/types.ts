@@ -19,7 +19,6 @@ export interface TimelineEntry {
   end: string;
   location?: string;
   summary: string;
-  tech?: string[];
 }
 
 export interface Project {
@@ -29,10 +28,15 @@ export interface Project {
   accent: Accent;
 }
 
+export interface Skill {
+  name: string;
+  icon: string;
+}
+
 export interface SkillGroup {
   label: string;
   accent: Accent;
-  skills: string[];
+  skills: Skill[];
 }
 
 export interface Resume {

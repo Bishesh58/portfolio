@@ -2,16 +2,14 @@
 
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
-import SectionTitle from "@/components/SectionTitle";
-import GhostNumber from "@/components/GhostNumber";
+import SectionHeader from "@/components/SectionHeader";
 import styles from "./About.module.css";
 
 export default function About() {
   return (
     <section className="section" id="about" data-section="about">
       <div className="container">
-        <GhostNumber n="01" />
-        <SectionTitle text="ABOUT" />
+        <SectionHeader n="01" title="ABOUT" />
         <motion.div
           className={`card ${styles.aboutCard}`}
           initial={{ opacity: 0, y: 40, rotate: -1 }}

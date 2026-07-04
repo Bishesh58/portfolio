@@ -1,38 +1,46 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
-import SectionTitle from "@/components/SectionTitle";
-import GhostNumber from "@/components/GhostNumber";
+import { skillIconUrl } from "@/lib/skillIcons";
+import SectionHeader from "@/components/SectionHeader";
 import styles from "./Skills.module.css";
 
 export default function Skills() {
   return (
     <section className="section" id="skills" data-section="skills">
       <div className="container">
-        <GhostNumber n="04" />
-        <SectionTitle text="SKILLS" />
-        <div className={styles.groups}>
+        <SectionHeader n="04" title="SKILLS" />
+        <div className={styles.grid}>
           {resume.skillGroups.map((group, gi) => (
-            <motion.div
+            <motion.article
               key={group.label}
-              className={styles.group}
-              initial={{ opacity: 0, y: 40 }}
+              className={styles.card}
+              initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.45, delay: gi * 0.08 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: (gi % 3) * 0.06 }}
             >
-              <h3 className={styles.groupLabel} style={{ background: `var(--${group.accent})` }}>
-                {group.label}
-              </h3>
-              <div className={styles.sheet}>
+              <header className={styles.cardHead}>
+                <h3 className={styles.catTitle}>{group.label}</h3>
+              </header>
+              <div className={styles.tags}>
                 {group.skills.map((skill) => (
-                  <span key={skill} className={styles.sticker}>
-                    {skill}
+                  <span key={skill.name} className={styles.tag}>
+                    <Image
+                      src={skillIconUrl(skill.icon)}
+                      alt=""
+                      width={18}
+                      height={18}
+                      className={styles.tagIcon}
+                      aria-hidden="true"
+                    />
+                    {skill.name}
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

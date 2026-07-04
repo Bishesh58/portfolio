@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
+import RobotIllustration from "./RobotIllustration";
 import styles from "./Hero.module.css";
 
 const icons: Record<string, React.ReactNode> = {
@@ -25,6 +27,20 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 export default function Hero() {
+  const [photoTilted, setPhotoTilted] = useState(false);
+  const [photoHover, setPhotoHover] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 5) setPhotoTilted(true);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const showTilt = photoTilted && !photoHover;
+
   return (
     <section className={styles.hero} id="hero" data-section="hero">
       <div className={`container ${styles.grid}`}>
@@ -36,8 +52,9 @@ export default function Hero() {
         >
           <p className="eyebrow">// {resume.role} · {resume.location}</p>
           <h1 className={styles.name}>
-            I&apos;m <span className={styles.nameMark}>{resume.name}</span>
-          </h1>
+            <p>I&apos;m</p>
+            <p> {resume.name}</p>
+            </h1>
           <p className={styles.tagline}>{resume.tagline}</p>
           <p className={styles.intro}>{resume.intro}</p>
           <div className={styles.socials}>
@@ -54,9 +71,6 @@ export default function Hero() {
               </a>
             ))}
             <a className="btn" href="#contact">Get in touch</a>
-            <a className="btn btn--ghost" href={resume.resumePdf} download>
-              Download résumé
-            </a>
           </div>
         </motion.div>
 
@@ -66,10 +80,46 @@ export default function Hero() {
           animate={{ opacity: 1, rotate: 2, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className={styles.portrait}>
+          <div
+            className={styles.portrait}
+            onMouseEnter={() => setPhotoHover(true)}
+            onMouseLeave={() => setPhotoHover(false)}
+          >
             <span className={styles.tape} aria-hidden="true" />
-            <Image src="/robot.png" alt="Illustrated robot working on a laptop — Bishesh's mascot" width={420} height={452} priority />
-            <span className={styles.portraitLabel}>full-stack unit #58</span>
+            <RobotIllustration
+              className={`${styles.robotImg} ${showTilt ? styles.robotTilted : ""}`}
+            />
+            <div className={styles.cvCta}>
+              <div className={styles.cvArrowGroup}>
+                <span className={styles.cvArrowText}>Download a CV</span>
+                <Image
+                  src="/arrow.png"
+                  alt=""
+                  width={120}
+                  height={80}
+                  className={styles.cvArrowImg}
+                  aria-hidden="true"
+                />
+              </div>
+              <a
+                href={resume.resumePdf}
+                download
+                className={styles.cvBtn}
+                aria-label="Download CV"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                  />
+                  <polyline points="14 2 14 8 20 8" stroke="currentColor" strokeWidth="2" />
+                  <line x1="12" y1="18" x2="12" y2="12" stroke="currentColor" strokeWidth="2" />
+                  <polyline points="9 15 12 18 15 15" stroke="currentColor" strokeWidth="2" />
+                </svg>
+              </a>
+            </div>
           </div>
           <motion.span
             className={`${styles.sticker} ${styles.stickerCode}`}
@@ -78,14 +128,6 @@ export default function Hero() {
             aria-hidden="true"
           >
             {"</>"}
-          </motion.span>
-          <motion.span
-            className={`${styles.sticker} ${styles.stickerBolt}`}
-            animate={{ y: [0, 10, 0], rotate: [-6, 4, -6] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            aria-hidden="true"
-          >
-            ⚡
           </motion.span>
         </motion.div>
       </div>

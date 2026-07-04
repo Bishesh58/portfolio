@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Space_Mono } from "next/font/google";
+import { Space_Grotesk, Space_Mono, Caveat } from "next/font/google";
 import { resume } from "@/data/resume";
 import "./globals.css";
 
@@ -15,9 +15,15 @@ const mono = Space_Mono({
   variable: "--font-mono-sp",
 });
 
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-caveat",
+});
+
 // Update metadataBase when the real domain is live.
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bisheshsunam.vercel.app"),
+  metadataBase: new URL("https://bishesh58.com"),
   title: `${resume.name} | ${resume.role}`,
   description:
     "Full Stack Developer in Auckland, NZ with 4+ years building scalable web and enterprise applications — Vue, React, Node.js, TypeScript, Laravel, NetSuite, and Google Cloud.",
@@ -72,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
         />
       </head>
-      <body className={`${grotesk.variable} ${mono.variable}`}>{children}</body>
+      <body className={`${grotesk.variable} ${mono.variable} ${caveat.variable}`}>{children}</body>
     </html>
   );
 }

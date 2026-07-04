@@ -2,7 +2,6 @@ import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
 import SectionSpy from "@/components/SectionSpy";
-import Marquee from "@/components/Marquee";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Journey from "@/components/sections/Journey";
@@ -11,6 +10,7 @@ import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import Mascot from "@/components/RobotMascot/Mascot";
+import HeroScrollBridge from "@/components/wow/HeroScrollBridge/HeroScrollBridge";
 import SectionDivider from "@/components/wow/dividers/SectionDivider";
 import ScrollToTop from "@/components/wow/microdelights/ScrollToTop";
 import ShortcutHint from "@/components/wow/microdelights/ShortcutHint";
@@ -27,7 +27,7 @@ export default function Home() {
       <SectionSpy />
       <main id="main">
         <Hero />
-        <Marquee items={ticker} />
+        <HeroScrollBridge ticker={ticker} />
         <About />
         <Journey />
         <SectionDivider variant="zigzag" accent="cobalt" />

@@ -51,7 +51,7 @@ a { color: inherit; }
 .section { padding: 96px 0; position: relative; border-top: var(--bw) solid var(--ink); }
 /* Where a divider or full-bleed band already supplies the rule, drop the
    section's own top border so lines never double up. */
-#about, #journey, #projects { border-top: none; }
+#about, #journey, #projects, #skills, #contact { border-top: none; }
 
 main { padding-top: 90px; }
 
@@ -162,6 +162,18 @@ main { padding-top: 90px; }
   display: flex;
   flex-wrap: wrap;
 }
+.section-header .section-title {
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 48px;
+}
 .section-title-mask { display: inline-block; overflow: hidden; }
 .section-title-letter { display: inline-block; will-change: transform; }
 
@@ -175,21 +187,41 @@ main { padding-top: 90px; }
 }
 
 .ghost-number-wrap {
-  position: absolute;
-  top: 40px;
-  right: 0;
+  flex-shrink: 0;
   pointer-events: none;
-  z-index: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1;
 }
+
 .ghost-number {
   display: block;
   font-family: var(--font-mono-sp), monospace;
-  font-size: clamp(8rem, 20vw, 16rem);
+  font-size: clamp(3.2rem, 9vw, 6rem);
   font-weight: 700;
   line-height: 1;
   color: transparent;
   -webkit-text-stroke: 2px var(--ink);
   opacity: 0.14;
+  /* Stroke sits on the glyph edge — nudge so cap height lines up with the title */
+  transform: translateY(0.06em);
+}
+
+@media (max-width: 640px) {
+  .section-header {
+    flex-wrap: nowrap;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .section-header .section-title {
+    font-size: clamp(1.85rem, 7.5vw, 2.4rem);
+    min-width: 0;
+  }
+
+  .ghost-number {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
 }
 
 /* --- navbar --- */
@@ -353,4 +385,115 @@ main { padding-top: 90px; }
   border: 2.5px solid var(--ink);
   opacity: 0.85;
   transition: background 0.15s;
+}
+
+/* --- responsive --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  main {
+    padding-top: 82px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .card {
+    padding: 24px 20px;
+  }
+
+  .btn {
+    font-size: 0.92rem;
+    padding: 12px 20px;
+  }
+
+  .section-title {
+    margin-bottom: 36px;
+  }
+
+  .marquee {
+    padding: 10px 0;
+  }
+
+  .marquee-track span {
+    font-size: 0.92rem;
+    padding: 0 10px;
+  }
+
+  .nav-brand {
+    padding: 0 18px;
+    font-size: 1.05rem;
+  }
+
+  .theme-toggle {
+    width: 56px;
+  }
+
+  .menuBtn {
+    width: 52px;
+  }
+
+  .loader-letter {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  .loader-letters {
+    gap: 10px;
+  }
+
+  .loader-bar {
+    width: min(220px, 70vw);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+    padding: 11px 16px;
+  }
+
+  .navbar-inner {
+    margin-top: 10px;
+    height: 54px;
+  }
+
+  .nav-brand {
+    padding: 0 14px;
+    font-size: 1rem;
+  }
+
+  .theme-toggle {
+    width: 50px;
+  }
+
+  .menuBtn {
+    width: 48px;
+  }
+
+  .loader-letter {
+    width: 52px;
+    height: 52px;
+    font-size: 1.65rem;
+  }
+
+  .loader-letters {
+    gap: 8px;
+  }
 }

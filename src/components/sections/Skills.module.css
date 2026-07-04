@@ -1,52 +1,76 @@
-/* Bordered cell-grid: cells share black rules, like a ledger. */
-.groups {
+.grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background: var(--panel);
   border: var(--bw) solid var(--ink);
   border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--panel);
   box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.group {
-  padding: 30px 32px;
-  border-right: var(--bw) solid var(--ink);
-  border-bottom: var(--bw) solid var(--ink);
-}
-/* right column: drop the right rule */
-.group:nth-child(2n) { border-right: none; }
-/* last row: drop the bottom rule */
-.group:nth-last-child(-n + 2) { border-bottom: none; }
 
-.groupLabel {
-  display: inline-block;
-  font-size: 1.05rem;
-  color: #111;
-  border: 2.5px solid var(--ink);
-  border-radius: 6px;
-  box-shadow: var(--shadow-sm);
-  padding: 6px 16px;
-  margin-bottom: 22px;
+.cardHead {
+  padding: 18px 20px 14px;
+  border-bottom: 2px solid var(--ink);
 }
-.sheet { display: flex; flex-wrap: wrap; gap: 12px; }
-.sticker {
+
+.catTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 18px 20px 22px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono-sp), monospace;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 700;
   background: var(--paper);
   border: 2.5px solid var(--ink);
   border-radius: 8px;
-  box-shadow: var(--shadow-sm);
-  padding: 8px 14px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 7px 12px 7px 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.sticker:hover {
+
+.tag:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
 }
-@media (max-width: 820px) {
-  .groups { grid-template-columns: 1fr; }
-  .group { border-right: none; }
-  .group:nth-last-child(-n + 2) { border-bottom: var(--bw) solid var(--ink); }
-  .group:last-child { border-bottom: none; }
+
+.tagIcon {
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; gap: 20px; }
+  .cardHead { padding: 16px 18px 12px; }
+  .catTitle { font-size: 0.98rem; }
+  .tags { padding: 16px 18px 20px; gap: 8px; }
+  .tag { font-size: 0.72rem; padding: 6px 10px 6px 8px; }
+}
+
+@media (max-width: 480px) {
+  .tag { box-shadow: 2px 2px 0 var(--ink); }
+  .tag:hover { box-shadow: 3px 3px 0 var(--ink); }
 }

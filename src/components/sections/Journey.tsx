@@ -2,16 +2,14 @@
 
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
-import SectionTitle from "@/components/SectionTitle";
-import GhostNumber from "@/components/GhostNumber";
+import SectionHeader from "@/components/SectionHeader";
 import styles from "./Journey.module.css";
 
 export default function Journey() {
   return (
     <section className="section" id="journey" data-section="journey">
       <div className="container">
-        <GhostNumber n="02" />
-        <SectionTitle text="MY JOURNEY" />
+        <SectionHeader n="02" title="MY JOURNEY" />
         <div className={styles.timeline}>
           {resume.timeline.map((entry, i) => (
             <motion.article
@@ -33,13 +31,6 @@ export default function Journey() {
                   {entry.location ? ` · ${entry.location}` : ""}
                 </p>
                 <p className={styles.summary}>{entry.summary}</p>
-                {entry.tech && (
-                  <div className={styles.tech}>
-                    {entry.tech.map((t) => (
-                      <span className="tag" key={t}>{t}</span>
-                    ))}
-                  </div>
-                )}
               </div>
             </motion.article>
           ))}

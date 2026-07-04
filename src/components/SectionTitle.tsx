@@ -19,7 +19,7 @@ export default function SectionTitle({ text }: { text: string }) {
       {Array.from(text).map((char, i) => (
         <span className="section-title-mask" key={i} aria-hidden="true">
           <motion.span className="section-title-letter" variants={letterVariants}>
-            {char === " " ? " " : char}
+            {char === " " ? " " : char}
           </motion.span>
         </span>
       ))}

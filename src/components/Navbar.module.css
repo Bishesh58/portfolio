@@ -62,9 +62,9 @@
 
 .mobileSheet {
   position: absolute;
-  top: 88px;
-  left: 24px;
-  right: 24px;
+  top: calc(14px + 60px + 12px);
+  left: max(16px, env(safe-area-inset-left, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
   background: var(--panel);
   border: var(--bw) solid var(--ink);
   border-radius: var(--radius);
@@ -119,5 +119,17 @@
 
   .nav-cta--desktop {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobileSheet {
+    top: calc(10px + 54px + 10px);
+    padding: 16px;
+  }
+
+  .mobileLink {
+    padding: 12px 14px;
+    font-size: 0.98rem;
   }
 }

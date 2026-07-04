@@ -106,17 +106,27 @@ export default function Navbar() {
           tabIndex={open ? 0 : -1}
           onClick={close}
         />
-        <div className={styles.mobileSheet}>
+        <div className={styles.mobileSheet} inert={!open ? true : undefined}>
           <ul className={styles.mobileLinks}>
             {links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className={styles.mobileLink} onClick={close}>
+                <a
+                  href={l.href}
+                  className={styles.mobileLink}
+                  tabIndex={open ? 0 : -1}
+                  onClick={close}
+                >
                   {l.label}
                 </a>
               </li>
             ))}
           </ul>
-          <a href="#contact" className={`btn ${styles.mobileCta}`} onClick={close}>
+          <a
+            href="#contact"
+            className={`btn ${styles.mobileCta}`}
+            tabIndex={open ? 0 : -1}
+            onClick={close}
+          >
             Get in touch
           </a>
         </div>
