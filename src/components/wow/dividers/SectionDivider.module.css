@@ -1,0 +1,40 @@
+/* Neo-brutalist full-bleed section dividers.
+   The band breaks out of the 1100px .container to span the full viewport,
+   snapping one section into the next with a hard, flat-color edge. */
+
+.divider {
+  /* Full-bleed even when nested in a centered container. Body has
+     overflow-x: hidden, so 100vw never introduces a horizontal scrollbar. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  display: block;
+  line-height: 0;
+  /* Fill + height are driven by props via inline custom properties. */
+  color: var(--ink);
+}
+
+/* Bottom-edge placement: mirror the shaped edge to point downward. */
+.flip {
+  transform: scaleY(-1);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: var(--divider-h, 48px);
+}
+
+/* The decorative geometry: filled band + a bold, screen-constant ink edge.
+   vector-effect keeps the 3px stroke crisp despite non-uniform scaling. */
+.fill {
+  fill: var(--divider-fill, var(--paper));
+}
+
+.edge {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}

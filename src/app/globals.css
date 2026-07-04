@@ -49,8 +49,9 @@ a { color: inherit; }
 
 /* Full-bleed horizontal rules divide the page into a ledger of sections. */
 .section { padding: 96px 0; position: relative; border-top: var(--bw) solid var(--ink); }
-/* The marquee already rules off the hero, so About needs no extra top line. */
-#about { border-top: none; }
+/* Where a divider or full-bleed band already supplies the rule, drop the
+   section's own top border so lines never double up. */
+#about, #journey, #projects { border-top: none; }
 
 main { padding-top: 90px; }
 

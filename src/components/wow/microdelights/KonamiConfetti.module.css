@@ -1,0 +1,106 @@
+/* Full-viewport, click-through overlay. Sits below the custom cursor (500) and
+   loader (400) but above everything else so confetti reads on top of content.
+   pointer-events:none guarantees it never blocks clicks on the page chrome. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 350;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* A single confetti "sticker": flat colour, thick black border, hard offset
+   shadow (no blur) — the neo-brutalist signature. Animated with transform +
+   opacity only for cheap, compositor-friendly motion. */
+.piece {
+  position: absolute;
+  top: -8vh;
+  display: block;
+  background: var(--piece-color);
+  border: 2.5px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  will-change: transform, opacity;
+  animation-name: confetti-fall;
+  animation-timing-function: cubic-bezier(0.4, 0.1, 0.6, 1);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+/* --- shape variants --- */
+.square {
+  border-radius: 3px;
+}
+.circle {
+  border-radius: 50%;
+}
+.diamond {
+  border-radius: 3px;
+  transform: rotate(45deg);
+}
+/* Triangle & star use clip-path; keep the border via a background + drop
+   feel is hard with clip-path, so they read as bold filled brutalist chips. */
+.triangle {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  border-left: calc(var(--tri, 9px)) solid transparent;
+  border-right: calc(var(--tri, 9px)) solid transparent;
+  border-bottom: calc(var(--tri, 16px) * 1.1) solid var(--piece-color);
+  filter: drop-shadow(3px 3px 0 var(--ink));
+  height: 0 !important;
+  width: 0 !important;
+}
+.star {
+  background: var(--piece-color);
+  border: none;
+  box-shadow: none;
+  filter: drop-shadow(2px 2px 0 var(--ink));
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  8% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), 112vh, 0) rotate(var(--spin));
+  }
+}
+
+/* Reduced-motion acknowledgement: a single centred static sticker, no motion. */
+.flashSticker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 14px 22px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #111;
+  background: var(--yellow);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}

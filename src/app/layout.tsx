@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
+import { resume } from "@/data/resume";
 import "./globals.css";
 
 const grotesk = Space_Grotesk({
@@ -17,20 +18,20 @@ const mono = Space_Mono({
 // Update metadataBase when the real domain is live.
 export const metadata: Metadata = {
   metadataBase: new URL("https://bisheshsunam.vercel.app"),
-  title: "Bishesh Sunam | Full Stack Developer",
+  title: `${resume.name} | ${resume.role}`,
   description:
     "Full Stack Developer in Auckland, NZ with 4+ years building scalable web and enterprise applications — Vue, React, Node.js, TypeScript, Laravel, NetSuite, and Google Cloud.",
   icons: { icon: "/favicon.svg" },
   openGraph: {
     type: "website",
-    title: "Bishesh Sunam | Full Stack Developer",
+    title: `${resume.name} | ${resume.role}`,
     description:
       "Full Stack Developer in Auckland, NZ — scalable web apps, ERP integrations, and dashboards teams actually use.",
     images: ["/robot.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bishesh Sunam | Full Stack Developer",
+    title: `${resume.name} | ${resume.role}`,
     description:
       "Full Stack Developer in Auckland, NZ — scalable web apps, ERP integrations, and dashboards teams actually use.",
     images: ["/robot.png"],
@@ -42,8 +43,8 @@ const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!==
 const personLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Bishesh Sunam",
-  jobTitle: "Full Stack Developer",
+  name: resume.name,
+  jobTitle: resume.role,
   email: "mailto:bishesh.sunam@gmail.com",
   address: {
     "@type": "PostalAddress",

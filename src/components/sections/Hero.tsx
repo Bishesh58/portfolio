@@ -36,7 +36,7 @@ export default function Hero() {
         >
           <p className="eyebrow">// {resume.location}</p>
           <h1 className={styles.name}>
-            I&apos;m <span className={styles.nameMark}>{resume.name}</span>.
+            I&apos;m <span className={styles.nameMark}>{resume.name}</span>
           </h1>
           <p className={styles.tagline}>{resume.tagline}</p>
           <p className={styles.intro}>{resume.intro}</p>
