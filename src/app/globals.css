@@ -76,7 +76,9 @@ main { padding-top: 70px; }
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--ink); }
+/* Press into the shadow on hover (matches inspiration): the button slides
+   down-right by its shadow offset and the hard shadow collapses to zero. */
+.btn:hover, .btn:focus-visible { transform: translate(6px, 6px); box-shadow: 0 0 0 var(--ink); }
 .btn:active { transform: translate(6px, 6px); box-shadow: 0 0 0 var(--ink); }
 .btn--ghost { background: var(--panel); color: var(--ink); }
 

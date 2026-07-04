@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
-import MagneticButton from "@/components/MagneticButton";
 import styles from "./Hero.module.css";
 
 const icons: Record<string, React.ReactNode> = {
@@ -43,21 +42,18 @@ export default function Hero() {
           <p className={styles.intro}>{resume.intro}</p>
           <div className={styles.socials}>
             {resume.socials.map((s) => (
-              <MagneticButton key={s.label}>
-                <a
-                  className={styles.socialBtn}
-                  href={s.url}
-                  target={s.icon === "email" ? undefined : "_blank"}
-                  rel={s.icon === "email" ? undefined : "noopener noreferrer"}
-                  aria-label={s.label}
-                >
-                  {icons[s.icon]}
-                </a>
-              </MagneticButton>
+              <a
+                key={s.label}
+                className={styles.socialBtn}
+                href={s.url}
+                target={s.icon === "email" ? undefined : "_blank"}
+                rel={s.icon === "email" ? undefined : "noopener noreferrer"}
+                aria-label={s.label}
+              >
+                {icons[s.icon]}
+              </a>
             ))}
-            <MagneticButton>
-              <a className="btn" href="#contact">Get in touch</a>
-            </MagneticButton>
+            <a className="btn" href="#contact">Get in touch</a>
           </div>
         </motion.div>
 

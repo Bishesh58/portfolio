@@ -42,7 +42,7 @@
   box-shadow: var(--shadow-sm);
   transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
 }
-.socialBtn:hover { background: var(--teal); color: #111; transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.socialBtn:hover, .socialBtn:focus-visible { background: var(--teal); color: #111; transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
 .socialBtn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
 .right { position: relative; z-index: 1; }
 .portrait {

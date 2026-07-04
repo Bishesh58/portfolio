@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { resume } from "@/data/resume";
 import SectionTitle from "@/components/SectionTitle";
 import GhostNumber from "@/components/GhostNumber";
-import MagneticButton from "@/components/MagneticButton";
 import styles from "./Contact.module.css";
 
 export default function Contact() {
@@ -28,22 +27,16 @@ export default function Contact() {
             Open to interesting full-stack work, collaborations, and good coffee in {resume.location}.
           </p>
           <div className={styles.actions}>
-            <MagneticButton>
-              <a className="btn" href={`mailto:${resume.email}`}>{resume.email}</a>
-            </MagneticButton>
+            <a className="btn" href={`mailto:${resume.email}`}>{resume.email}</a>
             {linkedin && (
-              <MagneticButton>
-                <a className="btn btn--ghost" href={linkedin.url} target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                </a>
-              </MagneticButton>
+              <a className="btn btn--ghost" href={linkedin.url} target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
             )}
             {github && (
-              <MagneticButton>
-                <a className="btn btn--ghost" href={github.url} target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </a>
-              </MagneticButton>
+              <a className="btn btn--ghost" href={github.url} target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
             )}
           </div>
           <p className={styles.phone}>
