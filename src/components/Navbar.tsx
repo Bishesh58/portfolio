@@ -14,8 +14,9 @@ export default function Navbar() {
 
   return (
     <nav className="navbar" aria-label="Main">
-      <div className="navbar-inner">
-        <a href="#hero" className="nav-brand">BS</a>
+      <div className="container">
+        <div className="navbar-inner">
+          <a href="#hero" className="nav-brand">BS</a>
         <div className="nav-mid">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
@@ -43,7 +44,8 @@ export default function Navbar() {
               <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
             </svg>
           )}
-        </button>
+          </button>
+        </div>
       </div>
     </nav>
   );
