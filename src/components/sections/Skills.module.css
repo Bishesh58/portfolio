@@ -1,19 +1,32 @@
+/* Bordered cell-grid: cells share black rules, like a ledger. */
 .groups {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel);
+  box-shadow: var(--shadow);
 }
-.group { padding: 24px; }
+.group {
+  padding: 30px 32px;
+  border-right: var(--bw) solid var(--ink);
+  border-bottom: var(--bw) solid var(--ink);
+}
+/* right column: drop the right rule */
+.group:nth-child(2n) { border-right: none; }
+/* last row: drop the bottom rule */
+.group:nth-last-child(-n + 2) { border-bottom: none; }
+
 .groupLabel {
   display: inline-block;
   font-size: 1.05rem;
   color: #111;
-  border: var(--bw) solid var(--ink);
-  border-radius: 8px;
+  border: 2.5px solid var(--ink);
+  border-radius: 6px;
   box-shadow: var(--shadow-sm);
   padding: 6px 16px;
   margin-bottom: 22px;
-  transform: rotate(-1.5deg);
 }
 .sheet { display: flex; flex-wrap: wrap; gap: 12px; }
 .sticker {
@@ -26,10 +39,14 @@
   box-shadow: var(--shadow-sm);
   padding: 8px 14px;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
-  transform-origin: bottom left;
 }
 .sticker:hover {
-  transform: rotate(0deg) scale(1.08) translateY(-3px) !important;
+  transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--ink);
 }
-@media (max-width: 820px) { .groups { grid-template-columns: 1fr; } }
+@media (max-width: 820px) {
+  .groups { grid-template-columns: 1fr; }
+  .group { border-right: none; }
+  .group:nth-last-child(-n + 2) { border-bottom: var(--bw) solid var(--ink); }
+  .group:last-child { border-bottom: none; }
+}
