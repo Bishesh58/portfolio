@@ -2,7 +2,6 @@ import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
 import SectionSpy from "@/components/SectionSpy";
-import Cursor from "@/components/Cursor";
 import Marquee from "@/components/Marquee";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -11,10 +10,9 @@ import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
-import Mascot from "@/components/RobotMascot/Mascot";
+import Cursor from "@/components/Cursor";
 
-const tickerA = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
-const tickerB = ["Dashboards", "ERP Integrations", "Kanban Pipelines", "Data Viz", "APIs", "SEO"];
+const ticker = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
 
 export default function Home() {
   return (
@@ -27,19 +25,14 @@ export default function Home() {
       <Cursor />
       <main id="main">
         <Hero />
-        <Marquee items={tickerA} />
+        <Marquee items={ticker} />
         <About />
-        <Marquee items={tickerB} accent="lime" />
         <Journey />
-        <Marquee items={tickerA} accent="teal" />
         <Projects />
-        <Marquee items={tickerB} accent="yellow" baseVelocity={-2.5} />
         <Skills />
-        <Marquee items={tickerA} accent="cobalt" />
         <Contact />
       </main>
       <Footer />
-      <Mascot />
     </>
   );
 }
