@@ -1,0 +1,35 @@
+.groups {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.group { padding: 24px; }
+.groupLabel {
+  display: inline-block;
+  font-size: 1.05rem;
+  color: #111;
+  border: var(--bw) solid var(--ink);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 6px 16px;
+  margin-bottom: 22px;
+  transform: rotate(-1.5deg);
+}
+.sheet { display: flex; flex-wrap: wrap; gap: 12px; }
+.sticker {
+  font-family: var(--font-mono-sp), monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: var(--paper);
+  border: 2.5px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 8px 14px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transform-origin: bottom left;
+}
+.sticker:hover {
+  transform: rotate(0deg) scale(1.08) translateY(-3px) !important;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+@media (max-width: 820px) { .groups { grid-template-columns: 1fr; } }

@@ -7,6 +7,9 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Journey from "@/components/sections/Journey";
 import Projects from "@/components/sections/Projects";
+import Skills from "@/components/sections/Skills";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
 
 const tickerA = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
 const tickerB = ["Dashboards", "ERP Integrations", "Kanban Pipelines", "Data Viz", "APIs", "SEO"];
@@ -27,7 +30,12 @@ export default function Home() {
         <Journey />
         <Marquee items={tickerA} accent="teal" />
         <Projects />
+        <Marquee items={tickerB} accent="yellow" baseVelocity={-2.5} />
+        <Skills />
+        <Marquee items={tickerA} accent="cobalt" />
+        <Contact />
       </main>
+      <Footer />
     </>
   );
 }

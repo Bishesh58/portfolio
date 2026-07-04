@@ -1,0 +1,32 @@
+.footer { border-top: var(--bw) solid var(--ink); background: var(--panel); padding: 36px 0; }
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.barcode {
+  display: inline-block;
+  width: 110px;
+  height: 34px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 3px, transparent 3px 6px,
+    var(--ink) 6px 11px, transparent 11px 13px,
+    var(--ink) 13px 15px, transparent 15px 20px
+  );
+}
+.stamp { font-family: var(--font-mono-sp), monospace; font-size: 0.85rem; font-weight: 700; }
+.note {
+  font-family: var(--font-mono-sp), monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--yellow);
+  color: #111;
+  border: 2.5px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+  padding: 8px 14px;
+  transform: rotate(-2deg);
+}
