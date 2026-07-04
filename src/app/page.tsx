@@ -3,8 +3,10 @@ import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
 import SectionSpy from "@/components/SectionSpy";
 import Marquee from "@/components/Marquee";
-import SectionTitle from "@/components/SectionTitle";
-import GhostNumber from "@/components/GhostNumber";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+
+const tickerA = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
 
 export default function Home() {
   return (
@@ -15,12 +17,9 @@ export default function Home() {
       <ProgressBar />
       <SectionSpy />
       <main id="main">
-        <div className="container section" id="hero" data-section="hero">
-          <GhostNumber n="01" />
-          <SectionTitle text="SCAFFOLD" />
-        </div>
-        <Marquee items={["Full Stack", "Vue", "React", "Laravel", "NetSuite"]} />
-        <div style={{ height: "150vh" }} />
+        <Hero />
+        <Marquee items={tickerA} />
+        <About />
       </main>
     </>
   );

@@ -1,0 +1,13 @@
+.aboutCard { max-width: 820px; }
+.text { font-size: 1.12rem; line-height: 1.9; }
+.text + .text { margin-top: 18px; }
+.hl {
+  font-weight: 600;
+  color: #111;
+  background-repeat: no-repeat;
+  background-position: 0 60%;
+  padding: 0 4px;
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
