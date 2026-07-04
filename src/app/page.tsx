@@ -2,6 +2,7 @@ import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
 import SectionSpy from "@/components/SectionSpy";
+import Cursor from "@/components/Cursor";
 import Marquee from "@/components/Marquee";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -23,6 +24,7 @@ export default function Home() {
       <Navbar />
       <ProgressBar />
       <SectionSpy />
+      <Cursor />
       <main id="main">
         <Hero />
         <Marquee items={tickerA} />

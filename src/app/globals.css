@@ -342,3 +342,24 @@ main { padding-top: 70px; }
   animation: loader-fill 1.3s ease-out forwards;
 }
 @keyframes loader-fill { from { width: 0; } to { width: 100%; } }
+
+/* --- custom cursor --- */
+.has-custom-cursor, .has-custom-cursor a, .has-custom-cursor button { cursor: none; }
+.cursor-dot, .cursor-box {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 500;
+  pointer-events: none;
+}
+.cursor-dot {
+  width: 8px; height: 8px;
+  margin: -4px 0 0 -4px;
+  background: var(--ink);
+}
+.cursor-box {
+  width: 34px; height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 2.5px solid var(--ink);
+  opacity: 0.85;
+  transition: background 0.15s;
+}
