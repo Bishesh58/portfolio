@@ -16,10 +16,12 @@ export default function Navbar() {
     <nav className="navbar" aria-label="Main">
       <div className="navbar-inner container">
         <a href="#hero" className="nav-brand">BS</a>
-        <div className="nav-links">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
-          ))}
+        <div className="nav-right">
+          <div className="nav-links">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
+            ))}
+          </div>
           <a href="#contact" className="btn nav-cta">Get in touch</a>
           <button
             type="button"
