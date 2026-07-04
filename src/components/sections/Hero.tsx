@@ -34,7 +34,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <p className="eyebrow">// {resume.location}</p>
+          <p className="eyebrow">// {resume.role} · {resume.location}</p>
           <h1 className={styles.name}>
             I&apos;m <span className={styles.nameMark}>{resume.name}</span>
           </h1>
@@ -54,6 +54,9 @@ export default function Hero() {
               </a>
             ))}
             <a className="btn" href="#contact">Get in touch</a>
+            <a className="btn btn--ghost" href={resume.resumePdf} download>
+              Download résumé
+            </a>
           </div>
         </motion.div>
 
@@ -85,20 +88,6 @@ export default function Hero() {
             ⚡
           </motion.span>
         </motion.div>
-      </div>
-
-      <div className={`container ${styles.badges}`}>
-        {resume.techBadges.map((t, i) => (
-          <motion.span
-            key={t}
-            className="tag"
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + i * 0.06 }}
-          >
-            {t}
-          </motion.span>
-        ))}
       </div>
     </section>
   );

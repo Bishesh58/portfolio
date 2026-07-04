@@ -1,0 +1,123 @@
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 56px;
+  background: var(--panel);
+  color: var(--ink);
+  border: none;
+  border-left: var(--bw) solid var(--ink);
+  cursor: pointer;
+}
+
+.menuBar {
+  display: block;
+  width: 22px;
+  height: 3px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.menuBtnOpen .menuBar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menuBtnOpen .menuBar:nth-child(2) {
+  opacity: 0;
+}
+
+.menuBtnOpen .menuBar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobilePanel {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.mobilePanelOpen {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(17, 17, 17, 0.35);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.mobilePanelOpen .backdrop {
+  opacity: 1;
+}
+
+.mobileSheet {
+  position: absolute;
+  top: 88px;
+  left: 24px;
+  right: 24px;
+  background: var(--panel);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  transform: translateY(-12px);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.mobilePanelOpen .mobileSheet {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobileLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.mobileLink {
+  display: block;
+  padding: 14px 16px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--ink);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.mobileLink:hover,
+.mobileLink:focus-visible {
+  background: var(--yellow);
+  border-color: var(--ink);
+}
+
+.mobileCta {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 760px) {
+  .menuBtn {
+    display: flex;
+  }
+
+  .nav-cta--desktop {
+    display: none;
+  }
+}

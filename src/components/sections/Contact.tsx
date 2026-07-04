@@ -28,6 +28,9 @@ export default function Contact() {
           </p>
           <div className={styles.actions}>
             <a className="btn" href={`mailto:${resume.email}`}>{resume.email}</a>
+            <a className="btn btn--ghost" href={resume.resumePdf} download>
+              Download résumé
+            </a>
             {linkedin && (
               <a className="btn btn--ghost" href={linkedin.url} target="_blank" rel="noopener noreferrer">
                 LinkedIn

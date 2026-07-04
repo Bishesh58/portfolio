@@ -10,11 +10,9 @@ import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
-import Cursor from "@/components/Cursor";
 import Mascot from "@/components/RobotMascot/Mascot";
 import SectionDivider from "@/components/wow/dividers/SectionDivider";
 import ScrollToTop from "@/components/wow/microdelights/ScrollToTop";
-import KonamiConfetti from "@/components/wow/microdelights/KonamiConfetti";
 import ShortcutHint from "@/components/wow/microdelights/ShortcutHint";
 
 const ticker = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
@@ -27,7 +25,6 @@ export default function Home() {
       <Navbar />
       <ProgressBar />
       <SectionSpy />
-      <Cursor />
       <main id="main">
         <Hero />
         <Marquee items={ticker} />
@@ -41,7 +38,6 @@ export default function Home() {
       <Footer />
       <Mascot />
       <ScrollToTop />
-      <KonamiConfetti />
       <ShortcutHint />
     </>
   );

@@ -193,11 +193,6 @@ export default function ShortcutHint() {
                 </li>
               ))}
             </ul>
-
-            <p className={styles.foot}>
-              psst — there&apos;s a{" "}
-              <span className={styles.hintCode}>↑↑↓↓←→←→ B A</span> surprise
-            </p>
           </motion.div>
         </motion.div>
       )}

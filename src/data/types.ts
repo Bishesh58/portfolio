@@ -41,10 +41,10 @@ export interface Resume {
   location: string;
   email: string;
   phone: string;
+  resumePdf: string;
   tagline: string;
   intro: string;
   socials: SocialLink[];
-  techBadges: string[];
   about: AboutSegment[][];
   timeline: TimelineEntry[];
   projects: Project[];

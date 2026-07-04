@@ -6,15 +6,15 @@ export const resume: Resume = {
   location: "Auckland, New Zealand",
   email: "bishesh.sunam@gmail.com",
   phone: "022-405-0486",
+  resumePdf: "/resume.pdf",
   tagline: "I build the tools teams run on.",
   intro:
-    "Based in Auckland, New Zealand, I'm a Full Stack Developer with 4+ years of experience building scalable web and enterprise applications — from NetSuite ERP integrations and role-based admin portals to real-time dashboards people actually enjoy using.",
+    "Full Stack Developer in Auckland — I design and ship internal platforms, ERP integrations, and dashboards that help sales, ops, and leadership teams make faster decisions.",
   socials: [
     { label: "GitHub", url: "https://github.com/bishesh58", icon: "github" },
     { label: "LinkedIn", url: "https://linkedin.com/in/bishesh-sunam-89a807115", icon: "linkedin" },
     { label: "Email", url: "mailto:bishesh.sunam@gmail.com", icon: "email" },
   ],
-  techBadges: ["Vue", "React", "Node.js", "TypeScript", "Laravel", "C#", "GCP", "MySQL"],
   about: [
     [
       { text: "Full Stack Developer with " },

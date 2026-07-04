@@ -4,21 +4,28 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
+const VISITED_KEY = "portfolio-visited";
+
 export default function Loader() {
   const reduced = usePrefersReducedMotion();
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    if (reduced) {
+    if (reduced || localStorage.getItem(VISITED_KEY)) {
       setVisible(false);
       return;
     }
-    const finish = () => setVisible(false);
-    const timeout = setTimeout(finish, 2500);
+
+    const finish = () => {
+      localStorage.setItem(VISITED_KEY, "1");
+      setVisible(false);
+    };
+
+    const timeout = setTimeout(finish, 1400);
     if (document.readyState === "complete") {
-      setTimeout(finish, 1400);
+      setTimeout(finish, 900);
     } else {
-      window.addEventListener("load", () => setTimeout(finish, 1400), { once: true });
+      window.addEventListener("load", () => setTimeout(finish, 900), { once: true });
     }
     return () => clearTimeout(timeout);
   }, [reduced]);
