@@ -244,59 +244,21 @@ main { padding-top: 70px; }
   .nav-link { display: none; }
 }
 
-/* --- progress bar --- */
+/* --- progress bar (single clean line above the header) --- */
 .progress {
   position: fixed;
-  top: 64px;
+  top: 0;
   left: 0; right: 0;
-  z-index: 190;
-  height: 6px;
-  background: var(--panel);
-  border-bottom: 2px solid var(--ink);
+  z-index: 210;
+  height: 4px;
+  background: transparent;
 }
 .progress-fill {
   height: 100%;
   background: var(--lime);
+  border-bottom: 1px solid var(--ink);
   transform-origin: left;
 }
-.progress-checkpoints {
-  position: absolute;
-  top: 0;
-  left: 0; right: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 24px;
-}
-.checkpoint { position: relative; text-decoration: none; }
-.checkpoint-dot {
-  display: block;
-  width: 14px; height: 14px;
-  margin-top: -4px;
-  background: var(--panel);
-  border: 2.5px solid var(--ink);
-  border-radius: 4px;
-  transition: background 0.2s, transform 0.2s;
-}
-.checkpoint--active .checkpoint-dot { background: var(--yellow); transform: rotate(45deg); }
-.checkpoint-label {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-mono-sp), monospace;
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  background: var(--panel);
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  padding: 1px 6px;
-  opacity: 0;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-.checkpoint--active .checkpoint-label, .checkpoint:hover .checkpoint-label { opacity: 1; }
-@media (max-width: 760px) { .progress-checkpoints { display: none; } }
 
 /* --- loader --- */
 .loader {
