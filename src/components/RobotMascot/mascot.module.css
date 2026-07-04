@@ -1,0 +1,55 @@
+.mascot {
+  position: fixed;
+  bottom: 18px;
+  right: 20px;
+  z-index: 180;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+.svg { filter: drop-shadow(4px 4px 0 rgba(17, 17, 17, 0.35)); }
+.bubble {
+  pointer-events: auto;
+  position: relative;
+  max-width: 230px;
+  background: var(--panel);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 30px 12px 14px;
+  font-family: var(--font-mono-sp), monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  right: 34px;
+  width: 16px; height: 16px;
+  background: var(--panel);
+  border-right: var(--bw) solid var(--ink);
+  border-bottom: var(--bw) solid var(--ink);
+  transform: rotate(45deg) skew(8deg, 8deg);
+}
+.bubbleClose {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1;
+}
+@media (max-width: 760px) {
+  .mascot { transform: scale(0.72); transform-origin: bottom right; bottom: 10px; right: 10px; }
+}
+@media (max-width: 479px) {
+  .mascot { display: none; }
+}

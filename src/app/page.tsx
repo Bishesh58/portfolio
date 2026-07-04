@@ -10,6 +10,7 @@ import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
+import Mascot from "@/components/RobotMascot/Mascot";
 
 const tickerA = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
 const tickerB = ["Dashboards", "ERP Integrations", "Kanban Pipelines", "Data Viz", "APIs", "SEO"];
@@ -36,6 +37,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <Mascot />
     </>
   );
 }
