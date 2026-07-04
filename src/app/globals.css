@@ -185,3 +185,160 @@ main { padding-top: 70px; }
   -webkit-text-stroke: 2px var(--ink);
   opacity: 0.14;
 }
+
+/* --- navbar --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--panel);
+  border-bottom: var(--bw) solid var(--ink);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-brand {
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-decoration: none;
+  background: var(--yellow);
+  color: #111;
+  border: var(--bw) solid var(--ink);
+  border-radius: 8px;
+  padding: 4px 10px;
+  box-shadow: var(--shadow-sm);
+}
+.nav-links { display: flex; align-items: center; gap: 22px; }
+.nav-link {
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+}
+.nav-link:hover::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 4px;
+  background: var(--cobalt);
+}
+.nav-cta { padding: 8px 16px; font-size: 0.85rem; box-shadow: var(--shadow-sm); }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  background: var(--panel);
+  color: var(--ink);
+  border: var(--bw) solid var(--ink);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.theme-toggle:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+.theme-toggle:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+@media (max-width: 760px) {
+  .nav-link { display: none; }
+}
+
+/* --- progress bar --- */
+.progress {
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  z-index: 190;
+  height: 6px;
+  background: var(--panel);
+  border-bottom: 2px solid var(--ink);
+}
+.progress-fill {
+  height: 100%;
+  background: var(--lime);
+  transform-origin: left;
+}
+.progress-checkpoints {
+  position: absolute;
+  top: 0;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.checkpoint { position: relative; text-decoration: none; }
+.checkpoint-dot {
+  display: block;
+  width: 14px; height: 14px;
+  margin-top: -4px;
+  background: var(--panel);
+  border: 2.5px solid var(--ink);
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.2s;
+}
+.checkpoint--active .checkpoint-dot { background: var(--yellow); transform: rotate(45deg); }
+.checkpoint-label {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono-sp), monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--panel);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  padding: 1px 6px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.checkpoint--active .checkpoint-label, .checkpoint:hover .checkpoint-label { opacity: 1; }
+@media (max-width: 760px) { .progress-checkpoints { display: none; } }
+
+/* --- loader --- */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+.loader-letters { display: flex; gap: 16px; }
+.loader-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px; height: 76px;
+  font-family: var(--font-mono-sp), monospace;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #111;
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: loader-bounce 0.9s ease-in-out infinite;
+}
+.loader-letter--2 { animation-delay: 0.15s; }
+@keyframes loader-bounce {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
+.loader-bar {
+  width: 220px;
+  height: 14px;
+  border: var(--bw) solid var(--ink);
+  border-radius: 7px;
+  background: var(--panel);
+  overflow: hidden;
+}
+.loader-bar-fill {
+  height: 100%;
+  background: var(--cobalt);
+  animation: loader-fill 1.3s ease-out forwards;
+}
+@keyframes loader-fill { from { width: 0; } to { width: 100%; } }
