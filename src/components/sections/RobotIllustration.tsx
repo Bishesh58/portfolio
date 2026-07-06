@@ -139,7 +139,7 @@ export default function RobotIllustration({ className }: Props) {
         ))}
       </defs>
 
-      <image href="/robot.png" x="0" y="0" width="557" height="600" preserveAspectRatio="xMidYMid meet" />
+      <image href="/robot.webp" x="0" y="0" width="557" height="600" preserveAspectRatio="xMidYMid meet" />
       <text
         className={styles.screenText}
         x={SCREEN_TEXT.x}

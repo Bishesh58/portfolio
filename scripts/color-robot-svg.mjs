@@ -21,7 +21,7 @@ function bbox(points) {
 }
 
 async function main() {
-  const { data, info } = await sharp("public/robot.png").ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { data, info } = await sharp("assets/robot.png").ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const greenPoints = [];
   for (let py = 0; py < info.height; py++) {
     for (let px = 0; px < info.width; px++) {
