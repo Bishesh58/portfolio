@@ -231,6 +231,10 @@ export default function CommandPalette() {
                 spellCheck={false}
                 autoComplete="off"
                 aria-label="Search commands"
+                role="combobox"
+                aria-expanded="true"
+                aria-controls="palette-listbox"
+                aria-activedescendant={filtered.length > 0 ? `palette-option-${active}` : undefined}
                 onChange={(e) => {
                   setQuery(e.target.value);
                   setActive(0);
@@ -240,7 +244,7 @@ export default function CommandPalette() {
               <button type="button" className={styles.escChip} onClick={close}>esc</button>
             </div>
 
-            <div className={styles.list} role="listbox" aria-label="Commands">
+            <div className={styles.list} id="palette-listbox" role="listbox" aria-label="Commands">
               {filtered.length === 0 && (
                 <p className={styles.empty}>No matches — try &quot;contact&quot;</p>
               )}
@@ -257,6 +261,7 @@ export default function CommandPalette() {
                         <button
                           key={cmd.id}
                           type="button"
+                          id={`palette-option-${i}`}
                           role="option"
                           aria-selected={i === active}
                           className={`${styles.item} ${i === active ? styles.itemActive : ""}`}

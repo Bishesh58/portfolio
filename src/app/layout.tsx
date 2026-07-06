@@ -21,36 +21,56 @@ const mono = Space_Mono({
   variable: "--font-mono-sp",
 });
 
-// Update metadataBase when the real domain is live.
+// Vercel serves the site from the www host (apex 308-redirects to it),
+// so all absolute URLs (og:image, canonical) must be minted against www.
+const SITE_URL = "https://www.bishesh58.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bishesh58.com"),
+  metadataBase: new URL(SITE_URL),
   title: `${resume.name} | ${resume.role}`,
   description:
     "Full Stack Developer in Auckland, NZ with 4+ years building scalable web and enterprise applications — Vue, React, Node.js, TypeScript, Laravel, NetSuite, and Google Cloud.",
-  icons: { icon: "/favicon.svg" },
+  alternates: { canonical: "/" },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon-32.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
+    url: "/",
     title: `${resume.name} | ${resume.role}`,
     description:
       "Full Stack Developer in Auckland, NZ — scalable web apps, ERP integrations, and dashboards teams actually use.",
-    images: ["/robot.png"],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${resume.name} — ${resume.role}, Auckland NZ`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${resume.name} | ${resume.role}`,
     description:
       "Full Stack Developer in Auckland, NZ — scalable web apps, ERP integrations, and dashboards teams actually use.",
-    images: ["/robot.png"],
+    images: ["/og.png"],
   },
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="light";}})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.dataset.theme=t;if(localStorage.getItem("portfolio-visited")){document.documentElement.dataset.visited="1";}}catch(e){document.documentElement.dataset.theme="light";}})();`;
 
 const personLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: resume.name,
   jobTitle: resume.role,
+  url: "https://www.bishesh58.com",
+  image: "https://www.bishesh58.com/og.png",
   email: "mailto:bishesh.sunam@gmail.com",
   address: {
     "@type": "PostalAddress",

@@ -13,3 +13,5 @@ shots2.mjs
 *-check*.mjs
 wow-shots/
 theme-shots/
+.gstack/
+.claude/

@@ -21,13 +21,17 @@ export default function Loader() {
       setVisible(false);
     };
 
-    const timeout = setTimeout(finish, 1400);
+    const timeouts = [setTimeout(finish, 1400)];
+    const onLoad = () => timeouts.push(setTimeout(finish, 900));
     if (document.readyState === "complete") {
-      setTimeout(finish, 900);
+      onLoad();
     } else {
-      window.addEventListener("load", () => setTimeout(finish, 900), { once: true });
+      window.addEventListener("load", onLoad, { once: true });
     }
-    return () => clearTimeout(timeout);
+    return () => {
+      timeouts.forEach(clearTimeout);
+      window.removeEventListener("load", onLoad);
+    };
   }, [reduced]);
 
   return (

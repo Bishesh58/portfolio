@@ -476,6 +476,9 @@ main { padding-top: var(--nav-h); }
 }
 
 /* ---------- loader ---------- */
+/* Returning visitors are flagged pre-hydration by the inline script in
+   layout.tsx, so the loader never paints for them. */
+[data-visited] .loader { display: none; }
 .loader {
   position: fixed;
   inset: 0;
