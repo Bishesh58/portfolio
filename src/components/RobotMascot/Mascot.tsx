@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
 import { useActiveSection } from "@/lib/sectionStore";
 import { quips, type SectionId } from "@/data/quips";
+import { tourStops } from "@/data/tour";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import styles from "./mascot.module.css";
+
+export const TOUR_EVENT = "start-tour";
+
+const TOUR_STOP_MS = 4200;
 
 type Pose = "wave" | "idle" | "type" | "wrench" | "mail";
 
@@ -26,9 +31,79 @@ export default function Mascot() {
   const [mounted, setMounted] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [bubble, setBubble] = useState<string | null>(null);
+  const [touring, setTouring] = useState(false);
   const shownSections = useRef(new Set<SectionId>());
   const lastBubbleAt = useRef(0);
   const svgRef = useRef<SVGSVGElement>(null);
+  const touringRef = useRef(false);
+  const tourTimers = useRef<number[]>([]);
+
+  const stopTour = useCallback((farewell: string | null = null) => {
+    touringRef.current = false;
+    setTouring(false);
+    tourTimers.current.forEach((t) => window.clearTimeout(t));
+    tourTimers.current = [];
+    setBubble(farewell);
+    if (farewell) {
+      tourTimers.current.push(window.setTimeout(() => setBubble(null), 5000));
+    }
+  }, []);
+
+  // Guided tour: walk every section, narrating via the quip bubble. The
+  // engine lives here because the mascot owns the bubble and its pose
+  // already follows the active section as the page scrolls past.
+  useEffect(() => {
+    const start = () => {
+      if (touringRef.current) return;
+      touringRef.current = true;
+      setTouring(true);
+      setHasScrolled(true);
+      // The tour narrates every section, so retire the ambient quips.
+      tourStops.forEach((s) => shownSections.current.add(s.id));
+      let i = 0;
+      const step = () => {
+        if (!touringRef.current) return;
+        if (i >= tourStops.length) {
+          stopTour("End of tour. Ctrl+K has the rest of the controls.");
+          return;
+        }
+        const stop = tourStops[i];
+        i += 1;
+        document.querySelector(`#${stop.id}`)?.scrollIntoView({
+          behavior: reduced ? "auto" : "smooth",
+          block: "start",
+        });
+        setBubble(stop.text);
+        tourTimers.current.push(window.setTimeout(step, TOUR_STOP_MS));
+      };
+      // Small head start so a closing command palette can release its
+      // body scroll lock before the first scrollIntoView.
+      tourTimers.current.push(window.setTimeout(step, 350));
+    };
+    window.addEventListener(TOUR_EVENT, start);
+    return () => window.removeEventListener(TOUR_EVENT, start);
+  }, [reduced, stopTour]);
+
+  // The visitor stays in charge: any scroll intent or Escape ends the tour.
+  useEffect(() => {
+    if (!touring) return;
+    const cancel = () => stopTour();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") stopTour();
+    };
+    window.addEventListener("wheel", cancel, { passive: true });
+    window.addEventListener("touchmove", cancel, { passive: true });
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("touchmove", cancel);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [touring, stopTour]);
+
+  useEffect(() => {
+    return () => tourTimers.current.forEach((t) => window.clearTimeout(t));
+  }, []);
 
   // Pupil tracking
   const px = useMotionValue(0);
@@ -140,7 +215,7 @@ export default function Mascot() {
 
   return (
     <motion.div
-      className={styles.mascot}
+      className={`${styles.mascot} ${touring ? styles.touring : ""}`}
       initial={reduced ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -158,8 +233,8 @@ export default function Mascot() {
             <button
               type="button"
               className={styles.bubbleClose}
-              onClick={() => setBubble(null)}
-              aria-label="Dismiss message"
+              onClick={() => (touringRef.current ? stopTour() : setBubble(null))}
+              aria-label={touring ? "End tour" : "Dismiss message"}
             >
               ×
             </button>

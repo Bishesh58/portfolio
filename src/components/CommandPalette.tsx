@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { resume } from "@/data/resume";
 import { BLUEPRINT_EVENT } from "@/components/wow/BlueprintMode";
+import { TOUR_EVENT } from "@/components/RobotMascot/Mascot";
 import { useTheme } from "@/hooks/useTheme";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import styles from "./CommandPalette.module.css";
@@ -67,6 +68,13 @@ export default function CommandPalette() {
         label: "Blueprint x-ray",
         hint: "or press X",
         run: () => window.dispatchEvent(new Event(BLUEPRINT_EVENT)),
+      },
+      {
+        id: "tour",
+        group: "Actions",
+        label: "Guided tour",
+        hint: "the robot narrates",
+        run: () => window.dispatchEvent(new Event(TOUR_EVENT)),
       },
       {
         id: "copy-email",
