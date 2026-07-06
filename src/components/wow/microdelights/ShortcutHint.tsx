@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { TOUR_EVENT } from "@/components/RobotMascot/Mascot";
 import styles from "./ShortcutHint.module.css";
 
 /**
@@ -33,6 +34,7 @@ const SHORTCUTS: Shortcut[] = [
   { keys: ["G", "A"], label: "Go to About", href: "#about" },
   { keys: ["G", "P"], label: "Go to Projects", href: "#projects" },
   { keys: ["G", "C"], label: "Go to Contact", href: "#contact" },
+  { keys: ["G", "T"], label: "Guided tour (robot narrates)" },
   { keys: ["?"], label: "Toggle this panel" },
   { keys: ["Esc"], label: "Close" },
 ];
@@ -93,7 +95,14 @@ export default function ShortcutHint() {
       if (awaitingGoto.current) {
         awaitingGoto.current = false;
         if (gotoTimer.current) window.clearTimeout(gotoTimer.current);
-        const dest = GOTO[e.key.toLowerCase()];
+        const key = e.key.toLowerCase();
+        if (key === "t") {
+          e.preventDefault();
+          setOpen(false);
+          window.dispatchEvent(new Event(TOUR_EVENT));
+          return;
+        }
+        const dest = GOTO[key];
         if (dest) {
           e.preventDefault();
           jumpTo(dest);

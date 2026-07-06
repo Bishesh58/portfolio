@@ -58,4 +58,6 @@
 
 @media (max-width: 640px) {
   .mascot { display: none; }
+  /* …unless the robot is mid-tour: phones get the narration too */
+  .touring { display: flex; }
 }

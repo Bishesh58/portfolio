@@ -1,6 +1,7 @@
 "use client";
 
 import { PALETTE_EVENT } from "@/components/CommandPalette";
+import { TOUR_EVENT } from "@/components/RobotMascot/Mascot";
 import { BLUEPRINT_EVENT } from "@/components/wow/BlueprintMode";
 import { HIRE_EVENT } from "@/components/wow/HireSignal";
 import { KONAMI_EVENT } from "@/components/wow/microdelights/KonamiConfetti";
@@ -16,6 +17,7 @@ type Egg = {
 
 const EGGS: Egg[] = [
   { id: "palette", keys: ["Ctrl", "K"], label: "Command palette", event: PALETTE_EVENT },
+  { id: "tour", keys: ["G", "T"], label: "Guided tour", event: TOUR_EVENT },
   { id: "blueprint", keys: ["X"], label: "Blueprint x-ray", event: BLUEPRINT_EVENT },
   { id: "hire", keys: ["H", "I", "R", "E"], label: "Type it anywhere", event: HIRE_EVENT },
   { id: "konami", keys: ["↑↑", "↓↓", "←→", "←→", "B", "A"], label: "Old-school cheat", event: KONAMI_EVENT },
