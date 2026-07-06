@@ -1,76 +1,67 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.card {
-  background: var(--panel);
+.table {
   border: var(--bw) solid var(--ink);
-  border-radius: var(--radius);
+  background: var(--panel);
   box-shadow: var(--shadow);
-  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  border-bottom: var(--bw) solid var(--ink);
+}
+.row:last-child { border-bottom: none; }
+
+.label {
   display: flex;
-  flex-direction: column;
-}
-
-.cardHead {
-  padding: 18px 20px 14px;
-  border-bottom: 2px solid var(--ink);
-}
-
-.catTitle {
-  font-size: 1.05rem;
+  align-items: center;
+  padding: 18px 20px;
+  border-right: var(--bw) solid var(--ink);
+  font-family: var(--font-mono-sp), monospace;
   font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  margin: 0;
 }
 
-.tags {
+.cells {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 18px 20px 22px;
+  padding: 16px 20px;
+  margin: 0;
 }
 
-.tag {
+/* sticker chips — always light so brand icons stay legible in dark mode */
+.chip {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 13px;
   font-family: var(--font-mono-sp), monospace;
-  font-size: 0.78rem;
   font-weight: 700;
-  background: var(--paper);
-  border: 2.5px solid var(--ink);
-  border-radius: 8px;
+  font-size: 0.8rem;
+  background: var(--chalk);
+  color: var(--coal);
+  border: 2px solid var(--ink);
   box-shadow: 3px 3px 0 var(--ink);
-  padding: 7px 12px 7px 10px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.12s, box-shadow 0.12s;
 }
-
-.tag:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+.chip:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
 }
+.chipIcon { flex-shrink: 0; }
 
-.tagIcon {
-  flex-shrink: 0;
-  object-fit: contain;
-}
-
-@media (max-width: 1024px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; gap: 20px; }
-  .cardHead { padding: 16px 18px 12px; }
-  .catTitle { font-size: 0.98rem; }
-  .tags { padding: 16px 18px 20px; gap: 8px; }
-  .tag { font-size: 0.72rem; padding: 6px 10px 6px 8px; }
-}
-
-@media (max-width: 480px) {
-  .tag { box-shadow: 2px 2px 0 var(--ink); }
-  .tag:hover { box-shadow: 3px 3px 0 var(--ink); }
+@media (max-width: 720px) {
+  .row { grid-template-columns: 1fr; }
+  .label {
+    border-right: none;
+    border-bottom: 2px solid var(--ink);
+    padding: 12px 16px;
+    background: var(--paper);
+  }
+  .cells { padding: 14px 16px; }
+  .chip { font-size: 0.74rem; padding: 7px 11px; }
 }

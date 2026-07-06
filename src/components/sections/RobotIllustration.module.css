@@ -6,19 +6,32 @@
 .eyelid {
   transform-box: fill-box;
   transform-origin: center;
-  animation: robotBlink 3s linear infinite;
+  animation: robotBlink 3s ease-in-out infinite;
 }
 .eyelid:nth-child(4) {
   animation-delay: 0.04s;
 }
 .screenText {
   fill: #111;
-  font-family: var(--font-caveat), cursive;
-  font-size: 27px;
+  font-family: var(--font-mono-sp), monospace;
+  font-size: 15px;
   font-weight: 700;
+  letter-spacing: 0.02em;
   pointer-events: none;
 }
+.screenCursor {
+  animation: screenCursorBlink 1s steps(1) infinite;
+}
+@keyframes screenCursorBlink {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0; }
+}
+/* scaleY(1) = lid covers the eye. Two ~70ms snaps back to back —
+   eyes stay open for ~90% of the cycle so the blink reads as a flick. */
 @keyframes robotBlink {
-  0%, 95%, 97.67%, 100% { transform: scaleY(0); }
-  96.33% { transform: scaleY(1); }
+  0%, 90% { transform: scaleY(0); }
+  91.5%, 93% { transform: scaleY(1); }
+  94.5%, 95.5% { transform: scaleY(0); }
+  97%, 98.5% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
 }

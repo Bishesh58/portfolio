@@ -2,6 +2,7 @@ import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
 import SectionSpy from "@/components/SectionSpy";
+import Marquee from "@/components/Marquee";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Journey from "@/components/sections/Journey";
@@ -10,12 +11,15 @@ import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import Mascot from "@/components/RobotMascot/Mascot";
-import HeroScrollBridge from "@/components/wow/HeroScrollBridge/HeroScrollBridge";
-import SectionDivider from "@/components/wow/dividers/SectionDivider";
-import ScrollToTop from "@/components/wow/microdelights/ScrollToTop";
 import ShortcutHint from "@/components/wow/microdelights/ShortcutHint";
+import KonamiConfetti from "@/components/wow/microdelights/KonamiConfetti";
+import CommandPalette from "@/components/CommandPalette";
+import BlueprintMode from "@/components/wow/BlueprintMode";
+import ConsoleSignature from "@/components/wow/ConsoleSignature";
+import HireSignal from "@/components/wow/HireSignal";
 
-const ticker = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
+const stackTicker = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
+const contactTicker = ["Open to work", "Let's talk", "Auckland NZ", "Open to work", "Let's talk", "Full Stack"];
 
 export default function Home() {
   return (
@@ -27,18 +31,22 @@ export default function Home() {
       <SectionSpy />
       <main id="main">
         <Hero />
-        <HeroScrollBridge ticker={ticker} />
+        <Marquee items={stackTicker} variant="blue" />
         <About />
         <Journey />
-        <SectionDivider variant="zigzag" accent="cobalt" />
         <Projects />
         <Skills />
+        <Marquee items={contactTicker} variant="yellow" baseVelocity={-2.5} />
         <Contact />
       </main>
       <Footer />
       <Mascot />
-      <ScrollToTop />
       <ShortcutHint />
+      <KonamiConfetti />
+      <CommandPalette />
+      <BlueprintMode />
+      <ConsoleSignature />
+      <HireSignal />
     </>
   );
 }

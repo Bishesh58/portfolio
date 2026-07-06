@@ -1,19 +1,27 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useMotionValueEvent, useScroll } from "motion/react";
 import { useTheme } from "@/hooks/useTheme";
 import styles from "./Navbar.module.css";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#journey", label: "Journey" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
+  { href: "#about", label: "Profile" },
+  { href: "#journey", label: "Experience" },
+  { href: "#projects", label: "Build log" },
+  { href: "#skills", label: "Toolkit" },
 ];
 
 export default function Navbar() {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
+
+  // Scroll odometer — how much of the sheet has been read
+  const { scrollYProgress } = useScroll();
+  const [pct, setPct] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setPct(Math.min(100, Math.max(0, Math.round(v * 100))));
+  });
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -32,21 +40,27 @@ export default function Navbar() {
 
   return (
     <nav className="navbar" aria-label="Main">
-      <div className="container">
-        <div className="navbar-inner">
-          <a href="#hero" className="nav-brand" onClick={close}>
-            BS
-          </a>
-          <div className="nav-mid">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} className="nav-link">
-                {l.label}
-              </a>
-            ))}
-          </div>
-          <a href="#contact" className="nav-cta nav-cta--desktop">
-            Get in touch
-          </a>
+      <div className="navbar-inner">
+        <a href="#hero" className="nav-brand" onClick={close}>
+          BS/
+        </a>
+        <div className="nav-mid">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="nav-link">
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <span className="nav-status">
+          <i className="nav-status-dot" aria-hidden="true" /> Open to work
+        </span>
+        <span className="nav-odo" aria-hidden="true">
+          <span className="nav-odo-label">Read</span>
+          {String(pct).padStart(3, "0")}%
+        </span>
+        <a href="#contact" className="nav-cta nav-cta--desktop">
+          Get in touch
+        </a>
           <button
             type="button"
             className={`${styles.menuBtn} ${open ? styles.menuBtnOpen : ""}`}
@@ -91,7 +105,6 @@ export default function Navbar() {
               </svg>
             )}
           </button>
-        </div>
       </div>
 
       <div

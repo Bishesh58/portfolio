@@ -1,0 +1,26 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 380;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.stamp {
+  padding: 18px 36px;
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  color: var(--red);
+  border: 5px solid var(--red);
+  outline: 3px solid var(--red);
+  outline-offset: 4px;
+  background: transparent;
+  white-space: nowrap;
+  /* worn ink, same treatment as the section stamps */
+  -webkit-mask-image: radial-gradient(circle at 35% 45%, black 50%, rgba(0, 0, 0, 0.7) 100%);
+  mask-image: radial-gradient(circle at 35% 45%, black 50%, rgba(0, 0, 0, 0.7) 100%);
+}

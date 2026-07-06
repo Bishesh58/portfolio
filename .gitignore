@@ -3,3 +3,13 @@ node_modules/
 out/
 *.tsbuildinfo
 BISHESH_RESUME.pdf
+
+# temporary dev/audit helpers (Playwright screenshots, responsive audits)
+audit2.mjs
+responsive-audit.mjs
+shots.mjs
+shots2.mjs
+*-audit.mjs
+*-check*.mjs
+wow-shots/
+theme-shots/

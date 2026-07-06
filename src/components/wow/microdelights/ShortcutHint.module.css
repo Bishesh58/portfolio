@@ -14,10 +14,13 @@
 .panel {
   width: min(420px, 100%);
   padding: 24px;
-  box-shadow: var(--shadow);
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--bw) solid var(--ink);
+  box-shadow: var(--shadow-lg);
 }
 .panel:focus-visible {
-  outline: 4px solid var(--cobalt);
+  outline: 4px solid var(--blue);
   outline-offset: 3px;
 }
 
@@ -36,31 +39,29 @@
   font-family: var(--font-mono-sp), monospace;
   font-weight: 700;
   font-size: 0.9rem;
-  color: #111;
+  color: var(--coal);
   background: var(--yellow);
   border: var(--bw) solid var(--ink);
-  border-radius: 8px;
   box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 .close:hover,
-.close:focus-visible {
-  background: var(--lime);
-  transform: translate(4px, 4px);
-  box-shadow: 0 0 0 var(--ink);
-}
+.close:focus-visible,
 .close:active {
+  background: var(--red);
+  color: var(--chalk);
   transform: translate(4px, 4px);
   box-shadow: 0 0 0 var(--ink);
 }
 
 .title {
   margin: 10px 0 20px;
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.015em;
   line-height: 1;
 }
 
@@ -94,10 +95,9 @@
   font-family: var(--font-mono-sp), monospace;
   font-weight: 700;
   font-size: 0.78rem;
-  color: #111;
+  color: var(--ink);
   background: var(--panel);
   border: 2px solid var(--ink);
-  border-radius: 6px;
   box-shadow: 2px 2px 0 var(--ink);
 }
 
@@ -109,7 +109,7 @@
 }
 a.rowLabel:hover,
 a.rowLabel:focus-visible {
-  color: var(--cobalt);
+  color: var(--blue);
 }
 
 .foot {

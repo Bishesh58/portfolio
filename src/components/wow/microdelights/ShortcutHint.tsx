@@ -26,6 +26,9 @@ import styles from "./ShortcutHint.module.css";
 type Shortcut = { keys: string[]; label: string; href?: string };
 
 const SHORTCUTS: Shortcut[] = [
+  { keys: ["Ctrl", "K"], label: "Command palette" },
+  { keys: ["X"], label: "Blueprint x-ray" },
+  { keys: ["H", "I", "R", "E"], label: "Type it anywhere" },
   { keys: ["G", "H"], label: "Go to top / hero", href: "#hero" },
   { keys: ["G", "A"], label: "Go to About", href: "#about" },
   { keys: ["G", "P"], label: "Go to Projects", href: "#projects" },
@@ -33,6 +36,8 @@ const SHORTCUTS: Shortcut[] = [
   { keys: ["?"], label: "Toggle this panel" },
   { keys: ["Esc"], label: "Close" },
 ];
+
+export const SHORTCUTS_EVENT = "open-shortcuts";
 
 // "G then <key>" jump targets.
 const GOTO: Record<string, string> = {
@@ -111,9 +116,12 @@ export default function ShortcutHint() {
       }
     };
 
+    const onOpen = () => setOpen(true);
     window.addEventListener("keydown", onKeyDown);
+    window.addEventListener(SHORTCUTS_EVENT, onOpen);
     return () => {
       window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener(SHORTCUTS_EVENT, onOpen);
       if (gotoTimer.current) window.clearTimeout(gotoTimer.current);
     };
   }, [open, jumpTo]);
@@ -144,7 +152,7 @@ export default function ShortcutHint() {
         >
           <motion.div
             ref={panelRef}
-            className={`card ${styles.panel}`}
+            className={styles.panel}
             role="dialog"
             aria-modal="true"
             aria-label="Keyboard shortcuts"

@@ -10,7 +10,6 @@ import {
   useTransform,
   useVelocity,
 } from "motion/react";
-import type { Accent } from "@/data/types";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const wrap = (min: number, max: number, v: number) => {
@@ -20,11 +19,11 @@ const wrap = (min: number, max: number, v: number) => {
 
 interface Props {
   items: string[];
-  accent?: Accent;
+  variant?: "blue" | "yellow";
   baseVelocity?: number;
 }
 
-export default function Marquee({ items, accent = "yellow", baseVelocity = 2.5 }: Props) {
+export default function Marquee({ items, variant = "blue", baseVelocity = 2.5 }: Props) {
   const reduced = usePrefersReducedMotion();
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -53,7 +52,7 @@ export default function Marquee({ items, accent = "yellow", baseVelocity = 2.5 }
   ));
 
   return (
-    <div className="marquee" style={{ background: `var(--${accent})` }} aria-hidden="true">
+    <div className={`marquee marquee--${variant}`} aria-hidden="true">
       <motion.div className="marquee-track" style={{ x }}>
         {row}{row}{row}{row}
       </motion.div>

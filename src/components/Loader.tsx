@@ -39,8 +39,8 @@ export default function Loader() {
           aria-hidden="true"
         >
           <div className="loader-letters">
-            <span className="loader-letter" style={{ background: "var(--yellow)" }}>B</span>
-            <span className="loader-letter loader-letter--2" style={{ background: "var(--lime)" }}>S</span>
+            <span className="loader-letter" style={{ background: "var(--yellow)", color: "var(--coal)" }}>B</span>
+            <span className="loader-letter loader-letter--2" style={{ background: "var(--blue)", color: "var(--chalk)" }}>S</span>
           </div>
           <div className="loader-bar"><div className="loader-bar-fill" /></div>
         </motion.div>

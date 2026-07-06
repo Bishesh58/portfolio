@@ -1,0 +1,76 @@
+.panel {
+  padding-top: clamp(28px, 4vw, 44px);
+  padding-bottom: clamp(24px, 3.5vw, 36px);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.headHint {
+  opacity: 0.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.egg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: transparent;
+  color: var(--paper);
+  border: 2px solid color-mix(in srgb, var(--paper) 40%, transparent);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.14s, color 0.14s, border-color 0.14s;
+}
+.egg:hover,
+.egg:focus-visible {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+.keys {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  padding: 3px 7px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  border: 2px solid currentColor;
+  color: inherit;
+}
+
+.label {
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}

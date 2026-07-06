@@ -21,6 +21,8 @@ import styles from "./KonamiConfetti.module.css";
  * acknowledged without any motion.
  */
 
+export const KONAMI_EVENT = "trigger-konami";
+
 const SEQUENCE = [
   "ArrowUp",
   "ArrowUp",
@@ -129,8 +131,10 @@ export default function KonamiConfetti() {
     };
 
     window.addEventListener("keydown", onKeyDown);
+    window.addEventListener(KONAMI_EVENT, trigger);
     return () => {
       window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener(KONAMI_EVENT, trigger);
       clearTimer();
     };
   }, [trigger]);

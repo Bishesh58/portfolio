@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Space_Mono, Caveat } from "next/font/google";
+import { Anton, Archivo, Space_Mono } from "next/font/google";
 import { resume } from "@/data/resume";
 import "./globals.css";
 
-const grotesk = Space_Grotesk({
+const display = Anton({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-grotesk",
+  weight: "400",
+  variable: "--font-display",
+});
+
+const sans = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
 });
 
 const mono = Space_Mono({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-mono-sp",
-});
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-caveat",
 });
 
 // Update metadataBase when the real domain is live.
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
         />
       </head>
-      <body className={`${grotesk.variable} ${mono.variable} ${caveat.variable}`}>{children}</body>
+      <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>{children}</body>
     </html>
   );
 }

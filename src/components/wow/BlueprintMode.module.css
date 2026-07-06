@@ -1,0 +1,32 @@
+.badge {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 350;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--blue);
+  color: var(--chalk);
+  border: var(--bw) solid var(--ink);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  animation: bp-blink 1.2s steps(1) infinite;
+}
+@keyframes bp-blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0.2; }
+}
