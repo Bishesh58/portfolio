@@ -1,0 +1,23 @@
+.counter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border: 2px solid var(--paper);
+  opacity: 0.85;
+}
+
+.label {
+  opacity: 0.7;
+}
+
+.digits {
+  color: var(--yellow);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.18em;
+}
