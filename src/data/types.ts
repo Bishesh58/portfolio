@@ -21,11 +21,22 @@ export interface TimelineEntry {
   summary: string;
 }
 
+/** Expanded "work order" behind a Build Log row — the problem, what was
+ *  built, and the outcome, in the language of an internal job sheet. */
+export interface ProjectDossier {
+  users: string;
+  status: string;
+  problem: string;
+  build: string;
+  outcome: string;
+}
+
 export interface Project {
   title: string;
   impact: string;
   tags: string[];
   accent: Accent;
+  dossier?: ProjectDossier;
 }
 
 export interface Skill {
