@@ -1,4 +1,6 @@
-/** Simple Icons CDN — brand-coloured marks when no color override is given. */
-export function skillIconUrl(slug: string, color?: string): string {
-  return color ? `https://cdn.simpleicons.org/${slug}/${color}` : `https://cdn.simpleicons.org/${slug}`;
+/** Self-hosted brand icons (public/icons), vendored from Simple Icons.
+ *  Hosted locally because the CDN periodically removes brand marks
+ *  (csharp, oracle, microsoftsqlserver, openai are already gone upstream). */
+export function skillIconUrl(slug: string): string {
+  return `/icons/${slug}.svg`;
 }
