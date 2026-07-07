@@ -18,6 +18,7 @@ import RobotArcade from "@/components/wow/arcade/RobotArcade";
 import BlueprintMode from "@/components/wow/BlueprintMode";
 import ConsoleSignature from "@/components/wow/ConsoleSignature";
 import HireSignal from "@/components/wow/HireSignal";
+import Presence from "@/components/wow/Presence";
 
 const stackTicker = ["Full Stack", "Vue", "React", "Node.js", "TypeScript", "Laravel", "NetSuite"];
 const contactTicker = ["Open to work", "Let's talk", "Auckland NZ", "Open to work", "Let's talk", "Full Stack"];
@@ -49,6 +50,7 @@ export default function Home() {
       <BlueprintMode />
       <ConsoleSignature />
       <HireSignal />
+      <Presence />
     </>
   );
 }
