@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react
 import { useActiveSection } from "@/lib/sectionStore";
 import { quips, type SectionId } from "@/data/quips";
 import { tourStops } from "@/data/tour";
+import { ARCADE_EVENT } from "@/components/wow/arcade/RobotArcade";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import styles from "./mascot.module.css";
 
@@ -242,6 +243,16 @@ export default function Mascot() {
         )}
       </AnimatePresence>
 
+      <button
+        type="button"
+        className={styles.hitbox}
+        title="Psst — click me"
+        aria-label="Play the robot arcade"
+        onClick={() => {
+          if (touringRef.current) stopTour();
+          window.dispatchEvent(new Event(ARCADE_EVENT));
+        }}
+      >
       <svg
         ref={svgRef}
         className={styles.svg}
@@ -336,6 +347,7 @@ export default function Mascot() {
         {/* base */}
         <rect x="42" y="114" width="36" height="10" rx="5" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3" />
       </svg>
+      </button>
     </motion.div>
   );
 }
