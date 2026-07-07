@@ -121,11 +121,15 @@ export default function RobotArcade() {
       const dt = Math.min((t - s.lastT) / 1000, 0.05);
       s.lastT = t;
 
-      // player
+      // player — keys and pointer both steer, but never simultaneously:
+      // the pointer lerp would otherwise drag the robot straight back to
+      // the last mouse position while an arrow key is held
       const SPEED = 540;
       if (s.left) s.playerX -= SPEED * dt;
       if (s.right) s.playerX += SPEED * dt;
-      if (s.targetX !== null) s.playerX += (s.targetX - s.playerX) * 0.28;
+      if (s.targetX !== null && !s.left && !s.right) {
+        s.playerX += (s.targetX - s.playerX) * 0.28;
+      }
       s.playerX = Math.max(PLAYER_HALF, Math.min(W - PLAYER_HALF, s.playerX));
       if (playerRef.current) {
         playerRef.current.style.transform = `translateX(${s.playerX - PLAYER_HALF}px)`;
@@ -271,6 +275,9 @@ export default function RobotArcade() {
       if (k === "arrowleft" || k === "a") sim.current.left = down;
       else if (k === "arrowright" || k === "d") sim.current.right = down;
       else return false;
+      // keyboard takes the wheel — forget the last pointer position so the
+      // lerp doesn't reclaim the robot the moment the key is released
+      if (down) sim.current.targetX = null;
       return true;
     };
     const onDown = (e: KeyboardEvent) => {
