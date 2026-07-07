@@ -17,7 +17,7 @@
 }
 
 .digits {
-  color: var(--yellow);
+  color: var(--yellow-on-ink);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.18em;
 }

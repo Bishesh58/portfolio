@@ -20,6 +20,11 @@
   --chalk: #f4f1e8;
   --coal: #14130f;
 
+  /* accent for text sitting on ink-coloured surfaces: bright yellow while
+     ink is dark; swaps to a dried-ink amber when the dark theme turns ink
+     into light cream (yellow-on-cream is ~1.4:1 — unreadable) */
+  --yellow-on-ink: var(--yellow);
+
   /* legacy accent aliases (mascot, confetti) */
   --cobalt: var(--blue);
   --teal: #3e9c8f;
@@ -45,6 +50,7 @@
   --green: #4cc66d;
   --teal: #58c7bb;
   --lime: #a5e85e;
+  --yellow-on-ink: #7a5a00;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -347,6 +353,8 @@ main { padding-top: var(--nav-h); }
 }
 .marquee--blue { background: var(--blue); }
 .marquee--blue .marquee-track span { color: var(--chalk); }
+/* dark theme's lighter blue leaves chalk at ~3.5:1 — keep the band deep */
+[data-theme="dark"] .marquee--blue { background: #2440d8; }
 .marquee--yellow { background: var(--yellow); }
 .marquee--yellow .marquee-track span { color: var(--coal); }
 .marquee-track { display: flex; white-space: nowrap; width: max-content; }

@@ -48,7 +48,7 @@
   padding-top: 3px;
   transition: color 0.15s;
 }
-.row:hover .index { color: var(--yellow); }
+.row:hover .index { color: var(--yellow-on-ink); }
 
 .main { min-width: 0; }
 .title {
@@ -121,7 +121,7 @@
   white-space: nowrap;
   transition: color 0.15s;
 }
-.row:hover .fileTag { color: var(--yellow); }
+.row:hover .fileTag { color: var(--yellow-on-ink); }
 
 .dossierWrap { overflow: hidden; }
 
@@ -147,7 +147,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-.dossierAccess { color: var(--yellow); }
+.dossierAccess { color: var(--yellow-on-ink); }
 
 .dossierBody {
   display: grid;

@@ -32,7 +32,7 @@
   font-size: 1.15rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--yellow);
+  color: var(--yellow-on-ink);
 }
 .headHint {
   flex: 1;

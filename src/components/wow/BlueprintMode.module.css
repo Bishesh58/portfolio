@@ -19,6 +19,13 @@
   cursor: pointer;
 }
 
+/* dark theme's lighter blue only reaches ~3.6:1 against chalk at this small
+   size — pin the badge to the deep light-theme cobalt in both themes */
+:global([data-theme="dark"]) .badge {
+  background: #2440d8;
+  border-color: var(--chalk);
+}
+
 .dot {
   width: 9px;
   height: 9px;
