@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import styles from "./RobotArcade.module.css";
 
@@ -194,6 +195,7 @@ export default function RobotArcade() {
     setSubmittedName(null);
     setInitials("");
     setPhase("playing");
+    track("arcade_play");
     s.raf = requestAnimationFrame(tick);
   }, [clearBugs, tick]);
 

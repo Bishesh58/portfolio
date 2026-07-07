@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { resume } from "@/data/resume";
 import { useNZNight } from "@/hooks/useNZNight";
 import RobotIllustration from "./RobotIllustration";
@@ -145,7 +146,12 @@ export default function Hero() {
               <p className={styles.intro}>{resume.intro}</p>
               <div className={styles.ctas}>
                 <a className="btn" href="#contact">Get in touch<span aria-hidden="true">→</span></a>
-                <a className="btn btn--ghost" href={resume.resumePdf} download>
+                <a
+                  className="btn btn--ghost"
+                  href={resume.resumePdf}
+                  download
+                  onClick={() => track("cv_download", { source: "hero" })}
+                >
                   Download CV<span aria-hidden="true">↓</span>
                 </a>
                 <div className={styles.socials}>
