@@ -7,13 +7,14 @@ import { quips, type SectionId } from "@/data/quips";
 import { tourStops } from "@/data/tour";
 import { ARCADE_EVENT } from "@/components/wow/arcade/RobotArcade";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useNZNight } from "@/hooks/useNZNight";
 import styles from "./mascot.module.css";
 
 export const TOUR_EVENT = "start-tour";
 
 const TOUR_STOP_MS = 4200;
 
-type Pose = "wave" | "idle" | "type" | "wrench" | "mail";
+type Pose = "wave" | "idle" | "type" | "wrench" | "mail" | "sleep";
 
 const poseBySection: Record<SectionId, Pose> = {
   hero: "wave",
@@ -26,8 +27,9 @@ const poseBySection: Record<SectionId, Pose> = {
 
 export default function Mascot() {
   const reduced = usePrefersReducedMotion();
+  const night = useNZNight();
   const section = useActiveSection();
-  const pose: Pose = reduced ? "idle" : poseBySection[section];
+  const pose: Pose = night ? "sleep" : reduced ? "idle" : poseBySection[section];
 
   const [mounted, setMounted] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -134,7 +136,7 @@ export default function Mascot() {
   }, []);
 
   useEffect(() => {
-    if (reduced || !hasScrolled) return;
+    if (reduced || !hasScrolled || night) return;
     const onMove = (e: MouseEvent) => {
       const el = svgRef.current;
       if (!el) return;
@@ -150,12 +152,22 @@ export default function Mascot() {
     };
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, [reduced, hasScrolled, px, py]);
+  }, [reduced, hasScrolled, px, py, night]);
 
-  // Quips: once per section, 8s cooldown, 4.5s auto-dismiss
+  // Quips: once per section, 8s cooldown, 4.5s auto-dismiss.
+  // During Auckland quiet hours the robot is asleep — one whispered
+  // night notice instead of the usual chatter.
+  const nightBubbleShown = useRef(false);
   useEffect(() => {
     if (reduced || !mounted || !hasScrolled) return;
     if (window.innerWidth < 480) return;
+    if (night) {
+      if (nightBubbleShown.current || touringRef.current) return;
+      nightBubbleShown.current = true;
+      setBubble("Shh — quiet hours in Auckland. Leave a message; he'll reply at sunrise.");
+      const t = setTimeout(() => setBubble(null), 6000);
+      return () => clearTimeout(t);
+    }
     if (shownSections.current.has(section)) return;
     const now = Date.now();
     if (now - lastBubbleAt.current < 8000) return;
@@ -166,7 +178,7 @@ export default function Mascot() {
     setBubble(text);
     const t = setTimeout(() => setBubble(null), 4500);
     return () => clearTimeout(t);
-  }, [section, reduced, mounted, hasScrolled]);
+  }, [section, reduced, mounted, hasScrolled, night]);
 
   if (!mounted || !hasScrolled) return null;
 
@@ -259,34 +271,79 @@ export default function Mascot() {
         viewBox="0 0 120 140"
         width="110"
         height="128"
-        aria-label={`Robot mascot, currently ${pose === "idle" ? "watching" : pose === "wave" ? "waving" : pose === "type" ? "typing" : pose === "wrench" ? "holding a wrench" : "holding an envelope"}`}
+        overflow="visible"
+        aria-label={
+          pose === "sleep"
+            ? "Robot mascot, asleep — it's night time in Auckland"
+            : `Robot mascot, currently ${pose === "idle" ? "watching" : pose === "wave" ? "waving" : pose === "type" ? "typing" : pose === "wrench" ? "holding a wrench" : "holding an envelope"}`
+        }
         role="img"
       >
-        {/* antenna */}
-        <motion.g animate={reduced ? undefined : { y: [0, -2, 0] }} transition={{ duration: 2.4, repeat: Infinity }}>
-          <line x1="60" y1="22" x2="60" y2="10" stroke="var(--ink)" strokeWidth="3.5" />
-          <circle cx="60" cy="8" r="5" fill="var(--cobalt)" stroke="var(--ink)" strokeWidth="3" />
-        </motion.g>
+        {/* antenna — swapped for a nightcap during quiet hours */}
+        {night ? (
+          <g>
+            <path d="M34 20 L86 20 L64 -2 Q60 -6 56 -2 Z" fill="var(--cobalt)" stroke="var(--ink)" strokeWidth="3" />
+            <rect x="31" y="16" width="58" height="8" rx="4" fill="var(--yellow)" stroke="var(--ink)" strokeWidth="2.5" />
+            <circle cx="60" cy="-4" r="5" fill="var(--yellow)" stroke="var(--ink)" strokeWidth="2.5" />
+          </g>
+        ) : (
+          <motion.g animate={reduced ? undefined : { y: [0, -2, 0] }} transition={{ duration: 2.4, repeat: Infinity }}>
+            <line x1="60" y1="22" x2="60" y2="10" stroke="var(--ink)" strokeWidth="3.5" />
+            <circle cx="60" cy="8" r="5" fill="var(--cobalt)" stroke="var(--ink)" strokeWidth="3" />
+          </motion.g>
+        )}
 
         {/* head */}
         <rect x="30" y="20" width="60" height="46" rx="14" fill="var(--panel)" stroke="var(--ink)" strokeWidth="3.5" />
         <rect x="38" y="30" width="44" height="26" rx="9" fill="var(--ink)" />
-        {/* eyes */}
-        <circle cx="52" cy="43" r="6.5" fill="var(--lime)" />
-        <circle cx="68" cy="43" r="6.5" fill="var(--lime)" />
-        <motion.g style={{ x: springPx, y: springPy }}>
-          <circle cx="52" cy="43" r="2.6" fill="#111" />
-          <circle cx="68" cy="43" r="2.6" fill="#111" />
-        </motion.g>
-        {/* blink eyelid */}
-        {!reduced && (
-          <motion.rect
-            x="42" y="33" width="36" height="20" rx="8" fill="var(--ink)"
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: [0, 1, 0] }}
-            style={{ originY: "33px" }}
-            transition={{ duration: 0.28, repeat: Infinity, repeatDelay: 3.8 }}
-          />
+        {/* eyes — closed lids at night, tracking pupils by day */}
+        {night ? (
+          <g stroke="var(--lime)" strokeWidth="2.6" fill="none" strokeLinecap="round">
+            <path d="M46 44 q6 5 12 0" />
+            <path d="M62 44 q6 5 12 0" />
+          </g>
+        ) : (
+          <>
+            <circle cx="52" cy="43" r="6.5" fill="var(--lime)" />
+            <circle cx="68" cy="43" r="6.5" fill="var(--lime)" />
+            <motion.g style={{ x: springPx, y: springPy }}>
+              <circle cx="52" cy="43" r="2.6" fill="#111" />
+              <circle cx="68" cy="43" r="2.6" fill="#111" />
+            </motion.g>
+            {/* blink eyelid */}
+            {!reduced && (
+              <motion.rect
+                x="42" y="33" width="36" height="20" rx="8" fill="var(--ink)"
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: [0, 1, 0] }}
+                style={{ originY: "33px" }}
+                transition={{ duration: 0.28, repeat: Infinity, repeatDelay: 3.8 }}
+              />
+            )}
+          </>
+        )}
+
+        {/* Zzz — drifts up from the sleeping robot */}
+        {night && (
+          <g fontFamily="var(--font-mono-sp), monospace" fontWeight="700" fill="var(--ink)">
+            {reduced ? (
+              <text x="94" y="18" fontSize="13">z</text>
+            ) : (
+              [0, 1, 2].map((i) => (
+                <motion.text
+                  key={i}
+                  x={92 + i * 8}
+                  y={22 - i * 9}
+                  fontSize={10 + i * 3}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1, 0], y: [4, -4] }}
+                  transition={{ duration: 2.6, repeat: Infinity, delay: i * 0.55, ease: "easeInOut" }}
+                >
+                  z
+                </motion.text>
+              ))
+            )}
+          </g>
         )}
         {/* ear cups */}
         <rect x="24" y="36" width="8" height="16" rx="3" fill="var(--cobalt)" stroke="var(--ink)" strokeWidth="3" />

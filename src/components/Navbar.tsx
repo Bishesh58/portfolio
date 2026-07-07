@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { useTheme } from "@/hooks/useTheme";
+import { useNZNight } from "@/hooks/useNZNight";
 import styles from "./Navbar.module.css";
 
 const links = [
@@ -14,6 +15,7 @@ const links = [
 
 export default function Navbar() {
   const { theme, toggle } = useTheme();
+  const night = useNZNight();
   const [open, setOpen] = useState(false);
 
   // Scroll odometer — how much of the sheet has been read
@@ -52,7 +54,12 @@ export default function Navbar() {
           ))}
         </div>
         <span className="nav-status">
-          <i className="nav-status-dot" aria-hidden="true" /> Open to work
+          <i
+            className="nav-status-dot"
+            style={night ? { background: "var(--yellow)" } : undefined}
+            aria-hidden="true"
+          />{" "}
+          {night ? "Back at sunrise NZT" : "Open to work"}
         </span>
         <span className="nav-odo" aria-hidden="true">
           <span className="nav-odo-label">Read</span>

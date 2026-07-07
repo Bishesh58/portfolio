@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
+import { useNZNight } from "@/hooks/useNZNight";
 import RobotIllustration from "./RobotIllustration";
 import styles from "./Hero.module.css";
 
@@ -40,6 +41,7 @@ function Letters({ word }: { word: string }) {
 }
 
 export default function Hero() {
+  const night = useNZNight();
   const [first, last] = resume.name.split(" ");
 
   return (
@@ -118,7 +120,9 @@ export default function Hero() {
               <RobotIllustration className={styles.robotImg} />
               <figcaption className={styles.plate}>
                 <span>Fig. 01 — The Operator</span>
-                <span className={styles.plateStatus}>Status: shipping</span>
+                <span className={styles.plateStatus}>
+                  {night ? "Status: recharging" : "Status: shipping"}
+                </span>
               </figcaption>
             </figure>
             <motion.span
