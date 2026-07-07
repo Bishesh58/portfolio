@@ -75,6 +75,13 @@ export default function RobotArcade() {
   const sim = useRef({
     playerX: 0,
     targetX: null as number | null,
+    // Input arbitration: real mice emit micro-movement noise even at rest,
+    // so "last event wins" makes keys unusable. Keys claim the mode on
+    // press; the pointer reclaims it only via a deliberate move measured
+    // against where the cursor sat when the keys took over.
+    mode: "pointer" as "pointer" | "keys",
+    lastPointerX: null as number | null,
+    pointerAnchor: null as number | null,
     left: false,
     right: false,
     lastSpawn: 0,
@@ -121,11 +128,13 @@ export default function RobotArcade() {
       const dt = Math.min((t - s.lastT) / 1000, 0.05);
       s.lastT = t;
 
-      // player
+      // player — whichever input owns the mode steers; the other is ignored
       const SPEED = 540;
       if (s.left) s.playerX -= SPEED * dt;
       if (s.right) s.playerX += SPEED * dt;
-      if (s.targetX !== null) s.playerX += (s.targetX - s.playerX) * 0.28;
+      if (s.mode === "pointer" && s.targetX !== null && !s.left && !s.right) {
+        s.playerX += (s.targetX - s.playerX) * 0.28;
+      }
       s.playerX = Math.max(PLAYER_HALF, Math.min(W - PLAYER_HALF, s.playerX));
       if (playerRef.current) {
         playerRef.current.style.transform = `translateX(${s.playerX - PLAYER_HALF}px)`;
@@ -183,6 +192,8 @@ export default function RobotArcade() {
     s.lives = 3;
     s.playerX = field.clientWidth / 2;
     s.targetX = null;
+    s.mode = "pointer";
+    s.pointerAnchor = null;
     s.left = false;
     s.right = false;
     s.lastT = performance.now();
@@ -267,10 +278,18 @@ export default function RobotArcade() {
   useEffect(() => {
     if (!open) return;
     const setKey = (e: KeyboardEvent, down: boolean) => {
+      const s = sim.current;
       const k = e.key.toLowerCase();
-      if (k === "arrowleft" || k === "a") sim.current.left = down;
-      else if (k === "arrowright" || k === "d") sim.current.right = down;
+      if (k === "arrowleft" || k === "a") s.left = down;
+      else if (k === "arrowright" || k === "d") s.right = down;
       else return false;
+      if (down) {
+        // keyboard takes the wheel; remember where the cursor was resting
+        // so we can tell a deliberate mouse move from desk vibration
+        s.mode = "keys";
+        s.targetX = null;
+        s.pointerAnchor = s.lastPointerX;
+      }
       return true;
     };
     const onDown = (e: KeyboardEvent) => {
@@ -324,7 +343,22 @@ export default function RobotArcade() {
   const onPointer = (e: React.PointerEvent) => {
     if (phaseRef.current !== "playing") return;
     const rect = fieldRef.current?.getBoundingClientRect();
-    if (rect) sim.current.targetX = e.clientX - rect.left;
+    if (!rect) return;
+    const s = sim.current;
+    const x = e.clientX - rect.left;
+    s.lastPointerX = x;
+    if (s.mode === "keys") {
+      // resting-mouse noise stays ignored; a real move (or any touch/click)
+      // hands control back to the pointer
+      const deliberate =
+        e.pointerType === "touch" ||
+        e.type === "pointerdown" ||
+        s.pointerAnchor === null ||
+        Math.abs(x - s.pointerAnchor) > 12;
+      if (!deliberate) return;
+      s.mode = "pointer";
+    }
+    s.targetX = x;
   };
 
   const animate = !reduced;
