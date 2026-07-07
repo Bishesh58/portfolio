@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
+import { useNZNight } from "@/hooks/useNZNight";
 import RobotIllustration from "./RobotIllustration";
 import styles from "./Hero.module.css";
 
@@ -40,10 +41,16 @@ function Letters({ word }: { word: string }) {
 }
 
 export default function Hero() {
+  const night = useNZNight();
   const [first, last] = resume.name.split(" ");
 
   return (
-    <section className={styles.hero} id="hero" data-section="hero">
+    <section
+      className={styles.hero}
+      id="hero"
+      data-section="hero"
+      data-note="Nameplate: per-letter spans, mask-revealed y:110%→0, ease [0.22,1,0.36,1]. Sticker: pointer drag with snap-back spring, stiffness 420."
+    >
       <div className={`container ${styles.inner}`}>
         <div className={styles.body}>
           <div className={styles.copy}>
@@ -113,7 +120,9 @@ export default function Hero() {
               <RobotIllustration className={styles.robotImg} />
               <figcaption className={styles.plate}>
                 <span>Fig. 01 — The Operator</span>
-                <span className={styles.plateStatus}>Status: shipping</span>
+                <span className={styles.plateStatus}>
+                  {night ? "Status: recharging" : "Status: shipping"}
+                </span>
               </figcaption>
             </figure>
             <motion.span

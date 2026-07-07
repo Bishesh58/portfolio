@@ -45,7 +45,12 @@ const facts = [
 
 export default function About() {
   return (
-    <section className="section" id="about" data-section="about">
+    <section
+      className="section"
+      id="about"
+      data-section="about"
+      data-note="Marker highlights: <mark> sweep via transition-delay stagger, 0.22s per mark, fires at 60% in view. Copy lives in typed resume.ts — one source of truth."
+    >
       <div className="container">
         <SectionHeader n="01" title="Profile" meta="The short version" stamp="Verified" />
         <div className={styles.grid}>

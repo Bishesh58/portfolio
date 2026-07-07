@@ -158,10 +158,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
+  justify-content: safe center;
+  gap: 12px;
   text-align: center;
-  padding: 24px;
+  padding: 20px 24px;
+  overflow-y: auto;
   background: color-mix(in srgb, var(--paper) 82%, transparent);
 }
 .cardEyebrow {
@@ -204,6 +205,85 @@
   margin: 0;
 }
 .cardActions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+.topLine {
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.topLine b { color: var(--blue); }
+
+.initialsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.initialsLabel {
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.initialsRow { display: flex; gap: 10px; align-items: stretch; }
+.initialsInput {
+  width: 110px;
+  text-align: center;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  padding: 8px 4px 8px 14px;
+  background: var(--panel);
+  color: var(--ink);
+  border: var(--bw) solid var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.initialsInput:focus-visible { outline-offset: 0; }
+.initialsError {
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0;
+}
+
+.board {
+  width: min(280px, 100%);
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  border: var(--bw) solid var(--ink);
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.78rem;
+  max-height: 132px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+.boardRow {
+  display: flex;
+  gap: 12px;
+  padding: 5px 12px;
+  border-bottom: 2px solid color-mix(in srgb, var(--ink) 18%, transparent);
+}
+.boardRow:last-child { border-bottom: none; }
+.boardRank { color: var(--muted); }
+.boardName { letter-spacing: 0.2em; }
+.boardScore { margin-left: auto; font-variant-numeric: tabular-nums; }
+.boardMine { background: var(--yellow); color: var(--coal); }
+.boardMine .boardRank { color: var(--coal); opacity: 0.6; }
 
 .recordStamp {
   padding: 5px 12px;

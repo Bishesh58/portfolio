@@ -20,7 +20,12 @@ export default function Projects() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="section" id="projects" data-section="projects">
+    <section
+      className="section"
+      id="projects"
+      data-section="projects"
+      data-note="Dossiers: height:auto accordion, one file open at a time, aria-expanded/aria-controls disclosure. Row hover inverts the full grid row — the signature move."
+    >
       <div className="container">
         <SectionHeader n="03" title="Build Log" meta="Internal platform work" stamp="Shipped" />
 

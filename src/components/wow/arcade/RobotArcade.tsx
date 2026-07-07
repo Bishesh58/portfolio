@@ -15,6 +15,10 @@ type Phase = "start" | "playing" | "over";
 
 type Bug = { x: number; y: number; v: number; el: HTMLDivElement };
 
+type BoardEntry = { name: string; score: number };
+
+type SubmitState = "idle" | "sending" | "done" | "error";
+
 const pad = (n: number) => String(Math.min(n, 999999)).padStart(3, "0");
 
 const BUG_SVG = `<svg viewBox="0 0 30 30" width="30" height="30" aria-hidden="true">
@@ -56,6 +60,11 @@ export default function RobotArcade() {
   const [lives, setLives] = useState(3);
   const [best, setBest] = useState(0);
   const [isRecord, setIsRecord] = useState(false);
+  const [board, setBoard] = useState<BoardEntry[] | null>(null);
+  const [initials, setInitials] = useState("");
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [submitError, setSubmitError] = useState("");
+  const [submittedName, setSubmittedName] = useState<string | null>(null);
 
   const fieldRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<HTMLDivElement>(null);
@@ -181,9 +190,45 @@ export default function RobotArcade() {
     setScore(0);
     setLives(3);
     setIsRecord(false);
+    setSubmitState("idle");
+    setSubmittedName(null);
+    setInitials("");
     setPhase("playing");
     s.raf = requestAnimationFrame(tick);
   }, [clearBugs, tick]);
+
+  const submitScore = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (submitState === "sending") return;
+      setSubmitState("sending");
+      setSubmitError("");
+      fetch("/api/arcade", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ name: initials, score: sim.current.score }),
+      })
+        .then(async (res) => {
+          const data = await res.json().catch(() => null);
+          if (res.ok && data?.board) {
+            setBoard(data.board);
+            setSubmittedName(initials);
+            setSubmitState("done");
+          } else if (res.status === 429) {
+            setSubmitState("error");
+            setSubmitError("Too many submissions — take a breath.");
+          } else {
+            setSubmitState("error");
+            setSubmitError("Three letters, keep it clean.");
+          }
+        })
+        .catch(() => {
+          setSubmitState("error");
+          setSubmitError("Network hiccup — try again.");
+        });
+    },
+    [initials, submitState],
+  );
 
   const close = useCallback(() => {
     stopSim();
@@ -200,8 +245,16 @@ export default function RobotArcade() {
       } catch {}
       setScore(0);
       setLives(3);
+      setSubmitState("idle");
+      setSubmittedName(null);
+      setInitials("");
       setPhase("start");
       setOpen(true);
+      // Global board — null (store unconfigured / offline) hides it entirely
+      fetch("/api/arcade")
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data: { board: BoardEntry[] | null } | null) => setBoard(data?.board ?? null))
+        .catch(() => setBoard(null));
     };
     window.addEventListener(ARCADE_EVENT, onOpen);
     return () => window.removeEventListener(ARCADE_EVENT, onOpen);
@@ -340,33 +393,102 @@ export default function RobotArcade() {
                   <button ref={startBtnRef} type="button" className="btn" onClick={begin}>
                     Start debugging<span aria-hidden="true">→</span>
                   </button>
+                  {board && board.length > 0 && (
+                    <p className={styles.topLine}>
+                      Top debuggers:{" "}
+                      {board.slice(0, 3).map((e, i) => (
+                        <span key={e.name}>
+                          {i > 0 && " · "}
+                          <b>{e.name}</b> {e.score}
+                        </span>
+                      ))}
+                    </p>
+                  )}
                 </div>
               )}
 
-              {phase === "over" && (
-                <div className={styles.card}>
-                  <p className={styles.cardEyebrow}>{"//"} post-mortem</p>
-                  <h2 className={styles.cardTitle}>
-                    {isRecord ? "New personal best" : "Production is down"}
-                  </h2>
-                  <p className={styles.cardScore}>
-                    Bugs squashed: <b>{score}</b> · Best: <b>{best}</b>
-                  </p>
-                  {isRecord && (
-                    <span className={styles.recordStamp} aria-hidden="true">
-                      New record
-                    </span>
-                  )}
-                  <div className={styles.cardActions}>
-                    <button ref={startBtnRef} type="button" className="btn" onClick={begin}>
-                      Debug again<span aria-hidden="true">↺</span>
-                    </button>
-                    <button type="button" className="btn btn--ghost" onClick={close}>
-                      Back to work
-                    </button>
+              {phase === "over" && (() => {
+                const qualifies =
+                  board !== null &&
+                  score > 0 &&
+                  (board.length < 10 || score > board[board.length - 1].score);
+                return (
+                  <div className={styles.card}>
+                    <p className={styles.cardEyebrow}>{"//"} post-mortem</p>
+                    <h2 className={styles.cardTitle}>
+                      {isRecord ? "New personal best" : "Production is down"}
+                    </h2>
+                    <p className={styles.cardScore}>
+                      Bugs squashed: <b>{score}</b> · Best: <b>{best}</b>
+                    </p>
+                    {isRecord && (
+                      <span className={styles.recordStamp} aria-hidden="true">
+                        New record
+                      </span>
+                    )}
+
+                    {qualifies && submitState !== "done" && (
+                      <form className={styles.initialsForm} onSubmit={submitScore}>
+                        <label className={styles.initialsLabel} htmlFor="arcade-initials">
+                          Top-10 score — sign the board
+                        </label>
+                        <div className={styles.initialsRow}>
+                          <input
+                            id="arcade-initials"
+                            className={styles.initialsInput}
+                            type="text"
+                            inputMode="text"
+                            autoComplete="off"
+                            spellCheck={false}
+                            maxLength={3}
+                            placeholder="AAA"
+                            value={initials}
+                            onChange={(e) =>
+                              setInitials(e.target.value.toUpperCase().replace(/[^A-Z]/g, ""))
+                            }
+                          />
+                          <button
+                            type="submit"
+                            className="btn"
+                            disabled={initials.length !== 3 || submitState === "sending"}
+                          >
+                            {submitState === "sending" ? "Filing…" : "Sign"}
+                          </button>
+                        </div>
+                        {submitState === "error" && (
+                          <p className={styles.initialsError} role="alert">{submitError}</p>
+                        )}
+                      </form>
+                    )}
+
+                    {board && board.length > 0 && (
+                      <ol className={styles.board} aria-label="Global high scores">
+                        {board.map((e, i) => (
+                          <li
+                            key={`${e.name}-${e.score}`}
+                            className={`${styles.boardRow} ${
+                              e.name === submittedName ? styles.boardMine : ""
+                            }`}
+                          >
+                            <span className={styles.boardRank}>{String(i + 1).padStart(2, "0")}</span>
+                            <span className={styles.boardName}>{e.name}</span>
+                            <span className={styles.boardScore}>{e.score}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    )}
+
+                    <div className={styles.cardActions}>
+                      <button ref={startBtnRef} type="button" className="btn" onClick={begin}>
+                        Debug again<span aria-hidden="true">↺</span>
+                      </button>
+                      <button type="button" className="btn btn--ghost" onClick={close}>
+                        Back to work
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              })()}
 
               <div ref={playerRef} className={styles.player} aria-hidden="true">
                 <PlayerRobot />
