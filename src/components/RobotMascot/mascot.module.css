@@ -9,7 +9,19 @@
   gap: 10px;
   pointer-events: none;
 }
-.svg { filter: drop-shadow(4px 4px 0 rgba(17, 17, 17, 0.35)); }
+.svg { filter: drop-shadow(4px 4px 0 rgba(17, 17, 17, 0.35)); display: block; }
+
+/* the robot is secretly an arcade cabinet — click to play */
+.hitbox {
+  pointer-events: auto;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.hitbox:hover { transform: translateY(-3px); }
 .bubble {
   pointer-events: auto;
   position: relative;

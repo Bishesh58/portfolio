@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { resume } from "@/data/resume";
 import { BLUEPRINT_EVENT } from "@/components/wow/BlueprintMode";
 import { TOUR_EVENT } from "@/components/RobotMascot/Mascot";
+import { ARCADE_EVENT } from "@/components/wow/arcade/RobotArcade";
 import { useTheme } from "@/hooks/useTheme";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import styles from "./CommandPalette.module.css";
@@ -75,6 +76,13 @@ export default function CommandPalette() {
         label: "Guided tour",
         hint: "the robot narrates",
         run: () => window.dispatchEvent(new Event(TOUR_EVENT)),
+      },
+      {
+        id: "arcade",
+        group: "Actions",
+        label: "Robot arcade",
+        hint: "squash bugs before prod",
+        run: () => window.dispatchEvent(new Event(ARCADE_EVENT)),
       },
       {
         id: "copy-email",

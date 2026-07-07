@@ -14,6 +14,7 @@ import Mascot from "@/components/RobotMascot/Mascot";
 import ShortcutHint from "@/components/wow/microdelights/ShortcutHint";
 import KonamiConfetti from "@/components/wow/microdelights/KonamiConfetti";
 import CommandPalette from "@/components/CommandPalette";
+import RobotArcade from "@/components/wow/arcade/RobotArcade";
 import BlueprintMode from "@/components/wow/BlueprintMode";
 import ConsoleSignature from "@/components/wow/ConsoleSignature";
 import HireSignal from "@/components/wow/HireSignal";
@@ -44,6 +45,7 @@ export default function Home() {
       <ShortcutHint />
       <KonamiConfetti />
       <CommandPalette />
+      <RobotArcade />
       <BlueprintMode />
       <ConsoleSignature />
       <HireSignal />
