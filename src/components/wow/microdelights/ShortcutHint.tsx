@@ -30,6 +30,7 @@ const SHORTCUTS: Shortcut[] = [
   { keys: ["Ctrl", "K"], label: "Command palette" },
   { keys: ["X"], label: "Blueprint x-ray" },
   { keys: ["H", "I", "R", "E"], label: "Type it anywhere" },
+  { keys: ["Click", "🤖"], label: "Robot arcade — click the mascot" },
   { keys: ["G", "H"], label: "Go to top / hero", href: "#hero" },
   { keys: ["G", "A"], label: "Go to About", href: "#about" },
   { keys: ["G", "P"], label: "Go to Projects", href: "#projects" },
