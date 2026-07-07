@@ -9,7 +9,12 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function Journey() {
   return (
-    <section className="section" id="journey" data-section="journey">
+    <section
+      className="section"
+      id="journey"
+      data-section="journey"
+      data-note="Ledger rows: whileInView with (i%3)×0.07s stagger so batches cascade, not queue. Work/study badges derive from the entry's kind field."
+    >
       <div className="container">
         <SectionHeader n="02" title="Experience" meta="2014 — Present" stamp="Logged" />
         <div className={styles.ledger}>

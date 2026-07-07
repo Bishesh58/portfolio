@@ -44,7 +44,12 @@ export default function Contact() {
   ];
 
   return (
-    <section className={styles.band} id="contact" data-section="contact">
+    <section
+      className={styles.band}
+      id="contact"
+      data-section="contact"
+      data-note="Inverted band: background var(--ink) — flips itself in dark mode for free. Clock: Intl.DateTimeFormat, Pacific/Auckland, 1s tick, SSR-safe null first paint."
+    >
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 36 }}

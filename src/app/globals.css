@@ -221,6 +221,42 @@ main { padding-top: var(--nav-h); }
 [data-blueprint] #hero::after {
   top: 26px;
 }
+/* engineer's margin notes — real implementation details per section */
+[data-blueprint] [data-section][data-note]::before {
+  content: attr(data-note);
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 6;
+  max-width: min(400px, 72vw);
+  padding: 9px 12px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.66rem;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  color: var(--blue);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--blue) 75%, transparent);
+}
+/* marquees are short bands with overflow:hidden — one-line note, centred */
+[data-blueprint] .marquee[data-note]::after {
+  content: attr(data-note);
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  z-index: 6;
+  padding: 4px 10px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.64rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  color: var(--blue);
+  background: var(--paper);
+  border: 1px dashed var(--blue);
+}
 
 /* ---------- section header: bordered index bar ---------- */
 .sec-head {

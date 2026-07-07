@@ -52,7 +52,11 @@ export default function Marquee({ items, variant = "blue", baseVelocity = 2.5 }:
   ));
 
   return (
-    <div className={`marquee marquee--${variant}`} aria-hidden="true">
+    <div
+      className={`marquee marquee--${variant}`}
+      aria-hidden="true"
+      data-note="wrap(−25%, 0): 4 copies · speed couples to scroll velocity"
+    >
       <motion.div className="marquee-track" style={{ x }}>
         {row}{row}{row}{row}
       </motion.div>
