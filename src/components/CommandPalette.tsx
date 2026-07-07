@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { resume } from "@/data/resume";
 import { BLUEPRINT_EVENT } from "@/components/wow/BlueprintMode";
 import { TOUR_EVENT } from "@/components/RobotMascot/Mascot";
@@ -103,6 +104,7 @@ export default function CommandPalette() {
         label: "Download CV",
         hint: "pdf",
         run: () => {
+          track("cv_download", { source: "palette" });
           const a = document.createElement("a");
           a.href = resume.resumePdf;
           a.download = "";

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
+import { track } from "@vercel/analytics";
 import { useActiveSection } from "@/lib/sectionStore";
 import { quips, type SectionId } from "@/data/quips";
 import { tourStops } from "@/data/tour";
@@ -59,6 +60,7 @@ export default function Mascot() {
     const start = () => {
       if (touringRef.current) return;
       touringRef.current = true;
+      track("tour_start");
       setTouring(true);
       setHasScrolled(true);
       // The tour narrates every section, so retire the ambient quips.

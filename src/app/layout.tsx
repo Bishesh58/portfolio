@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Archivo, Space_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { resume } from "@/data/resume";
 import "./globals.css";
 
@@ -98,7 +99,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
         />
       </head>
-      <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>{children}</body>
+      <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { resume } from "@/data/resume";
 import styles from "./Contact.module.css";
 
@@ -66,7 +67,11 @@ export default function Contact() {
             Full-stack roles, contract work, or a hard problem worth talking through —
             my inbox is open.
           </p>
-          <a className={styles.email} href={`mailto:${resume.email}`}>
+          <a
+            className={styles.email}
+            href={`mailto:${resume.email}`}
+            onClick={() => track("email_click", { source: "contact" })}
+          >
             {resume.email}
           </a>
         </motion.div>
@@ -84,6 +89,10 @@ export default function Contact() {
               key={a.label}
               className={styles.action}
               href={a.href}
+              onClick={() => {
+                if ("download" in a && a.download) track("cv_download", { source: "contact" });
+                else if (a.label === "Email me") track("email_click", { source: "contact" });
+              }}
               {...("download" in a && a.download ? { download: true } : {})}
               {...("external" in a && a.external
                 ? { target: "_blank", rel: "noopener noreferrer" }
