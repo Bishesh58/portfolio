@@ -9,12 +9,6 @@ import styles from "./Projects.module.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const stats = [
-  { value: "08", label: "Tools shipped" },
-  { value: "04", label: "Brands served" },
-  { value: "100%", label: "In production" },
-];
-
 export default function Projects() {
   const reduced = usePrefersReducedMotion();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -39,21 +33,6 @@ export default function Projects() {
           {"//"} Built for the Islington Group — four brands, one platform. No public
           demos; real teams use these every day. Open a file for the work order.
         </motion.p>
-
-        <motion.div
-          className={styles.stats}
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: EASE }}
-        >
-          {stats.map((s) => (
-            <div className={styles.stat} key={s.label}>
-              <span className={styles.statValue}>{s.value}</span>
-              <span className={styles.statLabel}>{s.label}</span>
-            </div>
-          ))}
-        </motion.div>
 
         <div className={styles.ledger}>
           <div className={styles.ledgerHead} aria-hidden="true">

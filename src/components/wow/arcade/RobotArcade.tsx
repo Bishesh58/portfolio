@@ -349,14 +349,14 @@ export default function RobotArcade() {
     const x = e.clientX - rect.left;
     s.lastPointerX = x;
     if (s.mode === "keys") {
-      // resting-mouse noise stays ignored; a real move (or any touch/click)
-      // hands control back to the pointer. Threshold sits just above jitter
-      // amplitude (1-3px) so small deliberate nudges aren't eaten as lag.
+      // any real movement hands control back to the pointer — only a
+      // perfectly still cursor stays ignored (tuned down from 5px after
+      // playtesting: responsiveness beats noise filtering here)
       const deliberate =
         e.pointerType === "touch" ||
         e.type === "pointerdown" ||
         s.pointerAnchor === null ||
-        Math.abs(x - s.pointerAnchor) > 5;
+        Math.abs(x - s.pointerAnchor) > 1;
       if (!deliberate) return;
       s.mode = "pointer";
     }
