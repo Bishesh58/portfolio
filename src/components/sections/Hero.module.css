@@ -141,12 +141,61 @@
   align-self: end;
 }
 .frame {
+  position: relative;
   background: var(--panel);
   border: var(--bw) solid var(--ink);
   box-shadow: var(--shadow-lg);
   padding: 14px 14px 0;
   margin: 0;
   transition: transform 0.3s ease;
+}
+
+/* ---- assembly line (first visit / ?assemble=1) ---- */
+.printArea {
+  position: relative;
+  overflow: hidden;
+}
+.printHead {
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  height: 12px;
+  margin-top: -6px;
+  background: var(--yellow);
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  z-index: 2;
+}
+.printHead::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 12px;
+  height: 9px;
+  transform: translateX(-50%);
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.qcStamp {
+  position: absolute;
+  top: 22px;
+  left: 20px;
+  z-index: 2;
+  padding: 4px 10px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 3px solid var(--green);
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  pointer-events: none;
+  white-space: nowrap;
+  -webkit-mask-image: radial-gradient(circle at 30% 40%, black 55%, rgba(0, 0, 0, 0.7) 100%);
+  mask-image: radial-gradient(circle at 30% 40%, black 55%, rgba(0, 0, 0, 0.7) 100%);
 }
 .unit:hover .frame { transform: rotate(-1.5deg); }
 .robotImg {

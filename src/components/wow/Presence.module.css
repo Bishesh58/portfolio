@@ -1,0 +1,57 @@
+.rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: 205;
+  pointer-events: none;
+}
+
+.marker {
+  position: absolute;
+  top: 5px; /* hangs just below the reading-progress fill */
+  transform: translateX(-50%);
+  transition: left 2s linear;
+  filter: drop-shadow(2px 2px 0 rgba(17, 17, 17, 0.3));
+}
+
+.chip {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 180;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  font-family: var(--font-mono-sp), monospace;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--panel);
+  color: var(--ink);
+  border: var(--bw) solid var(--ink);
+  box-shadow: var(--shadow-sm);
+  pointer-events: none;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  background: var(--green);
+  border: 2px solid var(--ink);
+  animation: presence-pulse 2s steps(1) infinite;
+}
+@keyframes presence-pulse {
+  0%, 65% { opacity: 1; }
+  66%, 100% { opacity: 0.25; }
+}
+
+/* x-ray mode owns the bottom-left corner (blueprint badge) */
+:global([data-blueprint]) .chip { display: none; }
+
+@media (max-width: 640px) {
+  .chip { display: none; } /* phones: markers only, keep the corners clear */
+}

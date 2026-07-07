@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { resume } from "@/data/resume";
 import { useNZNight } from "@/hooks/useNZNight";
@@ -7,6 +8,13 @@ import RobotIllustration from "./RobotIllustration";
 import styles from "./Hero.module.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+/** Assembly-line intro: on a visitor's first ever load the robot figure is
+ *  manufactured — frame craned in, illustration plotted top-to-bottom behind
+ *  a print head, spec plate fitted, QC stamp slammed, sticker applied.
+ *  Returning visitors get the regular entrance; ?assemble=1 replays it. */
+type AsmPhase = "wait" | "drop" | "print" | "plate" | "stamp" | "done";
+const ASM_ORDER: AsmPhase[] = ["wait", "drop", "print", "plate", "stamp", "done"];
 
 const icons: Record<string, React.ReactNode> = {
   github: (
@@ -43,6 +51,54 @@ function Letters({ word }: { word: string }) {
 export default function Hero() {
   const night = useNZNight();
   const [first, last] = resume.name.split(" ");
+
+  const [asm, setAsm] = useState<"pending" | "run" | "off">("pending");
+  const [phase, setPhase] = useState<AsmPhase>("wait");
+  const idx = ASM_ORDER.indexOf(phase);
+
+  useEffect(() => {
+    const reducedNow = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const forced = new URLSearchParams(window.location.search).get("assemble") === "1";
+    let firstVisit = false;
+    try {
+      firstVisit = !localStorage.getItem("portfolio-visited");
+    } catch {}
+    if (reducedNow || (!forced && !firstVisit)) {
+      setAsm("off");
+      setPhase("done");
+      return;
+    }
+    setAsm("run");
+    // On a true first visit the loader owns the first ~1.9s of screen time
+    const t0 = firstVisit ? 1900 : 400;
+    const steps: Array<[AsmPhase, number]> = [
+      ["drop", t0],
+      ["print", t0 + 700],
+      ["plate", t0 + 2250],
+      ["stamp", t0 + 2600],
+      ["done", t0 + 3100],
+    ];
+    const ts = steps.map(([p, ms]) => window.setTimeout(() => setPhase(p), ms));
+    return () => ts.forEach(clearTimeout);
+  }, []);
+
+  const asideMotion =
+    asm === "run"
+      ? {
+          initial: { opacity: 0, y: -300, rotate: -5 },
+          animate:
+            idx >= 1
+              ? { opacity: 1, y: 0, rotate: 1.5 }
+              : { opacity: 0, y: -300, rotate: -5 },
+          transition: { type: "spring" as const, stiffness: 200, damping: 15 },
+        }
+      : asm === "off"
+        ? {
+            initial: { opacity: 0, y: 40, rotate: 4 },
+            animate: { opacity: 1, y: 0, rotate: 1.5 },
+            transition: { duration: 0.7, delay: 0.5, ease: EASE },
+          }
+        : { initial: { opacity: 0 }, animate: { opacity: 0 }, transition: { duration: 0 } };
 
   return (
     <section
@@ -110,34 +166,79 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <motion.aside
-            className={styles.unit}
-            initial={{ opacity: 0, y: 40, rotate: 4 }}
-            animate={{ opacity: 1, y: 0, rotate: 1.5 }}
-            transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
-          >
+          <motion.aside className={styles.unit} {...asideMotion}>
             <figure className={styles.frame}>
-              <RobotIllustration className={styles.robotImg} />
-              <figcaption className={styles.plate}>
+              <div className={styles.printArea}>
+                <motion.div
+                  initial={false}
+                  animate={{
+                    clipPath:
+                      asm === "run" && idx < 2
+                        ? "inset(0% 0% 100% 0%)"
+                        : "inset(0% 0% 0% 0%)",
+                  }}
+                  transition={{ duration: phase === "print" ? 1.5 : 0, ease: "linear" }}
+                >
+                  <RobotIllustration className={styles.robotImg} />
+                </motion.div>
+                {asm === "run" && phase === "print" && (
+                  <motion.div
+                    className={styles.printHead}
+                    initial={{ top: "0%" }}
+                    animate={{ top: "100%" }}
+                    transition={{ duration: 1.5, ease: "linear" }}
+                    aria-hidden="true"
+                  />
+                )}
+              </div>
+              <motion.figcaption
+                className={styles.plate}
+                initial={false}
+                animate={
+                  asm !== "run" || idx >= 3
+                    ? { opacity: 1, y: 0 }
+                    : { opacity: 0, y: 10 }
+                }
+                transition={{ duration: 0.3, ease: EASE }}
+              >
                 <span>Fig. 01 — The Operator</span>
                 <span className={styles.plateStatus}>
                   {night ? "Status: recharging" : "Status: shipping"}
                 </span>
-              </figcaption>
+              </motion.figcaption>
+              <motion.span
+                className={styles.qcStamp}
+                initial={false}
+                animate={
+                  asm !== "run" || idx >= 4
+                    ? { opacity: 0.9, scale: 1, rotate: -8 }
+                    : { opacity: 0, scale: 2.4, rotate: 2 }
+                }
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                aria-hidden="true"
+              >
+                QC passed
+              </motion.span>
             </figure>
-            <motion.span
-              className={styles.sticker}
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-              drag
-              dragSnapToOrigin
-              dragElastic={0.25}
-              dragTransition={{ bounceStiffness: 420, bounceDamping: 14 }}
-              whileDrag={{ scale: 1.12, rotate: -6, cursor: "grabbing" }}
-              aria-hidden="true"
-            >
-              {"</>"}
-            </motion.span>
+            {(asm !== "run" || idx >= 5) && (
+              <motion.span
+                className={styles.sticker}
+                initial={asm === "run" ? { scale: 0 } : false}
+                animate={{ scale: 1, y: [0, -8, 0] }}
+                transition={{
+                  scale: { type: "spring", stiffness: 380, damping: 16 },
+                  y: { duration: 3.2, repeat: Infinity, ease: "easeInOut" },
+                }}
+                drag
+                dragSnapToOrigin
+                dragElastic={0.25}
+                dragTransition={{ bounceStiffness: 420, bounceDamping: 14 }}
+                whileDrag={{ scale: 1.12, rotate: -6, cursor: "grabbing" }}
+                aria-hidden="true"
+              >
+                {"</>"}
+              </motion.span>
+            )}
           </motion.aside>
         </div>
 
