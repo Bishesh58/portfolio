@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { track } from "@vercel/analytics";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import MatrixRain from "./MatrixRain";
 import styles from "./RobotArcade.module.css";
 
 export const ARCADE_EVENT = "start-arcade";
@@ -349,12 +350,13 @@ export default function RobotArcade() {
     s.lastPointerX = x;
     if (s.mode === "keys") {
       // resting-mouse noise stays ignored; a real move (or any touch/click)
-      // hands control back to the pointer
+      // hands control back to the pointer. Threshold sits just above jitter
+      // amplitude (1-3px) so small deliberate nudges aren't eaten as lag.
       const deliberate =
         e.pointerType === "touch" ||
         e.type === "pointerdown" ||
         s.pointerAnchor === null ||
-        Math.abs(x - s.pointerAnchor) > 12;
+        Math.abs(x - s.pointerAnchor) > 5;
       if (!deliberate) return;
       s.mode = "pointer";
     }
@@ -417,6 +419,7 @@ export default function RobotArcade() {
               onPointerMove={onPointer}
               onPointerDown={onPointer}
             >
+              <MatrixRain />
               {phase === "start" && (
                 <div className={styles.card}>
                   <p className={styles.cardEyebrow}>{"//"} incident report</p>
