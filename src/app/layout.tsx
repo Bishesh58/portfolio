@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Anton, Archivo, Space_Mono } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { resume } from "@/data/resume";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-J10YC0BB2H";
 
 const display = Anton({
   subsets: ["latin"],
@@ -102,6 +105,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
         {children}
         <Analytics />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
       </body>
     </html>
   );
