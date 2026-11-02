@@ -350,8 +350,8 @@ export default function RobotArcade() {
     s.lastPointerX = x;
     if (s.mode === "keys") {
       // any real movement hands control back to the pointer — only a
-      // perfectly still cursor stays ignored (tuned down from 5px after
-      // playtesting: responsiveness beats noise filtering here)
+      // perfectly still cursor stays ignored (responsiveness beats noise
+      // filtering here)
       const deliberate =
         e.pointerType === "touch" ||
         e.type === "pointerdown" ||

@@ -10,7 +10,7 @@ type Props = {
   priority?: boolean;
 };
 
-/** Eye regions sampled from robot.png (viewBox 0 0 557 600) */
+/** Eye regions sampled from the source art, assets/robot.png (viewBox 0 0 557 600) */
 const EYES = {
   visor: "#080f2b",
   glow: "#85f56f",
@@ -18,7 +18,7 @@ const EYES = {
   right: { x: 325.1, y: 209.55, width: 16.28, height: 26.97 },
 } as const;
 
-/** Laptop screen text — left teal display (sampled from robot.png) */
+/** Laptop screen text — left teal display (sampled from assets/robot.png) */
 const SCREEN_TEXT = {
   x: 120, // left edge; anchored start so typing grows rightward
   y: 284,

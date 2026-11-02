@@ -12,16 +12,15 @@ import styles from "./ShortcutHint.module.css";
  * Press "?" anywhere (outside a text field) to reveal a brutalist cheat-sheet
  * of navigation shortcuts; it also winks at the hidden Konami easter egg.
  * Because it is summoned on demand and centred as a modal, it never sits
- * permanently over the header, mascot, cursor or progress line — there is no
- * persistent chrome to collide with.
+ * permanently over the header, mascot or progress line.
  *
  * Accessibility: it is a labelled modal dialog (role="dialog", aria-modal),
  * moves focus into the panel on open, restores focus to the previously focused
  * element on close, and closes on Escape or backdrop click. Motion is gated by
  * usePrefersReducedMotion().
  *
- * The listed section shortcuts jump to the matching page anchors, so they work
- * with the site's existing #hero/#about/#projects/#contact structure.
+ * "G then <key>" jumps to #hero/#about/#projects/#contact; "G then T" starts
+ * the mascot's guided tour.
  */
 
 type Shortcut = { keys: string[]; label: string; href?: string };

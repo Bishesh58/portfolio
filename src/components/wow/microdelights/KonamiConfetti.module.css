@@ -1,5 +1,5 @@
-/* Full-viewport, click-through overlay. Sits below the custom cursor (500) and
-   loader (400) but above everything else so confetti reads on top of content.
+/* Full-viewport, click-through overlay. Sits below the loader (400) but above
+   page content so confetti reads on top of it.
    pointer-events:none guarantees it never blocks clicks on the page chrome. */
 .overlay {
   position: fixed;

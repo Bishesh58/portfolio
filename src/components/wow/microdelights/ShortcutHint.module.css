@@ -1,5 +1,5 @@
-/* Modal backdrop. Above content and mascot, below the custom cursor (500) and
-   loader (400). Only present while open, so no persistent chrome overlap. */
+/* Modal backdrop. Above content and mascot, below the loader (400). Only
+   present while open, so no persistent chrome overlap. */
 .backdrop {
   position: fixed;
   inset: 0;

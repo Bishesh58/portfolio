@@ -15,7 +15,7 @@ export default function Skills() {
       className="section"
       id="skills"
       data-section="skills"
-      data-note="Icons: 32 SVGs self-hosted in /icons — the CDN deleted four brands mid-2026, so everything is vendored. Zero third-party requests."
+      data-note="Icons: 32 SVGs self-hosted in /icons — the CDN deleted four brands mid-2026, so everything is vendored. No icon CDN at runtime."
     >
       <div className="container">
         <SectionHeader n="04" title="Toolkit" meta="Daily drivers" stamp="Battle-tested" />

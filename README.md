@@ -8,7 +8,7 @@ Neo-brutalist portfolio, built as a **build sheet**: bone paper, working blue, h
 
 ## Stack
 
-Next.js 15 (App Router, static prerender) · React 19 · TypeScript · [motion](https://motion.dev) · CSS Modules + design tokens · Upstash Redis (REST) · Vercel
+Next.js 15 (App Router, static prerender) · React 19 · TypeScript · [motion](https://motion.dev) · CSS Modules + design tokens · Upstash Redis (REST) · Vercel (+ Vercel Analytics, Google Analytics)
 
 No UI library, no Tailwind, no CMS. One typed data file ([`src/data/resume.ts`](src/data/resume.ts)) drives every section, so the site and the facts can't drift apart.
 
@@ -43,7 +43,7 @@ No UI library, no Tailwind, no CMS. One typed data file ([`src/data/resume.ts`](
 
 A few decisions that aren't obvious from the outside:
 
-- **Icons are vendored, not CDN'd.** `cdn.simpleicons.org` deleted four brand marks mid-2026 and quietly broke the Toolkit section. All 32 SVGs now live in [`public/icons`](public/icons), recovered where necessary from older package releases. Zero third-party requests.
+- **Icons are vendored, not CDN'd.** `cdn.simpleicons.org` deleted four brand marks mid-2026 and quietly broke the Toolkit section. All 32 SVGs now live in [`public/icons`](public/icons), recovered where necessary from older package releases ([`src/lib/skillIcons.ts`](src/lib/skillIcons.ts)). No icon CDN at runtime.
 - **Redis features degrade to invisible.** The visitor counter, leaderboard, and presence all share one helper ([`src/lib/redis.ts`](src/lib/redis.ts)); if the store is unconfigured or down, the API reports `null` and the UI simply doesn't render. No error states, no skeletons.
 - **The arcade never re-renders during gameplay.** The simulation is a single `requestAnimationFrame` loop mutating DOM transforms inside a ref; React state only changes on catches and misses. Gameplay keys are intercepted in the capture phase so the site's other single-key shortcuts can't misfire mid-game.
 - **Blueprint annotations cost zero JavaScript.** Each section carries a `data-note` attribute rendered via CSS `attr()` — only visible in x-ray mode.
@@ -75,14 +75,19 @@ UPSTASH_REDIS_REST_TOKEN=...
 
 ```
 src/
-  data/            resume.ts (single source of truth), tour script, quips
-  app/             layout (fonts, metadata, JSON-LD), robots, sitemap, api/
-  components/
+  data/            resume.ts (single source of truth), types, tour script, quips
+  app/             layout (fonts, metadata, JSON-LD, analytics), 404, robots, sitemap
+    api/           arcade (leaderboard), presence, visits — all Redis-backed
+  components/      Navbar, Loader, ProgressBar, Marquee, CommandPalette, VisitorCounter
     sections/      Hero, About, Journey, Projects (dossiers), Skills, Contact, Footer
     RobotMascot/   the mascot: poses, quips, guided tour, night shift
-    wow/           command palette, blueprint mode, arcade, presence, easter eggs
+    wow/           blueprint mode, arcade, presence, hire stamp, console signature,
+                   Konami confetti, shortcut cheat sheet
   hooks/           useTheme, useSectionSpy, useNZNight, usePrefersReducedMotion
-  lib/             redis helper, section store
+  lib/             Redis helper, section store, skill icon map
+scripts/           asset generation (hero WebP, favicons) + robot eye sampling
+assets/            source art (robot.png)
+docs/media/        README screenshots
 ```
 
 ---

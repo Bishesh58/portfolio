@@ -25,7 +25,7 @@
      into light cream (yellow-on-cream is ~1.4:1 — unreadable) */
   --yellow-on-ink: var(--yellow);
 
-  /* legacy accent aliases (mascot, confetti) */
+  /* secondary accents (mascot, arcade, confetti, presence markers) */
   --cobalt: var(--blue);
   --teal: #3e9c8f;
   --lime: #9be04c;
