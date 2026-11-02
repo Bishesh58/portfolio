@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: `${resume.name} | ${resume.role}`,
   description:
-    "Full Stack Developer in Auckland, NZ with 4+ years building scalable web and enterprise applications — Vue, React, Node.js, TypeScript, Laravel, NetSuite, and Google Cloud.",
+    "Full Stack Developer in Auckland, NZ with 5+ years building scalable web and enterprise applications — Vue, React, Node.js, TypeScript, Laravel, NetSuite, and Google Cloud.",
   alternates: { canonical: "/" },
   icons: {
     icon: [

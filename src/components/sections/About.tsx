@@ -36,7 +36,7 @@ function Statement({ paragraph }: { paragraph: AboutSegment[] }) {
 
 const facts = [
   { label: "Base", value: "Auckland, New Zealand" },
-  { label: "Experience", value: "4+ years" },
+  { label: "Experience", value: "5+ years" },
   { label: "Focus", value: "Internal platforms, ERP & dashboards" },
   { label: "Daily stack", value: "Vue · React · Node.js · Laravel" },
   { label: "Certified", value: "ICAgile Professional (ICP)" },

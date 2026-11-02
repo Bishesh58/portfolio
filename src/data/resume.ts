@@ -18,7 +18,7 @@ export const resume: Resume = {
   about: [
     [
       { text: "Full Stack Developer with " },
-      { text: "4+ years of experience", highlight: "yellow" },
+      { text: "5+ years of experience", highlight: "yellow" },
       { text: " building scalable web and enterprise applications. I work across the " },
       { text: "JavaScript ecosystem", highlight: "cobalt" },
       { text: " (Vue, React, Node.js, TypeScript) and backend stacks like " },
@@ -91,6 +91,22 @@ export const resume: Resume = {
     },
   ],
   projects: [
+    {
+      title: "Enterprise CRM",
+      impact: "CRM platform integrated with NetSuite ERP, centralising customer data and business workflows — with AI-assisted workflows via NetSuite's LLM chatbot.",
+      tags: ["NetSuite", "SuiteScript", "LLM"],
+      accent: "lime",
+      dossier: {
+        users: "Sales & customer teams, group-wide",
+        status: "In production",
+        problem:
+          "Customer data and the workflows around it were spread across records and teams, with no single place to see and act on a customer relationship.",
+        build:
+          "A CRM platform integrated with NetSuite ERP that centralises customer data and business workflows, extended with NetSuite's LLM-powered chatbot for AI-assisted work.",
+        outcome:
+          "One CRM for customer data and workflows, with AI assistance built into the daily flow.",
+      },
+    },
     {
       title: "NetSuite SPA Dashboard",
       impact: "Single-page NetSuite app with a Kanban proposal pipeline that streamlined sales workflows and boosted team efficiency.",
