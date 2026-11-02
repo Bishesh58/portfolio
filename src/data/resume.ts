@@ -28,9 +28,9 @@ export const resume: Resume = {
     [
       { text: "At the Islington group I build and integrate " },
       { text: "ERP systems and third-party APIs", highlight: "lime" },
-      { text: " — NetSuite SPAs, admin portals, and " },
+      { text: " — a NetSuite-integrated CRM, SPAs, admin portals, and " },
       { text: "dashboards and data visualisation", highlight: "yellow" },
-      { text: " that turn scattered data into decisions for sales, marketing, and operations teams." },
+      { text: " for sales, marketing, and operations teams. I also led a NetSuite performance push that cut wait times by up to 35% and saved ~380 hours a year." },
     ],
     [
       { text: "I'm recognised for " },
@@ -43,13 +43,13 @@ export const resume: Resume = {
   timeline: [
     {
       kind: "work",
-      title: "Web Developer",
+      title: "Software Developer",
       org: "Islington Group (Boundaryline, Heritage, BTI & Fentec)",
       start: "Jan 2023",
       end: "Present",
       location: "Auckland, New Zealand",
       summary:
-        "Building the group's internal platform: NetSuite SPA with Kanban proposal pipeline, role-based admin portal, marketing analytics, credit control, order tracking, and warehouse KPI dashboards — plus fully custom public websites.",
+        "Building the group's enterprise platform: a NetSuite-integrated CRM with AI-assisted workflows, a performance push that cut record-page load times by 29% and saved ~380 hours a year, plus SPA dashboards, admin portals, business process apps, and custom websites and e-commerce.",
     },
     {
       kind: "work",
